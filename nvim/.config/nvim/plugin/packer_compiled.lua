@@ -74,6 +74,11 @@ _G.packer_plugins = {
     path = "/home/takumi/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp",
     url = "https://github.com/hrsh7th/cmp-nvim-lsp"
   },
+  ["cmp-snippy"] = {
+    loaded = true,
+    path = "/home/takumi/.local/share/nvim/site/pack/packer/start/cmp-snippy",
+    url = "https://github.com/dcampos/cmp-snippy"
+  },
   ["gitsigns.nvim"] = {
     loaded = true,
     path = "/home/takumi/.local/share/nvim/site/pack/packer/start/gitsigns.nvim",
@@ -109,6 +114,11 @@ _G.packer_plugins = {
     path = "/home/takumi/.local/share/nvim/site/pack/packer/start/nvim-lspconfig",
     url = "https://github.com/neovim/nvim-lspconfig"
   },
+  ["nvim-snippy"] = {
+    loaded = true,
+    path = "/home/takumi/.local/share/nvim/site/pack/packer/start/nvim-snippy",
+    url = "https://github.com/dcampos/nvim-snippy"
+  },
   ["nvim-tree.lua"] = {
     loaded = true,
     path = "/home/takumi/.local/share/nvim/site/pack/packer/start/nvim-tree.lua",
@@ -135,7 +145,7 @@ _G.packer_plugins = {
     url = "https://github.com/nvim-telescope/telescope.nvim"
   },
   ["toggleterm.nvim"] = {
-    config = { "\27LJ\2\n£\1\0\0\4\0\6\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0005\3\4\0=\3\5\2B\0\2\1K\0\1\0\15float_opts\1\0\1\rwinblend\3\n\1\0\4\14direction\nfloat\18close_on_exit\2\20insert_mappings\2\17open_mapping\n<C-@>\nsetup\15toggleterm\frequire\0" },
+    config = { "\27LJ\2\n£\1\0\0\4\0\6\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0005\3\4\0=\3\5\2B\0\2\1K\0\1\0\15float_opts\1\0\1\rwinblend\3\n\1\0\4\17open_mapping\n<C-@>\14direction\nfloat\18close_on_exit\2\20insert_mappings\2\nsetup\15toggleterm\frequire\0" },
     loaded = true,
     path = "/home/takumi/.local/share/nvim/site/pack/packer/start/toggleterm.nvim",
     url = "https://github.com/akinsho/toggleterm.nvim"
@@ -150,7 +160,7 @@ _G.packer_plugins = {
 time([[Defining packer_plugins]], false)
 -- Config for: toggleterm.nvim
 time([[Config for toggleterm.nvim]], true)
-try_loadstring("\27LJ\2\n£\1\0\0\4\0\6\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0005\3\4\0=\3\5\2B\0\2\1K\0\1\0\15float_opts\1\0\1\rwinblend\3\n\1\0\4\14direction\nfloat\18close_on_exit\2\20insert_mappings\2\17open_mapping\n<C-@>\nsetup\15toggleterm\frequire\0", "config", "toggleterm.nvim")
+try_loadstring("\27LJ\2\n£\1\0\0\4\0\6\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0005\3\4\0=\3\5\2B\0\2\1K\0\1\0\15float_opts\1\0\1\rwinblend\3\n\1\0\4\17open_mapping\n<C-@>\14direction\nfloat\18close_on_exit\2\20insert_mappings\2\nsetup\15toggleterm\frequire\0", "config", "toggleterm.nvim")
 time([[Config for toggleterm.nvim]], false)
 if should_profile then save_profiles() end
 

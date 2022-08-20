@@ -6,6 +6,9 @@ local use_arg_list = {
     --- complement
     {'hrsh7th/nvim-cmp'},
     {'hrsh7th/cmp-nvim-lsp'},
+    --- snippet
+    {'dcampos/nvim-snippy'},
+    {'dcampos/cmp-snippy'},
     -- show lsp state
     -- {'j-hui/fidget.nvim'},
 }
@@ -39,24 +42,55 @@ local init = function()
     end})
     -- require('fidget').setup({})
 
+    local snippy = require('snippy')
+
+    local has_words_before = function()
+        local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+        return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, true)[1]:sub(col, col):match('%s') == nil
+    end
+
     -- completion
     local cmp = require('cmp')
     cmp.setup({
+        snippet = {
+            expand = function(args)
+                snippy.expand_snippet(args.body)
+            end
+        },
         mapping = {
-            ['<C-k>'] = cmp.mapping.select_prev_item(),
-            ['<C-j>'] = cmp.mapping.select_next_item(),
+            ['<C-k>'] = cmp.mapping(function(fallback)
+                if cmp.visible() then
+                    cmp.select_prev_item()
+                elseif snippy.can_jump(-1) then
+                    snippy.previous()
+                else
+                    fallback()
+                end
+            end, {'i', 's'}),
+            ['<C-j>'] = cmp.mapping(function(fallback)
+                if cmp.visible() then
+                    cmp.select_next_item()
+                elseif snippy.can_expand_or_advance() then
+                    snippy.expand_or_advance()
+                elseif has_words_before() then
+                    cmp.complete()
+                else
+                    fallback()
+                end
+            end, {'i', 's'}),
             ['<CR>'] = cmp.mapping.confirm({select=true}),
             ['<C-q>'] = cmp.mapping.close(),
         },
         sources = {
             {name = 'nvim_lsp'},
-            -- {name = 'buffer'},
+            {name = 'buffer'},
         },
         -- experimental = {
         --     ghost_text = true,
         -- },
     })
     vim.diagnostic.config({virtual_text = false})
+
 end
 
 return {
