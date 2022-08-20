@@ -15,8 +15,6 @@ function load_plugin() {
     if [ ! -d $PLUGIN_PATH ]; then
         echo "Install   : $1"
         git clone --depth 1 "https://github.com/$1.git" $PLUGIN_PATH
-        rm -rdf "$PLUGIN_PATH/.git"
-        rm -f "$PLUGIN_PATH/.gitignore"
         echo "Installed : $1"
     fi
 

@@ -18,6 +18,8 @@
 PROMPT='%F{#00ff00}%n@%m%f:%~
 $ '
 
+export WORDCHARS='*?_.[]~-=&;!#$%^(){}<>'
+
 #------------------------
 # Color
 #------------------------
@@ -42,7 +44,6 @@ SAVEHIST=100000
 # 同時に起動したzshでhistoryを共有
 setopt share_history
 
-
 #------------------------
 # vcs info
 #------------------------
@@ -61,9 +62,8 @@ autoload -U compinit && compinit
 # ビープ音オフ
 setopt no_beep
 
-# エディタをvimに
-export EDITOR=vim
-
+# エディタをneovimに
+export EDITOR=nvim
 
 # カーソルを線に
 #echo '\e[5 q'
@@ -77,6 +77,7 @@ if [ -e $PLUGMAN ]; then
     source $PLUGMAN
     plugman plug "zsh-users/zsh-autosuggestions"
     plugman plug "zsh-users/zsh-syntax-highlighting"
+    ZSH_HIGHLIGHT_STYLES[comment]='fg=white'
     plugman_unset
 else
     echo "WARN : Plugin manager does not exist."
@@ -88,6 +89,7 @@ unset PLUGMAN
 # Alias
 #------------------------
 alias cls=clear
+alias tmux='tmux -u' # force utf-8
 
 #------------------------
 # OS Specific
@@ -110,4 +112,35 @@ fi
 # Rust
 #------------------------
 source ~/.cargo/env
+
+#------------------------
+# NPM
+#------------------------
+NPM_PACKAGES=${HOME}/.npm-packages
+NODE_PATH=${NPM_PACKAGES}/lib/node_modules:$NODE_PATH
+PATH=${NPM_PACKAGES}/bin:$PATH
+# Unset manpath so we can inherit from /etc/manpath via the `manpath`
+# command
+unset MANPATH # delete if you already modified MANPATH elsewhere in your config
+MANPATH="$NPM_PACKAGES/share/man:$(manpath)"
+
+# Disable Ctrl-S when stdin is open.
+if [ -t 0 ]; then
+    stty stop undef
+fi
+
+#------------------------
+# Locale
+#------------------------
+export LC_ALL=C.UTF-8
+
+bindkey -e
+PATH=~/tools:$PATH
+
+#------------------------
+# Machine specific settings
+#------------------------
+if [ -e ${HOME}/.additional.sh ]; then
+    source ${HOME}/.additional.sh
+fi
 

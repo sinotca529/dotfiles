@@ -85,4 +85,3 @@ let dict_line = {
 set statusline+=\ %{dict_line[&fileformat]}
 
 set statusline+=\ %*
-
