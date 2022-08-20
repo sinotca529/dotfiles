@@ -7,11 +7,14 @@ A collection of dotfiles.
 git clone --depth 1 (path_to_this_repol)
 ```
 
-## Enable features
+## Attach & Detach Features
 `GNU stow` is useful.
 
-e.g. To enable dotfiles for vim:
+e.g. To attach/detach dotfiles for vim:
 ```
 cd dotfiles
-stow -v vim
+stow -v vim # attach
+stow -vD vim # detach
 ```
+
+
