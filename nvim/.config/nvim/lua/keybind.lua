@@ -15,6 +15,8 @@ swap_key('v', 'k', 'gk')
 vim.api.nvim_set_keymap('n', 'ZZ', '<Nop>', {})
 -- Disbale 'close without save'.
 vim.api.nvim_set_keymap('n', 'ZQ', '<Nop>', {})
+-- Do not yank when press x.
+-- vim.api.nvim_set_keymap('n', 'x', '"_x', {})
 
 -- Toggle word wrap
 vim.api.nvim_set_keymap('n', '<M-z>', ':set wrap!<CR>', {silent=true})

@@ -12,6 +12,8 @@ vim.o.breakindent = true
 vim.o.winblend = 10
 vim.o.foldmethod = 'indent'
 vim.o.foldlevel = 99
+vim.o.fileformats = 'unix,dos,mac'
+vim.wo.wrap = false
 -- vim.g.mapleader = '<Space>'
 
 vim.api.nvim_set_option('clipboard', 'unnamedplus')

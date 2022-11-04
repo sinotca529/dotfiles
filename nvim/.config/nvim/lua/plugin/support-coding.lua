@@ -1,19 +1,17 @@
-local use_arg_list = {
-    --- lsp
-    {'neovim/nvim-lspconfig'},
-    {'williamboman/mason.nvim'},
-    {'williamboman/mason-lspconfig.nvim'},
-    --- complement
-    {'hrsh7th/nvim-cmp'},
-    {'hrsh7th/cmp-nvim-lsp'},
-    --- snippet
-    {'dcampos/nvim-snippy'},
-    {'dcampos/cmp-snippy'},
+return function(use)
+    -- lsp
+    use({'neovim/nvim-lspconfig'})
+    use({'williamboman/mason.nvim'})
+    use({'williamboman/mason-lspconfig.nvim'})
+    -- complement
+    use({'hrsh7th/nvim-cmp'})
+    use({'hrsh7th/cmp-nvim-lsp'})
+    -- snippet
+    use({'dcampos/nvim-snippy'})
+    use({'dcampos/cmp-snippy'})
     -- show lsp state
-    -- {'j-hui/fidget.nvim'},
-}
+    use({'j-hui/fidget.nvim'})
 
-local init = function()
     require('mason').setup({})
     local nvim_lsp = require('lspconfig')
     require('mason-lspconfig').setup_handlers({function(server_name)
@@ -26,6 +24,7 @@ local init = function()
                 vim.keymap.set('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', bufopts)
                 vim.keymap.set('n', 'ge', '<cmd>lua vim.diagnostic.open_float()<CR>', bufopts)
                 vim.keymap.set('n', '<C-.>', '<cmd>lua vim.lsp.buf.code_action()<CR>', bufopts)
+                vim.keymap.set('n', '<C-S-f>', '<cmd>lua vim.lsp.buf.formatting()<CR>', bufopts)
             end,
             capabilities = require('cmp_nvim_lsp').update_capabilities(
                 vim.lsp.protocol.make_client_capabilities()
@@ -40,7 +39,7 @@ local init = function()
             },
         })
     end})
-    -- require('fidget').setup({})
+    require('fidget').setup({})
 
     local snippy = require('snippy')
 
@@ -90,11 +89,4 @@ local init = function()
         -- },
     })
     vim.diagnostic.config({virtual_text = false})
-
 end
-
-return {
-    use_arg_list = use_arg_list,
-    init = init,
-}
-
