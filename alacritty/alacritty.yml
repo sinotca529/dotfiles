@@ -1,0 +1,30 @@
+shell:
+  program: /Windows/System32/wsl.exe ~ -d Ubuntu
+
+env:
+  TERM: alacritty
+
+font:
+  normal:
+    family: HackGenNerd
+  size: 16
+
+key_bindings:
+  - { key: Period, mods: Control, chars: "\x1b[46;5u" }
+  - { key: Space, mods: Control, chars: "\x1b[32;5u" }
+  # does not working (bug?)
+  - { key: At, mods: Control, chars: "\x1b[96;5u" }
+
+colors:
+  primary:
+    background: '0x000000'
+    foreground: '0xffffff'
+  normal:
+    black:   '0x000000'
+    red:     '0xff0000'
+    green:   '0x00ff00'
+    blue:    '0x0000ff'
+    yellow:  '0xffff00'
+    magenta: '0xff00ff'
+    cyan:    '0x00ffff'
+    white:   '0xffffff'

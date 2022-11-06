@@ -144,3 +144,14 @@ if [ -e ${HOME}/.additional.sh ]; then
     source ${HOME}/.additional.sh
 fi
 
+function dict() {
+    if echo $1 | grep -q '\<[0-9A-Za-z]'; then
+        grep ^$1 ~/tools/dict/gene.utf8 -A 1 -wi --color
+    else
+        grep ^$1 ~/tools/dict/edict.utf8 -wi --color
+    fi
+}
+
+if [ -z "$TMUX" ]; then
+    tmux
+fi

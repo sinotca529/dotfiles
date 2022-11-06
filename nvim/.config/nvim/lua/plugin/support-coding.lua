@@ -39,12 +39,16 @@ return function(use)
             },
         })
     end})
-    require('fidget').setup({})
+    require('fidget').setup({
+        timer = {
+            task_decay = 0
+        },
+    })
 
     local snippy = require('snippy')
 
     local has_words_before = function()
-        local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+        local line, col = table.unpack(vim.api.nvim_win_get_cursor(0))
         return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, true)[1]:sub(col, col):match('%s') == nil
     end
 

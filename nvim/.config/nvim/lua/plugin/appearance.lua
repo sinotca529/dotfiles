@@ -1,8 +1,9 @@
 local function color_scheme(use)
-    use { 'Mofiqul/vscode.nvim'}
-    -- Can I move it into use's config option?
-    require('vscode').setup({})
-    vim.cmd('colorscheme vscode')
+    -- use({ 'Mofiqul/vscode.nvim'})
+    use({'EdenEast/nightfox.nvim'})
+    use({'glepnir/zephyr-nvim'})
+    use({'rmehri01/onenord.nvim'})
+    vim.cmd('colorscheme onenord')
 end
 
 local function status_line(use)
@@ -203,8 +204,26 @@ local function indent_blankline(use)
     require('indent_blankline').setup({})
 end
 
+local function tree_sitter(use)
+    use({'nvim-treesitter/nvim-treesitter'})
+    require('nvim-treesitter.configs').setup({
+        ensure_installed = {
+            "c", "cpp", "llvm", "rust",
+            "lua", "python",
+            "markdown", "markdown_inline",
+            "latex",
+        },
+        auto_install = true,
+        highlight = {
+            enable = true,
+            disable = {},
+        }
+    })
+end
+
 return function(use)
     color_scheme(use)
     status_line(use)
     indent_blankline(use)
+    tree_sitter(use)
 end
