@@ -144,6 +144,8 @@ if [ -e ${HOME}/.additional.sh ]; then
     source ${HOME}/.additional.sh
 fi
 
+export PATH="$PATH:/usr/local/go/bin"
+
 function dict() {
     if echo $1 | grep -q '\<[0-9A-Za-z]'; then
         grep ^$1 ~/tools/dict/gene.utf8 -A 1 -wi --color
@@ -152,6 +154,6 @@ function dict() {
     fi
 }
 
-if [ -z "$TMUX" ]; then
+if [ -z "$TMUX$ZELLIJ$VIM" ]; then
     tmux
 fi

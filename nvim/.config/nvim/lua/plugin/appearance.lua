@@ -3,7 +3,9 @@ local function color_scheme(use)
     use({'EdenEast/nightfox.nvim'})
     use({'glepnir/zephyr-nvim'})
     use({'rmehri01/onenord.nvim'})
-    vim.cmd('colorscheme onenord')
+    use({'sainnhe/gruvbox-material'})
+    -- vim.cmd('colorscheme onenord')
+    vim.cmd('colorscheme gruvbox-material')
 end
 
 local function status_line(use)
@@ -219,6 +221,9 @@ local function tree_sitter(use)
             disable = {},
         }
     })
+
+    vim.wo.foldmethod = "expr"
+    vim.wo.foldexpr = "nvim_treesitter#foldexpr()"
 end
 
 return function(use)

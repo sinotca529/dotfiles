@@ -11,6 +11,8 @@ return function(use)
     use({'dcampos/cmp-snippy'})
     -- show lsp state
     use({'j-hui/fidget.nvim'})
+    -- comment out
+    use({'numToStr/Comment.nvim'})
 
     require('mason').setup({})
     local nvim_lsp = require('lspconfig')
@@ -24,11 +26,10 @@ return function(use)
                 vim.keymap.set('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', bufopts)
                 vim.keymap.set('n', 'ge', '<cmd>lua vim.diagnostic.open_float()<CR>', bufopts)
                 vim.keymap.set('n', '<C-.>', '<cmd>lua vim.lsp.buf.code_action()<CR>', bufopts)
-                vim.keymap.set('n', '<C-S-f>', '<cmd>lua vim.lsp.buf.formatting()<CR>', bufopts)
+                vim.keymap.set('n', '<C-S-f>', '<cmd>lua vim.lsp.buf.format()<CR>', bufopts)
+                vim.keymap.set('n', 'gr', '<cmd>lua vim.lsp.buf.rename()<CR>', bufopts)
             end,
-            capabilities = require('cmp_nvim_lsp').update_capabilities(
-                vim.lsp.protocol.make_client_capabilities()
-            ),
+            capabilities = require('cmp_nvim_lsp').default_capabilities(),
             autostart = true,
             settings = {
                 Lua = {
@@ -93,4 +94,18 @@ return function(use)
         -- },
     })
     vim.diagnostic.config({virtual_text = false})
+
+    require('Comment').setup({
+        padding = true,
+        -- toggler = {
+        --     line = '<C-/>',
+        -- },
+        -- opleader = {
+        --     line = '<C-/>',
+        -- },
+        -- mappings = {
+        --     basic = false,
+        --     extra = false,
+        -- }
+    })
 end

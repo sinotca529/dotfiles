@@ -21,6 +21,10 @@ vim.api.nvim_set_keymap('n', 'ZQ', '<Nop>', {})
 -- Toggle word wrap
 vim.api.nvim_set_keymap('n', '<M-z>', ':set wrap!<CR>', {silent=true})
 
+-- Swap line
+vim.api.nvim_set_keymap('n', '<C-j>', 'ddp', {silent=true})
+vim.api.nvim_set_keymap('n', '<C-k>', 'ddkP', {silent=true})
+
 -- Alias of C-@
 vim.api.nvim_set_keymap('n', '<C-Space>', '<C-@>', {silent=true})
 vim.api.nvim_set_keymap('t', '<C-Space>', '<C-@>', {silent=true})
