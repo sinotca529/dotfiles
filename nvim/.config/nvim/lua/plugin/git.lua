@@ -3,6 +3,9 @@ local function git_signs()
         'lewis6991/gitsigns.nvim',
         config = function()
             require('gitsigns').setup({
+                signs = {
+                    untracked = { text = '┃' }
+                },
                 on_attach = function(bufnr)
                     local gs = package.loaded.gitsigns
                     local function map(mode, l, r, opts)
@@ -11,8 +14,10 @@ local function git_signs()
                         vim.keymap.set(mode, l, r, opts)
                     end
                     map('n', '<Leader>gu', gs.undo_stage_hunk)
-                    map('n', '<Leader>gp', gs.preview_hunk)
-                end
+                    map('n', '<Leader>gh', gs.preview_hunk)
+                    map('n', '<Leader>gb', function() gs.blame_line{full=true} end)
+                    map('n', '<Leader>gd', gs.diffthis)
+                end,
             })
         end
     }

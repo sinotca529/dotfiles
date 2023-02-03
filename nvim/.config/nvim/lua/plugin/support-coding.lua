@@ -106,8 +106,35 @@ local function fidget()
     }
 end
 
+local function comment()
+    return {
+        'numToStr/Comment.nvim',
+        config = function()
+            require('Comment').setup({
+                mappings = {
+                    basic = false,
+                    extra = false,
+                },
+            })
+            vim.keymap.set(
+                'n',
+                '',
+                function()
+                    if vim.api.nvim_get_vvar('count') == 0 then
+                        return '<Plug>(comment_toggle_linewise_current)'
+                    else
+                        return '<Plug>(comment_toggle_linewise_count)'
+                    end
+                end,
+                { expr = true, desc = 'Comment toggle current line'}
+            )
+        end
+    }
+end
+
 return function(plugins)
     plugins[#plugins+1] = mason_lspconfig()
     plugins[#plugins+1] = nvim_cmp()
     plugins[#plugins+1] = fidget()
+    -- plugins[#plugins+1] = comment()
 end
