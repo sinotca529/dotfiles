@@ -17,6 +17,7 @@ local function git_signs()
                     map('n', '<Leader>gh', gs.preview_hunk)
                     map('n', '<Leader>gb', function() gs.blame_line{full=true} end)
                     map('n', '<Leader>gd', gs.diffthis)
+                    map('n', '<Leader>gr', gs.reset_hunk)
                 end,
             })
         end

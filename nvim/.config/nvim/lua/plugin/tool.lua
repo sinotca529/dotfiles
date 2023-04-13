@@ -63,10 +63,11 @@ local function which_key()
             wk.register({
                 ['<leader>g'] = {
                     name = 'git',
-                    u = 'undo hunk',
+                    u = 'unstage hunk',
                     h = 'show hunk',
                     b = 'blame',
                     d = 'diff',
+                    r = 'restore hunk'
                 },
                 ['<leader>f'] = {
                     name = 'fzf',

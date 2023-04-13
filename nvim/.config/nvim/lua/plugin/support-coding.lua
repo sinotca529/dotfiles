@@ -20,7 +20,7 @@ local function mason_lspconfig()
                         vim.keymap.set('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', bufopts)
                         vim.keymap.set('n', 'ge', '<cmd>lua vim.diagnostic.open_float()<CR>', bufopts)
                         vim.keymap.set('n', '<C-.>', '<cmd>lua vim.lsp.buf.code_action()<CR>', bufopts)
-                        vim.keymap.set('n', '<C-S-f>', '<cmd>lua vim.lsp.buf.format()<CR>', bufopts)
+                        vim.keymap.set('n', '<C-f>', '<cmd>lua vim.lsp.buf.format()<CR>', bufopts)
                         vim.keymap.set('n', 'gr', '<cmd>lua vim.lsp.buf.rename()<CR>', bufopts)
                     end,
                     capabilities = require('cmp_nvim_lsp').default_capabilities(),
@@ -43,14 +43,15 @@ local function nvim_cmp()
         'hrsh7th/nvim-cmp',
         dependencies = {
             'dcampos/nvim-snippy',
-            'dcampos/cmp-snippy' -- what is this?
+            'dcampos/cmp-snippy'
         },
         config = function()
             local snippy = require('snippy')
             local cmp = require('cmp')
+            local table_unpack = table.unpack or unpack
             local has_words_before = function()
-                local line, col = table.unpack(vim.api.nvim_win_get_cursor(0))
-                return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, true)[1]:sub(col, col):match('%s') == nil
+                local line, col = table_unpack(vim.api.nvim_win_get_cursor(0))
+                return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match('%s') == nil
             end
 
             cmp.setup({
@@ -70,6 +71,7 @@ local function nvim_cmp()
                         end
                     end, {'i', 's'}),
                     ['<C-j>'] = cmp.mapping(function(fallback)
+                        print(snippy.can_expand_or_advance())
                         if cmp.visible() then
                             cmp.select_next_item()
                         elseif snippy.can_expand_or_advance() then
@@ -83,10 +85,11 @@ local function nvim_cmp()
                     ['<CR>'] = cmp.mapping.confirm({select=true}),
                     ['<C-q>'] = cmp.mapping.close(),
                 },
-                sources = {
+                sources = cmp.config.sources({
+                    {name = 'snippy'},
                     {name = 'nvim_lsp'},
                     {name = 'buffer'},
-                },
+                }),
             })
             vim.diagnostic.config({virtual_text = false})
         end
