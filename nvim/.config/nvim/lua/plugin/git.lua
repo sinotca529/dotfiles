@@ -19,6 +19,7 @@ local function git_signs()
                     map('n', '<Leader>gd', gs.diffthis)
                     map('n', '<Leader>gr', gs.reset_hunk)
                 end,
+                word_diff = true,
             })
         end
     }
