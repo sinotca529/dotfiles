@@ -154,6 +154,9 @@ function dict() {
     fi
 }
 
+autoload -Uz bracketed-paste-magic
+zle -N bracketed-paste bracketed-paste-magic
+
 if [ -z "$TMUX$ZELLIJ$VIM" ]; then
     tmux
 fi
