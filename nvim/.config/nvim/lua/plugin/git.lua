@@ -13,6 +13,7 @@ local function git_signs()
                         opts.buffer = bufnr
                         vim.keymap.set(mode, l, r, opts)
                     end
+                    map('n', '<Leader>gs', gs.stage_hunk)
                     map('n', '<Leader>gu', gs.undo_stage_hunk)
                     map('n', '<Leader>gh', gs.preview_hunk)
                     map('n', '<Leader>gb', function() gs.blame_line{full=true} end)
