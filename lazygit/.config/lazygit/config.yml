@@ -1,0 +1,6 @@
+gui:
+  splitDiff: 'always'
+  showIcons: true
+git:
+  log:
+    showGraph: 'always'
