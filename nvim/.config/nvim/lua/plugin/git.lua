@@ -1,6 +1,8 @@
 local function git_signs()
     return {
         'lewis6991/gitsigns.nvim',
+        lazy = true,
+        event = { "BufReadPost", "BufAdd", "BufNewFile" },
         config = function()
             require('gitsigns').setup({
                 signs = {
@@ -20,7 +22,7 @@ local function git_signs()
                     map('n', '<Leader>gd', gs.diffthis)
                     map('n', '<Leader>gr', gs.reset_hunk)
                 end,
-                word_diff = true,
+                -- word_diff = true,
             })
         end
     }

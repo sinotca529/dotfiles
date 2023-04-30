@@ -1,6 +1,8 @@
 local function vimtex()
     return {
         'lervag/vimtex',
+        lazy = true,
+        ft = 'tex',
         config = function()
             vim.g.maplocalleader = ','
             vim.g.vimtex_view_general_viewer = 'zathura'

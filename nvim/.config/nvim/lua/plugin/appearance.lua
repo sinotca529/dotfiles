@@ -2,7 +2,6 @@ local function color_scheme()
     return {
         'sainnhe/gruvbox-material',
         lazy = false,
-        priority = 1000, -- make sure to load this before all the other start plugins
         config = function()
             vim.cmd('colorscheme gruvbox-material')
             vim.cmd('hi Comment cterm=NONE')
@@ -21,6 +20,8 @@ end
 local function indent_blankline()
     return {
         'lukas-reineke/indent-blankline.nvim',
+        lazy = true,
+        event = { "BufReadPost", "BufAdd", "BufNewFile" },
         config = function()
             require('indent_blankline').setup({})
         end
@@ -30,6 +31,8 @@ end
 local function tree_sitter()
     return {
         'nvim-treesitter/nvim-treesitter',
+        lazy = true,
+        event = { "BufReadPost", "BufAdd", "BufNewFile" },
         config = function()
             require('nvim-treesitter.configs').setup({
                 ensure_installed = {
@@ -50,10 +53,11 @@ local function tree_sitter()
     }
 end
 
-local function status_line()
+local function lualine()
   return {
     'nvim-lualine/lualine.nvim',
-    lazy = false,
+    lazy = true,
+    event = { "BufReadPost", "BufAdd", "BufNewFile" },
     dependencies = {'kyazdani42/nvim-web-devicons'},
     config = function()
         local lualine = require('lualine')
@@ -201,5 +205,5 @@ return function(plugins)
     plugins[#plugins+1] = color_scheme()
     plugins[#plugins+1] = indent_blankline()
     plugins[#plugins+1] = tree_sitter()
-    plugins[#plugins+1] = status_line()
+    plugins[#plugins+1] = lualine()
 end

@@ -75,8 +75,10 @@ local function which_key()
                     g = 'grep',
                     b = 'buf',
                     h = 'help tags',
+                },
+                ['<leader>c'] = {
+                    name = 'comment',
                 }
-
             })
         end,
     }

@@ -1,6 +1,8 @@
 local function mason_lspconfig()
     return {
         'williamboman/mason-lspconfig.nvim',
+        lazy = true,
+        event = { "BufReadPost", "BufAdd", "BufNewFile" },
         dependencies = {
             'neovim/nvim-lspconfig',
             'williamboman/mason.nvim',
@@ -41,9 +43,12 @@ end
 local function nvim_cmp()
     return {
         'hrsh7th/nvim-cmp',
+        lazy = true,
+        event = 'InsertEnter',
         dependencies = {
             'dcampos/nvim-snippy',
-            'dcampos/cmp-snippy'
+            'dcampos/cmp-snippy',
+            'hrsh7th/cmp-nvim-lsp',
         },
         config = function()
             local snippy = require('snippy')
@@ -109,28 +114,34 @@ local function fidget()
     }
 end
 
+local function guess_indent()
+    return {
+        'NMAC427/guess-indent.nvim',
+        lazy = true,
+        event = { "BufReadPost", "BufAdd", "BufNewFile" },
+        config = function()
+            require('guess-indent').setup({
+                override_editorconfig = true,
+            })
+        end
+    }
+end
+
 local function comment()
     return {
         'numToStr/Comment.nvim',
+        lazy = true,
+        event = { "BufReadPost", "BufAdd", "BufNewFile" },
         config = function()
             require('Comment').setup({
-                mappings = {
-                    basic = false,
-                    extra = false,
+                line_mapping = '<leader>cc',
+                toggler = {
+                    line = '<leader>cl',
+                },
+                opleader = {
+                    line = '<leader>cl',
                 },
             })
-            vim.keymap.set(
-                'n',
-                '',
-                function()
-                    if vim.api.nvim_get_vvar('count') == 0 then
-                        return '<Plug>(comment_toggle_linewise_current)'
-                    else
-                        return '<Plug>(comment_toggle_linewise_count)'
-                    end
-                end,
-                { expr = true, desc = 'Comment toggle current line'}
-            )
         end
     }
 end
@@ -139,5 +150,6 @@ return function(plugins)
     plugins[#plugins+1] = mason_lspconfig()
     plugins[#plugins+1] = nvim_cmp()
     plugins[#plugins+1] = fidget()
-    -- plugins[#plugins+1] = comment()
+    plugins[#plugins+1] = guess_indent()
+    plugins[#plugins+1] = comment()
 end
