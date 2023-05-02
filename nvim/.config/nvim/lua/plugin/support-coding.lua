@@ -13,7 +13,6 @@ local function mason_lspconfig()
             require('mason').setup({})
             local nvim_lsp = require('lspconfig')
             require('mason-lspconfig').setup_handlers({function(server_name)
-                vim.o.signcolumn = 'yes'
                 nvim_lsp[server_name].setup({
                     on_attach = function(_, bufnr)
                         local bufopts = {silent = true, buffer = bufnr}
@@ -104,6 +103,8 @@ end
 local function fidget()
     return {
         'j-hui/fidget.nvim',
+        lazy = true,
+        event = { 'LspAttach' },
         config = function()
             require('fidget').setup({
                 timer = {
@@ -147,7 +148,7 @@ local function comment()
 end
 
 return function(plugins)
-    plugins[#plugins+1] = mason_lspconfig()
+    -- plugins[#plugins+1] = mason_lspconfig()
     plugins[#plugins+1] = nvim_cmp()
     plugins[#plugins+1] = fidget()
     plugins[#plugins+1] = guess_indent()

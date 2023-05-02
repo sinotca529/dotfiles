@@ -32,7 +32,8 @@ local function tree_sitter()
     return {
         'nvim-treesitter/nvim-treesitter',
         lazy = true,
-        event = { "BufReadPost", "BufAdd", "BufNewFile" },
+        event = { "CursorHold", "CursorHoldI" },
+        -- event = { "BufReadPost" },
         config = function()
             require('nvim-treesitter.configs').setup({
                 ensure_installed = {

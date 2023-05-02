@@ -2,7 +2,7 @@ local function git_signs()
     return {
         'lewis6991/gitsigns.nvim',
         lazy = true,
-        event = { "BufReadPost", "BufAdd", "BufNewFile" },
+        event = { 'CursorHold', 'CursorHoldI' },
         config = function()
             require('gitsigns').setup({
                 signs = {

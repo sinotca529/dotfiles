@@ -1,6 +1,8 @@
 local function dap()
     return {
         'rcarriga/nvim-dap-ui',
+        lazy = true,
+        event = { 'CursorHold', 'CursorHoldI' },
         dependencies = { 'mfussenegger/nvim-dap' },
         config = function()
             require('dapui').setup({

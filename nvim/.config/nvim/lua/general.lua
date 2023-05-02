@@ -16,6 +16,9 @@ vim.o.fileformats = 'unix,dos,mac'
 vim.o.wrap = false
 vim.o.nf = 'alpha,octal,hex,bin,unsigned'
 vim.g.mapleader = ','
+vim.o.signcolumn = 'yes'
+-- effects on CursorHold, CursorHoldI (do not set to above 500)
+vim.o.updatetime = 200
 
 vim.o.clipboard = 'unnamedplus'
 if vim.fn.has("wsl") then
