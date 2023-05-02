@@ -1,4 +1,5 @@
 gui:
+  splitDiff: 'always'
   showIcons: true
 git:
   log:
