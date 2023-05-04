@@ -1,60 +1,53 @@
-local function color_scheme()
-    return {
-        'sainnhe/gruvbox-material',
-        lazy = false,
-        config = function()
-            vim.cmd('colorscheme gruvbox-material')
-            vim.cmd('hi Comment cterm=NONE')
-            vim.cmd('hi Comment gui=NONE')
-            vim.cmd('hi Normal ctermbg=NONE guibg=#NONE')
-            -- vim.cmd('hi NormalNC ctermbg=NONE guibg=#NONE')
-            vim.cmd('hi NonText ctermbg=NONE guibg=#NONE')
-            vim.cmd('hi LineNr ctermbg=NONE guibg=#NONE')
-            vim.cmd('hi Folded ctermbg=NONE guibg=#NONE')
-            vim.cmd('hi EndOfBuffer ctermbg=NONE guibg=#NONE')
-        end
-    }
-end
+local color_scheme = {
+    'sainnhe/gruvbox-material',
+    lazy = false,
+    config = function()
+        vim.cmd('colorscheme gruvbox-material')
+        vim.cmd('hi Comment cterm=NONE')
+        vim.cmd('hi Comment gui=NONE')
+        vim.cmd('hi Normal ctermbg=NONE guibg=#NONE')
+        -- vim.cmd('hi NormalNC ctermbg=NONE guibg=#NONE')
+        vim.cmd('hi NonText ctermbg=NONE guibg=#NONE')
+        vim.cmd('hi LineNr ctermbg=NONE guibg=#NONE')
+        vim.cmd('hi Folded ctermbg=NONE guibg=#NONE')
+        vim.cmd('hi EndOfBuffer ctermbg=NONE guibg=#NONE')
+    end
+}
 
 -- インデント幅毎に縦線を表示
-local function indent_blankline()
-    return {
-        'lukas-reineke/indent-blankline.nvim',
-        lazy = true,
-        event = { 'BufReadPost', 'BufAdd', 'BufNewFile' },
-        config = function()
-            require('indent_blankline').setup({})
-        end
-    }
-end
+local indent_blankline = {
+    'lukas-reineke/indent-blankline.nvim',
+    lazy = true,
+    event = { 'BufReadPost', 'BufAdd', 'BufNewFile' },
+    config = function()
+        require('indent_blankline').setup({})
+    end
+}
 
-local function tree_sitter()
-    return {
-        'nvim-treesitter/nvim-treesitter',
-        lazy = true,
-        event = { 'CursorHold', 'CursorHoldI' },
-        config = function()
-            require('nvim-treesitter.configs').setup({
-                ensure_installed = {
-                    'c', 'cpp', 'llvm', 'rust',
-                    'lua', 'python',
-                    'markdown', 'markdown_inline',
-                    'latex',
-                },
-                auto_install = true,
-                highlight = {
-                    enable = true,
-                    disable = {},
-                }
-            })
-            vim.wo.foldmethod = 'expr'
-            vim.wo.foldexpr = 'nvim_treesitter#foldexpr()'
-        end
-    }
-end
+local tree_sitter = {
+    'nvim-treesitter/nvim-treesitter',
+    lazy = true,
+    event = { 'CursorHold', 'CursorHoldI' },
+    config = function()
+        require('nvim-treesitter.configs').setup({
+            ensure_installed = {
+                'c', 'cpp', 'llvm', 'rust',
+                'lua', 'python',
+                'markdown', 'markdown_inline',
+                'latex',
+            },
+            auto_install = true,
+            highlight = {
+                enable = true,
+                disable = {},
+            }
+        })
+        vim.wo.foldmethod = 'expr'
+        vim.wo.foldexpr = 'nvim_treesitter#foldexpr()'
+    end
+}
 
-local function lualine()
-  return {
+local lualine = {
     'nvim-lualine/lualine.nvim',
     lazy = true,
     event = { 'BufReadPost', 'BufAdd', 'BufNewFile' },
@@ -198,12 +191,11 @@ local function lualine()
 
         lualine.setup(config)
     end
-  }
-end
+}
 
 return function(plugins)
-    plugins[#plugins+1] = color_scheme()
-    plugins[#plugins+1] = indent_blankline()
-    plugins[#plugins+1] = tree_sitter()
-    plugins[#plugins+1] = lualine()
+    plugins[#plugins+1] = color_scheme
+    plugins[#plugins+1] = indent_blankline
+    plugins[#plugins+1] = tree_sitter
+    plugins[#plugins+1] = lualine
 end
