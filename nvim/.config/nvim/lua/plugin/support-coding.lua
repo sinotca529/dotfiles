@@ -2,12 +2,11 @@ local function mason_lspconfig()
     return {
         'williamboman/mason-lspconfig.nvim',
         lazy = true,
-        event = { "BufReadPost", "BufAdd", "BufNewFile" },
+        event = { 'BufReadPost', 'BufAdd', 'BufNewFile' },
         dependencies = {
             'neovim/nvim-lspconfig',
             'williamboman/mason.nvim',
             'hrsh7th/cmp-nvim-lsp',
-            'hrsh7th/nvim-cmp'
         },
         config = function()
             require('mason').setup({})
@@ -51,6 +50,7 @@ local function nvim_cmp()
         },
         config = function()
             local snippy = require('snippy')
+            snippy.setup({})
             local cmp = require('cmp')
             local table_unpack = table.unpack or unpack
             local has_words_before = function()
@@ -119,7 +119,7 @@ local function guess_indent()
     return {
         'NMAC427/guess-indent.nvim',
         lazy = true,
-        event = { "BufReadPost", "BufAdd", "BufNewFile" },
+        event = { 'BufReadPost', 'BufAdd', 'BufNewFile' },
         config = function()
             require('guess-indent').setup({
                 override_editorconfig = true,
@@ -132,7 +132,7 @@ local function comment()
     return {
         'numToStr/Comment.nvim',
         lazy = true,
-        event = { "BufReadPost", "BufAdd", "BufNewFile" },
+        event = { 'BufReadPost', 'BufAdd', 'BufNewFile' },
         config = function()
             require('Comment').setup({
                 line_mapping = '<leader>cc',
@@ -148,7 +148,7 @@ local function comment()
 end
 
 return function(plugins)
-    -- plugins[#plugins+1] = mason_lspconfig()
+    plugins[#plugins+1] = mason_lspconfig()
     plugins[#plugins+1] = nvim_cmp()
     plugins[#plugins+1] = fidget()
     plugins[#plugins+1] = guess_indent()

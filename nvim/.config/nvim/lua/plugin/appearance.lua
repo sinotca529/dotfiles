@@ -21,7 +21,7 @@ local function indent_blankline()
     return {
         'lukas-reineke/indent-blankline.nvim',
         lazy = true,
-        event = { "BufReadPost", "BufAdd", "BufNewFile" },
+        event = { 'BufReadPost', 'BufAdd', 'BufNewFile' },
         config = function()
             require('indent_blankline').setup({})
         end
@@ -32,8 +32,7 @@ local function tree_sitter()
     return {
         'nvim-treesitter/nvim-treesitter',
         lazy = true,
-        event = { "CursorHold", "CursorHoldI" },
-        -- event = { "BufReadPost" },
+        event = { 'CursorHold', 'CursorHoldI' },
         config = function()
             require('nvim-treesitter.configs').setup({
                 ensure_installed = {
@@ -58,7 +57,7 @@ local function lualine()
   return {
     'nvim-lualine/lualine.nvim',
     lazy = true,
-    event = { "BufReadPost", "BufAdd", "BufNewFile" },
+    event = { 'BufReadPost', 'BufAdd', 'BufNewFile' },
     dependencies = {'kyazdani42/nvim-web-devicons'},
     config = function()
         local lualine = require('lualine')

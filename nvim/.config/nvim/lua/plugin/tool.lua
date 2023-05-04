@@ -1,8 +1,16 @@
 local function telescope()
     return {
         'nvim-telescope/telescope.nvim',
+        lazy = true,
+        cmd = 'Telescope',
         version = '0.1.0',
         dependencies = { 'nvim-lua/plenary.nvim' },
+        init = function()
+            vim.keymap.set('n', '<leader>ff', '<Cmd>Telescope find_files<CR>', {})
+            vim.keymap.set('n', '<leader>fg', '<Cmd>Telescope live_grep<CR>', {})
+            vim.keymap.set('n', '<leader>fb', '<Cmd>Telescope buffers<CR>', {})
+            vim.keymap.set('n', '<leader>fh', '<Cmd>Telescope help_tags<CR>', {})
+        end,
         config = function()
             local ac = require('telescope.actions')
             require('telescope').setup({
@@ -15,11 +23,6 @@ local function telescope()
                     },
                 },
             })
-            local bi = require('telescope.builtin')
-            vim.keymap.set('n', '<leader>ff', bi.find_files, {})
-            vim.keymap.set('n', '<leader>fg', bi.live_grep, {})
-            vim.keymap.set('n', '<leader>fb', bi.buffers, {})
-            vim.keymap.set('n', '<leader>fh', bi.help_tags, {})
         end
     }
 end
@@ -27,10 +30,25 @@ end
 local function toggle_term()
     return {
         'akinsho/toggleterm.nvim',
+        lazy = true,
+        cmd = {
+            'ToggleTerm',
+		    'ToggleTermSetName',
+		    'ToggleTermToggleAll',
+		    'ToggleTermSendVisualLines',
+		    'ToggleTermSendCurrentLine',
+		    'ToggleTermSendVisualSelection',
+        },
         version = 'v2.*',
+        init = function()
+            print('init')
+            vim.keymap.set('n', '<C-Space>', '<Cmd>ToggleTerm<CR>', {})
+            vim.keymap.set('i', '<C-Space>', '<Cmd>ToggleTerm<CR>', {})
+        end,
         config = function()
-            require("toggleterm").setup({
-                open_mapping = [[<C-@>]],
+            print('config')
+            require('toggleterm').setup({
+                open_mapping = [[<C-Space>]],
                 insert_mappings = true,
                 close_on_exit = true,
                 direction = 'float',
@@ -90,5 +108,4 @@ return function(plugins)
     plugins[#plugins + 1] = toggle_term()
     plugins[#plugins + 1] = telescope()
     plugins[#plugins + 1] = which_key()
-    -- nvim_tree(use)
 end

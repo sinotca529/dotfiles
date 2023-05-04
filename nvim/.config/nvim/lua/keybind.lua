@@ -24,9 +24,3 @@ vim.api.nvim_set_keymap('n', '<M-z>', ':set wrap!<CR>', {silent=true})
 -- Swap line
 vim.api.nvim_set_keymap('n', '<C-j>', ':m .+1<CR>', {silent=true})
 vim.api.nvim_set_keymap('n', '<C-k>', ':m .-2<CR>', {silent=true})
-
--- Alias of C-@
-vim.api.nvim_set_keymap('n', '<C-Space>', '<C-@>', {silent=true})
-vim.api.nvim_set_keymap('t', '<C-Space>', '<C-@>', {silent=true})
-vim.api.nvim_set_keymap('i', '<C-Space>', '<C-@>', {silent=true})
-
