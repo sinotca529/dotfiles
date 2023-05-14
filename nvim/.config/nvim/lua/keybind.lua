@@ -24,3 +24,6 @@ vim.api.nvim_set_keymap('n', '<M-z>', ':set wrap!<CR>', {silent=true})
 -- Swap line
 vim.api.nvim_set_keymap('n', '<C-j>', ':m .+1<CR>', {silent=true})
 vim.api.nvim_set_keymap('n', '<C-k>', ':m .-2<CR>', {silent=true})
+
+-- window
+vim.api.nvim_set_keymap('n', 's', '<C-W>', {silent=true})
