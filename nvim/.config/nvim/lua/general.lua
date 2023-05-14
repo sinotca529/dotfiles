@@ -21,7 +21,7 @@ vim.o.signcolumn = 'yes'
 -- effects on CursorHold, CursorHoldI (do not set to above 500)
 vim.o.ut = 200
 vim.api.nvim_create_augroup('ut', {})
-vim.api.nvim_create_autocmd({'CursorHold', 'CursorHoldI'}, {
+vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
     group = 'ut',
     once = true,
     callback = function() vim.o.ut = 4000 end
@@ -41,10 +41,16 @@ if vim.fn.has('wsl') then
         },
     }
 end
-vim.api.nvim_create_autocmd({'BufWritePre'}, {
-    pattern = {'*'},
+vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
+    pattern = { '*' },
     callback = function()
         vim.api.nvim_exec([[:%s/\s\+$//ge]], false)
+    end,
+})
+vim.api.nvim_create_autocmd({ 'VimEnter' }, {
+    pattern = { '*' },
+    callback = function()
+        vim.cmd(':cle')
     end,
 })
 
