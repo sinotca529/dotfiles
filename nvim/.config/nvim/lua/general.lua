@@ -36,8 +36,8 @@ if vim.fn.has('wsl') then
             ['*'] = 'win32yank.exe -i',
         },
         paste = {
-            ['+'] = 'win32yank.exe -o',
-            ['*'] = 'win32yank.exe -o',
+            ['+'] = 'win32yank.exe -o --lf',
+            ['*'] = 'win32yank.exe -o --lf',
         },
     }
 end
@@ -63,7 +63,7 @@ vim.g.did_install_syntax_menu   = 1
 
 vim.g.loaded_syntax_completion  = 1 -- native syntax completion
 vim.g.loaded_spellfile_plugin   = 1 -- spell files
-vim.g.loaded_2html_plugin       = 1 -- convert buf to html
+-- vim.g.loaded_2html_plugin       = 1 -- convert buf to html
 
 -- related to checking files inside compressed files
 vim.g.loaded_gzip               = 1

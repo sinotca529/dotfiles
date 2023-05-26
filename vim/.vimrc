@@ -1,3 +1,14 @@
+" ensure plug-vim is installed
+if !filereadable($HOME."/.vim/autoload/plug.vim")
+    echo "Try to download plug-vim."
+    execute("!curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim")
+
+    if !filereadable($HOME."/.vim/autoload/plug.vim")
+        echo "Failed to download plug-vim."
+        finish
+    endif
+endif
+
 " Plugins
 call plug#begin()
     Plug 'tomasiser/vim-code-dark'

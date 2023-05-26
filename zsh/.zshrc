@@ -17,6 +17,18 @@
 # %t 時間(hh:mm(am/pm))
 PROMPT='%F{#00ff00}%n@%m%f:%~
 $ '
+RPROMPT='%F{#a0a0a0}[%D %*]%f'
+
+function reset-prompt-and-accept-line() {
+    zle reset-prompt
+    zle accept-line
+}
+
+bindkey -e
+
+zle -N reset-prompt-and-accept-line
+bindkey '^J' reset-prompt-and-accept-line
+bindkey '^M' reset-prompt-and-accept-line
 
 export WORDCHARS='*?_.[]~-=&;!#$%^(){}<>'
 
@@ -43,18 +55,6 @@ HISTSIZE=100000
 SAVEHIST=100000
 # 同時に起動したzshでhistoryを共有
 setopt share_history
-
-#------------------------
-# vcs info
-#------------------------
-# autoload -Uz vcs_info
-# setopt prompt_subst
-# zstyle ':vcs_info:git:*' check-for-changes true
-# zstyle ':vcs_info:git:*' stagedstr "%F{yellow}!"
-# zstyle ':vcs_info:git:*' unstagedstr "%F{red}+"
-# zstyle ':vcs_info:*' formats "%F{green}%c%u[%b]%f"
-# zstyle ':vcs_info:*' actionformats '[%b|%a]'
-# precmd () { vcs_info }
 
 # 補完を有効化
 autoload -U compinit && compinit
@@ -92,23 +92,6 @@ alias cls=clear
 alias tmux='tmux -u' # force utf-8
 
 #------------------------
-# OS Specific
-#------------------------
-# WSL
-#if [[ "$(uname -r)" == *microsoft* ]]; then
-#    export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2}'):0
-#fi
-
-#------------------------
-# Vim
-#------------------------
-PLUGVIM="$HOME/dotfiles/vim/.vim/autoload/plug.vim"
-if [ ! -e $PLUGVIM ]; then
-    curl -fLo $PLUGVIM --create-dirs \
-        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-fi
-
-#------------------------
 # Rust
 #------------------------
 source ~/.cargo/env
@@ -134,7 +117,6 @@ fi
 #------------------------
 export LC_ALL=C.UTF-8
 
-bindkey -e
 PATH=~/tools:$PATH
 
 #------------------------
@@ -157,6 +139,10 @@ function dict() {
 autoload -Uz bracketed-paste-magic
 zle -N bracketed-paste bracketed-paste-magic
 
+alias lg='lazygit'
+
 if [ -z "$TMUX$ZELLIJ$VIM" ]; then
     tmux
 fi
+
+alias nv=nvim

@@ -1,12 +1,7 @@
 set nocompatible
 set bs=indent,eol,start
 
-colorscheme codedark
-"if &term == "xterm-256color"
-"    colorscheme molokai
-"    hi Comment ctermfg=102
-"    hi Visual ctermbg=236
-"endif
+colorscheme elflord
 
 " ベルを無効化
 set visualbell t_vb=
@@ -25,17 +20,11 @@ set fenc=utf-8
 
 " set shortmess-=S
 set number
-" カーソルがある行を強調
-set cursorline
 set virtualedit=onemore
-" 閉じ括弧入力時に，対応する開き括弧へ一時的に飛ぶ
-set showmatch
 " 前回の検索パターンを保持
 set hlsearch
 " h, lキーで行間を跨ぐ
 set whichwrap=h,l
-" 24-bit colorをターミナルで使う
-set termguicolors
 " 折り返しなし
 set nowrap
 " 折りたたみはインデント単位
@@ -53,4 +42,3 @@ set completeopt=menuone,noinsert
 
 " ステータスラインを常に表示
 set laststatus=2
-

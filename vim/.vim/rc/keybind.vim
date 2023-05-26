@@ -1,8 +1,5 @@
 inoremap <silent> jj <ESC>
 
-nmap <C-t> :tabe<LF>
-nmap <C-w> :q<LF>
-
 "inoremap <expr><C-j> pumvisible() ? "<Up>" : "<C-j>"
 "inoremap <expr><C-k> pumvisible() ? "<Down>" : "<C-k>"
 
