@@ -17,7 +17,7 @@
 # %t 時間(hh:mm(am/pm))
 PROMPT='%F{#00ff00}%n@%m%f:%~
 $ '
-RPROMPT='%F{#a0a0a0}[%D %*]%f'
+RPROMPT='%(?.%F{#00a000}.%F{#a00000})%?%f %F{#a0a0a0}[%D %*]%f'
 
 function reset-prompt-and-accept-line() {
     zle reset-prompt
