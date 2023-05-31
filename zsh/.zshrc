@@ -1,35 +1,4 @@
-#------------------------
-# prompt
-#------------------------
-# %M ホスト名
-# %m ホスト名
-# %d カレントディレクトリ (フルパス)
-# %~ カレントディレクトリ (フルパス2)
-# %C カレントディレクトリ (相対パス)
-# %c カレントディレクトリ (相対パス)
-# %n ユーザ名
-# %# ユーザ種別
-# %? 直前コマンドの終了ステータス
-# %D 日付(yy-mm-dd)
-# %W 日付(yy/mm/dd)
-# %* 時間(hh:flag_mm:ss)
-# %T 時間(hh:mm)
-# %t 時間(hh:mm(am/pm))
-PROMPT='%F{#00ff00}%n@%m%f:%~
-$ '
-RPROMPT='%(?.%F{#00a000}.%F{#a00000})%?%f %F{#a0a0a0}[%D %*]%f'
-
-function reset-prompt-and-accept-line() {
-    zle reset-prompt
-    zle accept-line
-}
-
 bindkey -e
-
-zle -N reset-prompt-and-accept-line
-bindkey '^J' reset-prompt-and-accept-line
-bindkey '^M' reset-prompt-and-accept-line
-
 export WORDCHARS='*?_.[]~-=&;!#$%^(){}<>'
 
 #------------------------
@@ -90,6 +59,8 @@ unset PLUGMAN
 #------------------------
 alias cls=clear
 alias tmux='tmux -u' # force utf-8
+alias lg='lazygit'
+alias nv=nvim
 
 #------------------------
 # Rust
@@ -139,10 +110,8 @@ function dict() {
 autoload -Uz bracketed-paste-magic
 zle -N bracketed-paste bracketed-paste-magic
 
-alias lg='lazygit'
-
 if [ -z "$TMUX$ZELLIJ$VIM" ]; then
     tmux
 fi
 
-alias nv=nvim
+eval "$(starship init zsh)"
