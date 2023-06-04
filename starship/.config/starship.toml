@@ -110,5 +110,8 @@ symbol = ' '
 [git_status]
 disabled = true
 
+[cmake]
+style='bold fg:39'
+
 [python]
 symbol = '󰌠 '

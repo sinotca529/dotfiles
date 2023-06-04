@@ -10,7 +10,7 @@ function load_file() {
 #   $1 : "git_username/git_reponame"
 #   $2 : (Option) Specified file name to source.
 function load_plugin() {
-    local REPONAME=$(echo "$1" | cut -d "/" -f 2)
+    local REPONAME="${1#*/}"
     local PLUGIN_PATH="$ZSH_PLUGIN_HOME/$REPONAME"
     if [ ! -d $PLUGIN_PATH ]; then
         echo "Install   : $1"
