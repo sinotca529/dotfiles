@@ -53,6 +53,12 @@ vim.api.nvim_create_autocmd({ 'VimEnter' }, {
         vim.cmd(':cle')
     end,
 })
+vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufRead' }, {
+    pattern = { '*.ll' },
+    callback = function()
+        vim.cmd(':setfiletype llvm')
+    end,
+})
 
 ---------------------------
 -- disable_default_plugins
