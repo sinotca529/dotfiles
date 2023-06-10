@@ -22,3 +22,17 @@ snippet readm
         std::io::stdin().read_line(&mut buf).unwrap();
         buf.trim_end().to_owned()
     }
+
+snippet AbsDiff
+    trait AbsDiff {
+        fn abs_diff(&self, other: Self) -> Self
+            where Self: Copy + Sized + PartialOrd + std::ops::Sub<Output=Self>
+        {
+            if *self > other {
+                *self - other
+            } else {
+                other - *self
+            }
+        }
+    }
+    impl AbsDiff for usize {}

@@ -1,2 +1,8 @@
 CompileFlags:
+  Add: [-Wall]
+
+If:
+  PashthMatch : .*\.cpp
+  PashthMatch : .*\.hpp
+CompileFlags:
   Add: [-std=c++20]
