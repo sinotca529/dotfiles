@@ -98,8 +98,20 @@ local which_key = {
     end,
 }
 
+local markdown_preview = {
+    'iamcco/markdown-preview.nvim',
+    lazy = true,
+    ft = 'markdown',
+    config = function()
+        vim.fn['mkdp#util#install']()
+        vim.g.mkdp_preview_options = { disable_sync_scroll = 1 }
+        vim.keymap.set('n', '<leader>mt', '<Plug>MarkdownPreviewToggle', {})
+    end,
+}
+
 return function(plugins)
     plugins[#plugins + 1] = toggle_term
     plugins[#plugins + 1] = telescope
     plugins[#plugins + 1] = which_key
+    plugins[#plugins + 1] = markdown_preview
 end
