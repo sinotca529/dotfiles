@@ -97,6 +97,25 @@ local dap = {
     end
 }
 
+local nvim_dap_lsp = {
+    'jay-babu/mason-nvim-dap.nvim',
+    dependencies = {
+        'mfussenegger/nvim-dap',
+        'williamboman/mason.nvim',
+        'mfussenegger/nvim-dap'
+    },
+    config = function()
+        require('mason-nvim-dap').setup({
+            ensure_installed = { 'cppdbg' },
+            handlers = {
+                function(conf)
+                    require('mason-nvim-dap').default_setup(conf)
+                end,
+            },
+        })
+    end
+}
+
 local python = {
     'mfussenegger/nvim-dap-python',
     dependencies = { 'mfussenegger/nvim-dap', 'rcarriga/nvim-dap-ui' },
@@ -107,5 +126,6 @@ local python = {
 
 return function(plugins)
     plugins[#plugins+1] = dap
-    plugins[#plugins+1] = python
+    -- plugins[#plugins+1] = python
+    plugins[#plugins+1] = nvim_dap_lsp
 end

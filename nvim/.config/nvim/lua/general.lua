@@ -17,6 +17,7 @@ vim.o.wrap = false
 vim.o.nf = 'alpha,octal,hex,bin,unsigned'
 vim.g.mapleader = ','
 vim.o.signcolumn = 'yes'
+vim.o.background = 'dark'
 
 -- effects on CursorHold, CursorHoldI (do not set to above 500)
 vim.o.ut = 200
@@ -49,15 +50,11 @@ vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
 })
 vim.api.nvim_create_autocmd({ 'VimEnter' }, {
     pattern = { '*' },
-    callback = function()
-        vim.cmd(':cle')
-    end,
+    callback = function() vim.cmd.cle() end,
 })
 vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufRead' }, {
-    pattern = { '*.ll' },
-    callback = function()
-        vim.cmd(':setfiletype llvm')
-    end,
+    pattern = '*.ll',
+    callback = function() vim.cmd.setfiletype('llvm') end,
 })
 
 ---------------------------
@@ -69,7 +66,7 @@ vim.g.did_install_syntax_menu   = 1
 
 vim.g.loaded_syntax_completion  = 1 -- native syntax completion
 vim.g.loaded_spellfile_plugin   = 1 -- spell files
--- vim.g.loaded_2html_plugin       = 1 -- convert buf to html
+vim.g.loaded_2html_plugin       = 1 -- convert buf to html
 
 -- related to checking files inside compressed files
 vim.g.loaded_gzip               = 1
@@ -93,3 +90,12 @@ vim.g.loaded_tutor_mode_plugin  = 1 -- tutor
 -- vim.g.loaded_netrwPlugin        = 1
 -- vim.g.loaded_remote_plugins     = 1
 -- vim.g.skip_loading_mswin        = 1
+
+-- https://github.com/jose-elias-alvarez/null-ls.nvim/issues/428
+local notify = vim.notify
+vim.notify = function(msg, ...)
+    if msg:match("warning: multiple different client offset_encodings") then
+        return
+    end
+    notify(msg, ...)
+end

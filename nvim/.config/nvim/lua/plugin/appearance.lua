@@ -1,12 +1,17 @@
-local color_scheme = {
+local cs = {
     'sainnhe/gruvbox-material',
     lazy = false,
+    dependencies = {
+        'edeneast/nightfox.nvim',
+        'glepnir/zephyr-nvim',
+        'vigoux/oak',
+    },
     config = function()
-        vim.cmd('colorscheme gruvbox-material')
+        vim.cmd.colorscheme('gruvbox-material')
         vim.cmd('hi Comment cterm=NONE')
         vim.cmd('hi Comment gui=NONE')
         vim.cmd('hi Normal ctermbg=NONE guibg=#NONE')
-        -- vim.cmd('hi NormalNC ctermbg=NONE guibg=#NONE')
+        vim.cmd('hi NormalNC ctermbg=NONE guibg=#NONE')
         vim.cmd('hi NonText ctermbg=NONE guibg=#NONE')
         vim.cmd('hi LineNr ctermbg=NONE guibg=#NONE')
         vim.cmd('hi Folded ctermbg=NONE guibg=#NONE')
@@ -51,7 +56,7 @@ local lualine = {
     'nvim-lualine/lualine.nvim',
     lazy = true,
     event = { 'BufReadPost', 'BufAdd', 'BufNewFile' },
-    dependencies = {'kyazdani42/nvim-web-devicons'},
+    dependencies = {'nvim-tree/nvim-web-devicons'},
     config = function()
         local lualine = require('lualine')
         local colors = {
@@ -126,6 +131,22 @@ local lualine = {
         }
         ins_left { 'location' }
         ins_left {
+            'wordcount',
+            fmt = function()
+                if vim.bo.filetype ~= 'markdown' and vim.bo.filetype ~= 'text' and vim.bo.filetype ~= '' then
+                    return ''
+                end
+
+                local selected = ''
+                if vim.fn.mode():find('[vV]') then
+                    selected = tostring(vim.fn.wordcount().visual_chars) .. '/'
+                end
+                return selected .. tostring(vim.fn.wordcount().chars) .. ' chars'
+            end,
+            icons_enabled = false,
+            color = { fg = colors.green, gui = 'bold' },
+        }
+        ins_left {
             'diagnostics',
             sources = { 'nvim_diagnostic' },
             symbols = { error = ' ', warn = ' ', info = ' ' },
@@ -194,7 +215,7 @@ local lualine = {
 }
 
 return function(plugins)
-    plugins[#plugins+1] = color_scheme
+    plugins[#plugins+1] = cs
     plugins[#plugins+1] = indent_blankline
     plugins[#plugins+1] = tree_sitter
     plugins[#plugins+1] = lualine
