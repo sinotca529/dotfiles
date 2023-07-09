@@ -214,9 +214,17 @@ local lualine = {
     end
 }
 
+local nvim_colorizer = {
+    'norcalli/nvim-colorizer.lua',
+    config = function()
+        require('colorizer').setup()
+    end,
+}
+
 return function(plugins)
     plugins[#plugins+1] = cs
     plugins[#plugins+1] = indent_blankline
     plugins[#plugins+1] = tree_sitter
     plugins[#plugins+1] = lualine
+    plugins[#plugins+1] = nvim_colorizer
 end

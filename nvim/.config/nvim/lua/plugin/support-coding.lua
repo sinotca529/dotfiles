@@ -201,6 +201,14 @@ local lsp_signiture = {
     end,
 }
 
+local surround = {
+    'kylechui/nvim-surround',
+    event = 'VeryLazy',
+    config = function()
+        require('nvim-surround').setup({})
+    end
+}
+
 return function(plugins)
     plugins[#plugins + 1] = mason
     plugins[#plugins + 1] = mason_lspconfig
@@ -212,4 +220,5 @@ return function(plugins)
     plugins[#plugins + 1] = comment
     plugins[#plugins + 1] = lsp_saga
     plugins[#plugins + 1] = lsp_signiture
+    plugins[#plugins + 1] = surround
 end
