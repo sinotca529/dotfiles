@@ -28,7 +28,7 @@ vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
     callback = function() vim.o.ut = 4000 end
 })
 
-if vim.fn.has('wsl') then
+if vim.fn.executable('win32yank.exe') == 1 then
     vim.o.clipboard = 'unnamedplus'
     vim.g.clipboard = {
         name = 'wslClipboard',
@@ -42,6 +42,7 @@ if vim.fn.has('wsl') then
         },
     }
 end
+
 vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
     pattern = { '*' },
     callback = function()
