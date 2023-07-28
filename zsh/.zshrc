@@ -4,6 +4,7 @@ fi
 
 bindkey -e
 export WORDCHARS='*?_.[]~-=&;!#$%^(){}<>'
+setopt globdots
 
 autoload -Uz colors && colors        # 色
 autoload -U compinit && compinit     # 補完
