@@ -5,6 +5,7 @@ local cs = {
         'edeneast/nightfox.nvim',
         'glepnir/zephyr-nvim',
         'vigoux/oak',
+        'catppuccin/nvim',
     },
     config = function()
         vim.cmd.colorscheme('gruvbox-material')
@@ -20,13 +21,15 @@ local cs = {
 }
 
 -- インデント幅毎に縦線を表示
-local indent_blankline = {
-    'lukas-reineke/indent-blankline.nvim',
-    lazy = true,
-    event = { 'BufReadPost', 'BufAdd', 'BufNewFile' },
+local indent_mini = {
+    'nvimdev/indentmini.nvim',
+    event = 'BufEnter',
     config = function()
-        require('indent_blankline').setup({})
-    end
+        require('indentmini').setup({
+            char = '│',
+        })
+        vim.cmd.highlight('default link IndentLine IndentBlanklineChar')
+    end,
 }
 
 local tree_sitter = {
@@ -223,7 +226,7 @@ local nvim_colorizer = {
 
 return function(plugins)
     plugins[#plugins+1] = cs
-    plugins[#plugins+1] = indent_blankline
+    plugins[#plugins+1] = indent_mini
     plugins[#plugins+1] = tree_sitter
     plugins[#plugins+1] = lualine
     plugins[#plugins+1] = nvim_colorizer

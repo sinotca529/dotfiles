@@ -21,6 +21,12 @@ local telescope = {
                     },
                 },
             },
+            file_ignore_patterns = {
+                '*.a',
+                '*.o',
+                '*.so',
+                '*.out',
+            },
         })
     end
 }

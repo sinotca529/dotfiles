@@ -29,7 +29,7 @@ local mason_lspconfig = {
                     -- vim.keymap.set('n', '<C-.>', '<cmd>lua vim.lsp.buf.code_action()<CR>', bufopts)
                     vim.keymap.set('n', '<C-n>', '<cmd>lua vim.lsp.buf.code_action()<CR>', bufopts)
                     vim.keymap.set('n', '<C-f>', '<cmd>lua vim.lsp.buf.format()<CR>', bufopts)
-                    vim.keymap.set('n', 'gr', '<cmd>lua vim.lsp.buf.rename()<CR>', bufopts)
+                    -- vim.keymap.set('n', 'gr', '<cmd>lua vim.lsp.buf.rename()<CR>', bufopts)
                 end,
                 capabilities = require('cmp_nvim_lsp').default_capabilities(),
                 autostart = true,
@@ -171,8 +171,18 @@ local comment = {
     end
 }
 
+local nvim_tree = {
+    'nvim-tree/nvim-tree.lua',
+    dependencies = {
+        'nvim-tree/nvim-web-devicons',
+    },
+    config = function()
+        require('nvim-tree').setup()
+    end
+}
+
 local lsp_saga = {
-    'glepnir/lspsaga.nvim',
+    'nvimdev/lspsaga.nvim',
     dependencies = {
         'nvim-tree/nvim-web-devicons',
         'nvim-treesitter/nvim-treesitter',
@@ -185,10 +195,30 @@ local lsp_saga = {
             symbol_in_winbar = { enable = false, },
             ui = {
                 title = false,
-                border = 'none', -- 'single'
+                border = 'none',
+                code_action = '',
+            },
+            beacon = {
+                enable = false,
+            },
+            scrolling = {
+                scroll_down = '<C-j>',
+                scroll_up = '<C-k>',
+            },
+            implement = {
+                enable = false,
+            },
+            finder = {
+                default = 'typd+def+imp+ref',
+                keys = {
+                    toggle_or_open = '<CR>',
+                },
             },
         })
+
+        -- vim.keymap.set('n', '<space>', '<cmd>Lspsaga hover_doc<CR>')
         vim.keymap.set('n', '<C-.>', '<cmd>Lspsaga code_action<CR>')
+        vim.keymap.set('n', 'gr', '<cmd>Lspsaga rename<CR>')
     end,
 }
 
@@ -221,4 +251,5 @@ return function(plugins)
     plugins[#plugins + 1] = lsp_saga
     plugins[#plugins + 1] = lsp_signiture
     plugins[#plugins + 1] = surround
+    plugins[#plugins + 1] = nvim_tree
 end
