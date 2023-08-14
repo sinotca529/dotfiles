@@ -85,7 +85,8 @@ $character"""
 
 right_format = """
 $status\
-$cmd_duration"""
+$cmd_duration\
+"""
 
 add_newline = false
 
