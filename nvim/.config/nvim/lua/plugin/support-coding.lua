@@ -177,7 +177,27 @@ local nvim_tree = {
         'nvim-tree/nvim-web-devicons',
     },
     config = function()
-        require('nvim-tree').setup()
+        local api = require('nvim-tree.api')
+        vim.keymap.set('n', '<Leader>tt', api.tree.toggle, {})
+        vim.keymap.set('n', '<Leader>tf', api.tree.focus, {})
+
+        require('nvim-tree').setup({
+            sort = {
+                sorter = '',
+            },
+            filters = {
+                git_ignored = false,
+            },
+            on_attach = function()
+                local api = require('nvim-tree.api')
+                vim.keymap.set('n', '<CR>', api.node.open.edit, {})
+                vim.keymap.set('n', 'p', api.fs.paste, {})
+                vim.keymap.set('n', 'x', api.fs.cut, {})
+                vim.keymap.set('n', 'd', api.fs.remove, {})
+                vim.keymap.set('n', 'a', api.fs.create, {})
+                vim.keymap.set('n', '<C-r>', api.fs.rename, {})
+            end
+        })
     end
 }
 
