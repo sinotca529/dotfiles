@@ -21,10 +21,10 @@ setopt no_beep              # ビープ音オフ
 
 # Alias
 alias ls='ls --color=auto'
+alias sl='ls --color=auto'
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
-alias cls=clear
 alias tmux='tmux -u' # force utf-8
 alias lg='lazygit'
 alias nv=nvim
@@ -34,7 +34,7 @@ alias mv='mv -i'
 # Env val
 export LS_COLORS=$LS_COLORS:'di=0;36:ow=0;36'
 export EDITOR=nvim
-export PATH=~/tools:$PATH:/usr/local/go/bin
+export PATH=~/tools:~/go/bin:$PATH:/usr/local/go/bin:~/tools/lazydocker
 export LC_ALL=C.UTF-8
 
 # Load plugins.
@@ -97,9 +97,16 @@ function tmp() {
 }
 
 eval "$(starship init zsh)"
+eval "$(zoxide init zsh)"
 # PATH=$(awk '!a[$0]++{print}' RS=: ORS=: <<< "$PATH" | sed 's/:$/\n/')
 
-if [ -z "$TMUX$ZELLIJ$VIM" ]; then
+PATH=~/.local/bin:$PATH
+
+if [[ -n "$(tmux list-sessions 2>/dev/null)" ]]; then
+    if [ -z "$TMUX$ZELLIJ$VIM" ]; then
+        tmux a
+    fi
+else
     tmux
 fi
 
