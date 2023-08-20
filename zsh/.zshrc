@@ -25,7 +25,7 @@ alias sl='ls --color=auto'
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
-alias tmux='tmux -u' # force utf-8
+alias tmux='tmux -u -f ~/.config/tmux/.tmux.conf' # force utf-8
 alias lg='lazygit'
 alias nv=nvim
 alias manjp='LC_ALL=ja_JP.UTF-8 man'
