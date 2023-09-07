@@ -1,8 +1,6 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
 format = """
-$username\
-$hostname\
 $localip\
 $shlvl\
 $singularity\
@@ -89,6 +87,9 @@ $cmd_duration\
 """
 
 add_newline = false
+
+[character]
+success_symbol = '[>](bold green)'
 
 [username]
 show_always = true
