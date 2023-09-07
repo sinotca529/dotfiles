@@ -44,12 +44,10 @@ local toggle_term = {
     },
     version = 'v2.*',
     init = function()
-        print('init')
         vim.keymap.set('n', '<C-Space>', '<Cmd>ToggleTerm<CR>', {})
         vim.keymap.set('i', '<C-Space>', '<Cmd>ToggleTerm<CR>', {})
     end,
     config = function()
-        print('config')
         require('toggleterm').setup({
             open_mapping = [[<C-Space>]],
             insert_mappings = true,

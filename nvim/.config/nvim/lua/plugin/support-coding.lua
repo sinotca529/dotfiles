@@ -29,7 +29,7 @@ local mason_lspconfig = {
                     -- vim.keymap.set('n', '<C-.>', '<cmd>lua vim.lsp.buf.code_action()<CR>', bufopts)
                     vim.keymap.set('n', '<C-n>', '<cmd>lua vim.lsp.buf.code_action()<CR>', bufopts)
                     vim.keymap.set('n', '<C-f>', '<cmd>lua vim.lsp.buf.format()<CR>', bufopts)
-                    -- vim.keymap.set('n', 'gr', '<cmd>lua vim.lsp.buf.rename()<CR>', bufopts)
+                    vim.keymap.set('n', 'gr', '<cmd>lua vim.lsp.buf.rename()<CR>', bufopts)
                 end,
                 capabilities = require('cmp_nvim_lsp').default_capabilities(),
                 autostart = true,
@@ -80,7 +80,6 @@ local nvim_cmp = {
                     end
                 end, { 'i', 's' }),
                 ['<C-j>'] = cmp.mapping(function(fallback)
-                    print(snippy.can_expand_or_advance())
                     if cmp.visible() then
                         cmp.select_next_item()
                     elseif snippy.can_expand_or_advance() then
@@ -242,7 +241,7 @@ local lsp_saga = {
 
         -- vim.keymap.set('n', '<space>', '<cmd>Lspsaga hover_doc<CR>')
         vim.keymap.set('n', '<C-.>', '<cmd>Lspsaga code_action<CR>')
-        vim.keymap.set('n', 'gr', '<cmd>Lspsaga rename<CR>')
+        -- vim.keymap.set('n', 'gr', '<cmd>Lspsaga rename<CR>')
     end,
 }
 

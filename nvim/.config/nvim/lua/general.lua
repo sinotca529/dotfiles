@@ -2,7 +2,7 @@ vim.o.number = true
 vim.o.virtualedit = 'onemore,block'
 vim.o.whichwrap = 'h,l'
 vim.o.fenc = 'utf-8'
-vim.o.mouse = 'a'
+vim.o.mouse = ''
 vim.o.laststatus = 3
 vim.o.expandtab = true
 vim.o.shiftwidth = 4
@@ -18,6 +18,7 @@ vim.o.nf = 'alpha,octal,hex,bin,unsigned'
 vim.g.mapleader = ','
 vim.o.signcolumn = 'yes'
 vim.o.background = 'dark'
+vim.o.cmdheight = 0
 
 -- effects on CursorHold, CursorHoldI (do not set to above 500)
 vim.o.ut = 200
