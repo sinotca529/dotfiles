@@ -1,6 +1,5 @@
 return {
     'lervag/vimtex',
-    lazy = true,
     ft = 'tex',
     config = function()
         vim.g.maplocalleader = ','

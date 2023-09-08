@@ -1,7 +1,7 @@
 return {
     'jay-babu/mason-null-ls.nvim',
     lazy = true,
-    event = { 'BufReadPre', 'BufNewFile' },
+    event = 'InsertEnter',
     dependencies = {
         "williamboman/mason.nvim",
         "jose-elias-alvarez/null-ls.nvim",

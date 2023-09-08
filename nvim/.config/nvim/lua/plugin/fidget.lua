@@ -1,8 +1,7 @@
 return {
     'j-hui/fidget.nvim',
     tag = 'legacy',
-    lazy = true,
-    event = { 'LspAttach' },
+    event = 'LspAttach',
     config = function()
         require('fidget').setup({
             timer = {

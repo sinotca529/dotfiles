@@ -1,7 +1,6 @@
 return {
     'NMAC427/guess-indent.nvim',
-    lazy = true,
-    event = { 'BufReadPost', 'BufAdd', 'BufNewFile' },
+    event = { 'CursorHold', 'CursorHoldI' },
     config = function()
         require('guess-indent').setup({
             override_editorconfig = true,

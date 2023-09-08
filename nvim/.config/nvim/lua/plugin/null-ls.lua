@@ -1,7 +1,7 @@
 return {
     "jose-elias-alvarez/null-ls.nvim",
     lazy = true,
-    event = { 'BufReadPre', 'BufNewFile' },
+    event = 'InsertEnter',
     config = function()
         require('null-ls').setup()
     end

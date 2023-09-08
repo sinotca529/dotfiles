@@ -1,14 +1,6 @@
 return {
     'akinsho/toggleterm.nvim',
-    lazy = true,
-    cmd = {
-        'ToggleTerm',
-        'ToggleTermSetName',
-        'ToggleTermToggleAll',
-        'ToggleTermSendVisualLines',
-        'ToggleTermSendCurrentLine',
-        'ToggleTermSendVisualSelection',
-    },
+    cmd = 'ToggleTerm',
     version = 'v2.*',
     init = function()
         vim.keymap.set('n', '<C-Space>', '<Cmd>ToggleTerm<CR>', {})

@@ -1,6 +1,6 @@
 return {
     'kylechui/nvim-surround',
-    event = 'VeryLazy',
+    event = 'InsertEnter',
     config = function()
         require('nvim-surround').setup({})
     end

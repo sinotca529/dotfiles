@@ -1,7 +1,6 @@
 return {
     'williamboman/mason.nvim',
-    lazy = true,
-    event = { 'BufReadPost', 'BufAdd', 'BufNewFile' },
+    cmd = 'Mason',
     config = function()
         require('mason').setup({})
     end,

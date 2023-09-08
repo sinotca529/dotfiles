@@ -4,7 +4,6 @@ return {
         'nvim-tree/nvim-web-devicons',
         'nvim-treesitter/nvim-treesitter',
     },
-    lazy = true,
     event = 'LspAttach',
     config = function()
         local lspsaga = require('lspsaga')

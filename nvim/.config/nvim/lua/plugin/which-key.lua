@@ -1,6 +1,5 @@
 return {
     'folke/which-key.nvim',
-    lazy = true,
     event = { 'CursorHold', 'CursorHoldI' },
     config = function()
         vim.o.timeout = true
