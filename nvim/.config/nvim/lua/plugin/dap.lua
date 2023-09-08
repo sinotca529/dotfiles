@@ -1,4 +1,4 @@
-local dap = {
+return {
     'rcarriga/nvim-dap-ui',
     lazy = true,
     event = { 'CursorHold', 'CursorHoldI' },
@@ -36,7 +36,7 @@ local dap = {
             layouts = {
                 {
                     elements = {
-                    -- Elements can be strings or table with id and size keys.
+                        -- Elements can be strings or table with id and size keys.
                         { id = 'scopes', size = 0.25 },
                         'breakpoints',
                         'stacks',
@@ -71,8 +71,8 @@ local dap = {
                 },
             },
             floating = {
-                max_height = nil, -- These can be integers or a float between 0 and 1.
-                max_width = nil, -- Floats will be treated as percentage of your screen.
+                max_height = nil,  -- These can be integers or a float between 0 and 1.
+                max_width = nil,   -- Floats will be treated as percentage of your screen.
                 border = 'single', -- Border style. Can be 'single', 'double' or 'rounded'
                 mappings = {
                     close = { 'q', '<Esc>' },
@@ -89,43 +89,12 @@ local dap = {
         vim.api.nvim_set_keymap('n', '<F11>', ':DapStepInto<CR>', { silent = true })
         vim.api.nvim_set_keymap('n', '<F12>', ':DapStepOut<CR>', { silent = true })
         vim.api.nvim_set_keymap('n', '<leader>db', ':DapToggleBreakpoint<CR>', { silent = true })
-        vim.api.nvim_set_keymap('n', '<leader>dB', ':lua require("dap").set_breakpoint(nil, nil, vim.fn.input("Breakpoint cond: "))<CR>', { silent = true })
-        vim.api.nvim_set_keymap('n', '<leader>dlp', ':lua require("dap").set_breakpoint(nil, nil, vim.fn.input("Log point message: "))<CR>', { silent = true })
+        vim.api.nvim_set_keymap('n', '<leader>dB',
+            ':lua require("dap").set_breakpoint(nil, nil, vim.fn.input("Breakpoint cond: "))<CR>', { silent = true })
+        vim.api.nvim_set_keymap('n', '<leader>dlp',
+            ':lua require("dap").set_breakpoint(nil, nil, vim.fn.input("Log point message: "))<CR>', { silent = true })
         vim.api.nvim_set_keymap('n', '<leader>dr', ':lua require("dap").repl.open()<CR>', { silent = true })
         vim.api.nvim_set_keymap('n', '<leader>dl', ':lua require("dap").run_last()<CR>', { silent = true })
         vim.api.nvim_set_keymap('n', '<leader>dt', ':lua require("dapui").toggle()<CR>', {})
     end
 }
-
-local nvim_dap_lsp = {
-    'jay-babu/mason-nvim-dap.nvim',
-    dependencies = {
-        'mfussenegger/nvim-dap',
-        'williamboman/mason.nvim',
-        'mfussenegger/nvim-dap'
-    },
-    config = function()
-        require('mason-nvim-dap').setup({
-            ensure_installed = { 'cppdbg' },
-            handlers = {
-                function(conf)
-                    require('mason-nvim-dap').default_setup(conf)
-                end,
-            },
-        })
-    end
-}
-
-local python = {
-    'mfussenegger/nvim-dap-python',
-    dependencies = { 'mfussenegger/nvim-dap', 'rcarriga/nvim-dap-ui' },
-    config = function()
-        require('dap-python').setup('/usr/bin/python3')
-    end
-}
-
-return function(plugins)
-    plugins[#plugins+1] = dap
-    -- plugins[#plugins+1] = python
-    plugins[#plugins+1] = nvim_dap_lsp
-end

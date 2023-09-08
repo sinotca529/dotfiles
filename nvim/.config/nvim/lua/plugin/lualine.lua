@@ -1,65 +1,8 @@
-local cs = {
-    'sainnhe/gruvbox-material',
-    lazy = false,
-    dependencies = {
-        'edeneast/nightfox.nvim',
-        'glepnir/zephyr-nvim',
-        'vigoux/oak',
-        'catppuccin/nvim',
-    },
-    config = function()
-        vim.cmd.colorscheme('gruvbox-material')
-        vim.cmd('hi Comment cterm=NONE')
-        vim.cmd('hi Comment gui=NONE')
-        vim.cmd('hi Normal ctermbg=NONE guibg=#NONE')
-        vim.cmd('hi NormalNC ctermbg=NONE guibg=#NONE')
-        vim.cmd('hi NonText ctermbg=NONE guibg=#NONE')
-        vim.cmd('hi LineNr ctermbg=NONE guibg=#NONE')
-        vim.cmd('hi Folded ctermbg=NONE guibg=#NONE')
-        vim.cmd('hi EndOfBuffer ctermbg=NONE guibg=#NONE')
-    end
-}
-
--- インデント幅毎に縦線を表示
-local indent_mini = {
-    'nvimdev/indentmini.nvim',
-    event = 'BufEnter',
-    config = function()
-        require('indentmini').setup({
-            char = '│',
-        })
-        vim.cmd.highlight('default link IndentLine IndentBlanklineChar')
-    end,
-}
-
-local tree_sitter = {
-    'nvim-treesitter/nvim-treesitter',
-    lazy = true,
-    event = { 'CursorHold', 'CursorHoldI' },
-    config = function()
-        require('nvim-treesitter.configs').setup({
-            ensure_installed = {
-                'c', 'cpp', 'llvm', 'rust',
-                'lua', 'python',
-                'markdown', 'markdown_inline',
-                'latex',
-            },
-            auto_install = true,
-            highlight = {
-                enable = true,
-                disable = {},
-            }
-        })
-        vim.wo.foldmethod = 'expr'
-        vim.wo.foldexpr = 'nvim_treesitter#foldexpr()'
-    end
-}
-
-local lualine = {
+return {
     'nvim-lualine/lualine.nvim',
     lazy = true,
     event = { 'BufReadPost', 'BufAdd', 'BufNewFile' },
-    dependencies = {'nvim-tree/nvim-web-devicons'},
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
     config = function()
         local lualine = require('lualine')
         local colors = {
@@ -93,27 +36,27 @@ local lualine = {
         -- Config
         local config = {
             options = {
-              -- Disable sections and component separators
-              component_separators = '',
-              section_separators = '',
+                -- Disable sections and component separators
+                component_separators = '',
+                section_separators = '',
             },
             sections = {
-              -- these are to remove the defaults
-              lualine_b = {},
-              lualine_y = {},
-              lualine_z = {},
-              -- These will be filled later
-              lualine_c = {},
-              lualine_x = {},
+                -- these are to remove the defaults
+                lualine_b = {},
+                lualine_y = {},
+                lualine_z = {},
+                -- These will be filled later
+                lualine_c = {},
+                lualine_x = {},
             },
             inactive_sections = {
-              -- these are to remove the defaults
-              lualine_a = {},
-              lualine_b = {},
-              lualine_y = {},
-              lualine_z = {},
-              lualine_c = {},
-              lualine_x = {},
+                -- these are to remove the defaults
+                lualine_a = {},
+                lualine_b = {},
+                lualine_y = {},
+                lualine_z = {},
+                lualine_c = {},
+                lualine_x = {},
             },
         }
 
@@ -168,7 +111,7 @@ local lualine = {
         }
 
         ins_right {
-            'o:encoding', -- option component same as &encoding in viml
+            'o:encoding',       -- option component same as &encoding in viml
             fmt = string.upper, -- I'm not sure why it's upper case either ;)
             cond = conditions.hide_in_width,
             color = { fg = colors.green, gui = 'bold' },
@@ -176,10 +119,14 @@ local lualine = {
         ins_right {
             'fileformat',
             fmt = function(type)
-                if     type == 'unix' then return 'LF'
-                elseif type == 'mac' then return 'CR'
-                elseif type == 'dos' then return 'CR+LF'
-                else   return '??'
+                if type == 'unix' then
+                    return 'LF'
+                elseif type == 'mac' then
+                    return 'CR'
+                elseif type == 'dos' then
+                    return 'CR+LF'
+                else
+                    return '??'
                 end
             end,
             icons_enabled = false,
@@ -188,19 +135,19 @@ local lualine = {
         ins_right {
             'shiftwidth',
             fmt = function(width)
-              if vim.opt_local.expandtab:get() then
-                return 'SP'..width
-              else
-                return 'TAB'
-              end
+                if vim.opt_local.expandtab:get() then
+                    return 'SP' .. width
+                else
+                    return 'TAB'
+                end
             end,
             icons_enabled = false,
             color = { fg = colors.green, gui = 'bold' },
         }
         ins_right {
-          'branch',
-          icon = '',
-          color = { fg = colors.violet, gui = 'bold' },
+            'branch',
+            icon = '',
+            color = { fg = colors.violet, gui = 'bold' },
         }
         ins_right {
             'diff',
@@ -216,18 +163,3 @@ local lualine = {
         lualine.setup(config)
     end
 }
-
-local nvim_colorizer = {
-    'norcalli/nvim-colorizer.lua',
-    config = function()
-        require('colorizer').setup()
-    end,
-}
-
-return function(plugins)
-    plugins[#plugins+1] = cs
-    plugins[#plugins+1] = indent_mini
-    plugins[#plugins+1] = tree_sitter
-    plugins[#plugins+1] = lualine
-    plugins[#plugins+1] = nvim_colorizer
-end

@@ -1,4 +1,4 @@
-local git_signs = {
+return {
     'lewis6991/gitsigns.nvim',
     lazy = true,
     event = { 'CursorHold', 'CursorHoldI' },
@@ -17,7 +17,7 @@ local git_signs = {
                 map('n', '<Leader>gs', gs.stage_hunk)
                 map('n', '<Leader>gu', gs.undo_stage_hunk)
                 map('n', '<Leader>gh', gs.preview_hunk)
-                map('n', '<Leader>gb', function() gs.blame_line{full=true} end)
+                map('n', '<Leader>gb', function() gs.blame_line { full = true } end)
                 map('n', '<Leader>gd', gs.diffthis)
                 map('n', '<Leader>gr', gs.reset_hunk)
             end,
@@ -25,7 +25,3 @@ local git_signs = {
         })
     end
 }
-
-return function(plugins)
-    plugins[#plugins+1] = git_signs
-end
