@@ -1,7 +1,9 @@
 return {
     'numToStr/Comment.nvim',
-    lazy = true,
-    keys = { '<leader>cl' },
+    keys = {
+        { '<leader>cl', mode = 'n' },
+        { '<leader>cl', mode = 'v' },
+    },
     config = function()
         require('Comment').setup({
             line_mapping = '<leader>cc',
