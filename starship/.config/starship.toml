@@ -1,6 +1,7 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
 format = """
+$hostname\
 $localip\
 $shlvl\
 $singularity\
@@ -96,7 +97,7 @@ error_symbol = '[>](bold red)'
 show_always = true
 
 [hostname]
-ssh_only = false
+format = '[$ssh_symbol]($style) '
 
 [cmd_duration]
 min_time = 0
