@@ -35,6 +35,7 @@ require('lazy').setup({
     require('plugin.telescope'),
     require('plugin.which-key'),
     require('plugin.md-preview'),
+    require('plugin.hop'),
 
     --- tex
     require('plugin.vimtex'),
