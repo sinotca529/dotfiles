@@ -102,6 +102,15 @@ eval "$(zoxide init zsh)"
 
 PATH=~/.local/bin:$PATH
 
+function conf() {
+    case $1 in
+        "nvim") nvim -c 'cd ~/dotfiles/nvim/.config/nvim' ~/dotfiles/nvim/.config/nvim ;;
+        "tmux") nvim -c 'cd ~/dotfiles/tmux/.config/tmux '~/dotfiles/tmux/.config/tmux/.tmux.conf ;;
+        "zsh") nvim -c 'cd ~/dotfiles/zsh' ~/dotfiles/zsh/.zshrc ;;
+        * ) nvim -c 'cd ~/dotfiles' ~/dotfiles ;;
+    esac
+}
+
 if [[ -n "$(tmux list-sessions 2>/dev/null)" ]]; then
     if [ -z "$TMUX$ZELLIJ$VIM" ]; then
         tmux a
