@@ -25,6 +25,7 @@ require('lazy').setup({
     require('plugin.lsp-saga'),
     require('plugin.lsp-signiture'),
     require('plugin.surround'),
+    require('plugin.nvim-autopairs'),
 
     -- git
     require('plugin.git-signs'),
