@@ -15,6 +15,13 @@ return {
             filters = {
                 git_ignored = false,
             },
+            renderer = {
+                group_empty = true,
+                highlight_git = true,
+                icons = {
+                    show = { git = false }
+                }
+            },
             on_attach = function(bufnr)
                 local api = require('nvim-tree.api')
                 local function opts(desc)
