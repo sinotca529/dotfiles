@@ -83,17 +83,17 @@ return {
                 max_value_lines = 100, -- Can be integer or nil.
             }
         })
-        vim.api.nvim_set_keymap('n', '<F5>', ':DapContinue<CR>', { silent = true })
-        vim.api.nvim_set_keymap('n', '<F10>', ':DapStepOver<CR>', { silent = true })
-        vim.api.nvim_set_keymap('n', '<F11>', ':DapStepInto<CR>', { silent = true })
-        vim.api.nvim_set_keymap('n', '<F12>', ':DapStepOut<CR>', { silent = true })
-        vim.api.nvim_set_keymap('n', '<leader>db', ':DapToggleBreakpoint<CR>', { silent = true })
-        vim.api.nvim_set_keymap('n', '<leader>dB',
+        vim.keymap.set('n', '<F5>', ':DapContinue<CR>', { silent = true })
+        vim.keymap.set('n', '<F10>', ':DapStepOver<CR>', { silent = true })
+        vim.keymap.set('n', '<F11>', ':DapStepInto<CR>', { silent = true })
+        vim.keymap.set('n', '<F12>', ':DapStepOut<CR>', { silent = true })
+        vim.keymap.set('n', '<leader>db', ':DapToggleBreakpoint<CR>', { silent = true })
+        vim.keymap.set('n', '<leader>dB',
             ':lua require("dap").set_breakpoint(nil, nil, vim.fn.input("Breakpoint cond: "))<CR>', { silent = true })
-        vim.api.nvim_set_keymap('n', '<leader>dlp',
+        vim.keymap.set('n', '<leader>dlp',
             ':lua require("dap").set_breakpoint(nil, nil, vim.fn.input("Log point message: "))<CR>', { silent = true })
-        vim.api.nvim_set_keymap('n', '<leader>dr', ':lua require("dap").repl.open()<CR>', { silent = true })
-        vim.api.nvim_set_keymap('n', '<leader>dl', ':lua require("dap").run_last()<CR>', { silent = true })
-        vim.api.nvim_set_keymap('n', '<leader>dt', ':lua require("dapui").toggle()<CR>', {})
+        vim.keymap.set('n', '<leader>dr', ':lua require("dap").repl.open()<CR>', { silent = true })
+        vim.keymap.set('n', '<leader>dl', ':lua require("dap").run_last()<CR>', { silent = true })
+        vim.keymap.set('n', '<leader>dt', ':lua require("dapui").toggle()<CR>', {})
     end
 }

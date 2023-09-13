@@ -1,6 +1,5 @@
 return {
     'sainnhe/gruvbox-material',
-    lazy = false,
     dependencies = {
         'edeneast/nightfox.nvim',
         'glepnir/zephyr-nvim',
@@ -12,6 +11,8 @@ return {
         vim.cmd('hi Comment cterm=NONE')
         vim.cmd('hi Comment gui=NONE')
         vim.cmd('hi Normal ctermbg=NONE guibg=#NONE')
+        vim.cmd('hi NormalFloat ctermbg=NONE guibg=#NONE')
+        vim.cmd('hi FloatBorder ctermbg=NONE guibg=#NONE')
         vim.cmd('hi NormalNC ctermbg=NONE guibg=#NONE')
         vim.cmd('hi NonText ctermbg=NONE guibg=#NONE')
         vim.cmd('hi LineNr ctermbg=NONE guibg=#NONE')
