@@ -11,7 +11,7 @@ return {
                 scroll_up = '<c-k>',
             },
             window = {
-                border = 'double',
+                border = 'single',
                 margin = { 0, 0, 0, 0 },
                 padding = { 0, 0, 0, 0 },
             },
@@ -20,24 +20,9 @@ return {
             }
         })
         wk.register({
-            ['<leader>g'] = {
-                name = 'git',
-                u = 'unstage hunk',
-                h = 'show hunk',
-                b = 'blame',
-                d = 'diff',
-                r = 'restore hunk'
-            },
-            ['<leader>f'] = {
-                name = 'fzf',
-                f = 'file',
-                g = 'grep',
-                b = 'buf',
-                h = 'help tags',
-            },
-            ['<leader>c'] = {
-                name = 'comment',
-            }
+            ['<leader>g'] = { name = 'git' },
+            ['<leader>f'] = { name = 'telescope' },
+            ['<leader>c'] = { name = 'comment' }
         })
     end,
 }

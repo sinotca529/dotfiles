@@ -4,10 +4,11 @@ return {
     version = '0.1.0',
     dependencies = { 'nvim-lua/plenary.nvim' },
     init = function()
-        vim.keymap.set('n', '<leader>ff', '<Cmd>Telescope find_files<CR>', {})
-        vim.keymap.set('n', '<leader>fg', '<Cmd>Telescope live_grep<CR>', {})
-        vim.keymap.set('n', '<leader>fb', '<Cmd>Telescope buffers<CR>', {})
-        vim.keymap.set('n', '<leader>fh', '<Cmd>Telescope help_tags<CR>', {})
+        local b = require('telescope.builtin')
+        vim.keymap.set('n', '<leader>ff', b.find_files, { desc = 'find file' })
+        vim.keymap.set('n', '<leader>fg', b.live_grep, { desc = 'live grep' })
+        vim.keymap.set('n', '<leader>fb', b.buffers, { desc = 'buffers' })
+        vim.keymap.set('n', '<leader>fh', b.help_tags, { desc = 'help tags' })
     end,
     config = function()
         local ac = require('telescope.actions')

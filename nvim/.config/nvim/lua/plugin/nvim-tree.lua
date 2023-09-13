@@ -5,12 +5,12 @@ return {
     },
     config = function()
         local api = require('nvim-tree.api')
-        vim.keymap.set('n', '<Leader>tt', api.tree.toggle, {})
-        vim.keymap.set('n', '<Leader>tf', api.tree.focus, {})
+        vim.keymap.set('n', '<Leader>tt', api.tree.toggle, { desc = 'toggle sidebar' })
+        vim.keymap.set('n', '<Leader>tf', api.tree.focus, { desc = 'focus sidebar' })
 
         require('nvim-tree').setup({
             sort = {
-                sorter = '',
+                sorter = 'extension',
             },
             filters = {
                 git_ignored = false,
@@ -23,7 +23,6 @@ return {
                 }
             },
             on_attach = function(bufnr)
-                local api = require('nvim-tree.api')
                 local function opts(desc)
                     return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
                 end
