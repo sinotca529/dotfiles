@@ -25,7 +25,7 @@ alias sl='ls --color=auto'
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
-alias tmux='tmux -u -f ~/.config/tmux/.tmux.conf' # force utf-8
+alias tmux='tmux -u'
 alias lg='lazygit'
 alias nv=nvim
 alias manjp='LC_ALL=ja_JP.UTF-8 man'
@@ -105,7 +105,7 @@ PATH=~/.local/bin:$PATH
 function conf() {
     case $1 in
         "nvim") nvim -c 'cd ~/dotfiles/nvim/.config/nvim' ~/dotfiles/nvim/.config/nvim ;;
-        "tmux") nvim -c 'cd ~/dotfiles/tmux/.config/tmux '~/dotfiles/tmux/.config/tmux/.tmux.conf ;;
+        "tmux") nvim -c 'cd ~/dotfiles/tmux' ~/dotfiles/tmux/.tmux.conf ;;
         "zsh") nvim -c 'cd ~/dotfiles/zsh' ~/dotfiles/zsh/.zshrc ;;
         * ) nvim -c 'cd ~/dotfiles' ~/dotfiles ;;
     esac
