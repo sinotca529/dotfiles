@@ -5,18 +5,11 @@ return {
         local hop = require('hop')
         hop.setup()
 
-        local directions = require('hop.hint').HintDirection
-        vim.keymap.set('', 'f', function()
-            hop.hint_char1({ direction = directions.AFTER_CURSOR, current_line_only = false })
-        end, { remap = true, silent = true, })
-        vim.keymap.set('', 'F', function()
-            hop.hint_char1({ direction = directions.BEFORE_CURSOR, current_line_only = false })
-        end, { remap = true, silent = true, })
-        vim.keymap.set('', 't', function()
-            hop.hint_char1({ direction = directions.AFTER_CURSOR, current_line_only = false, hint_offset = -1 })
-        end, { remap = true, silent = true, })
-        vim.keymap.set('', 'T', function()
-            hop.hint_char1({ direction = directions.BEFORE_CURSOR, current_line_only = false, hint_offset = 1 })
-        end, { remap = true, silent = true, })
+        local d = require('hop.hint').HintDirection
+        local o = { remap = true, silent = true, }
+        vim.keymap.set('n', 'f', function() hop.hint_char1({ direction = d.AFTER_CURSOR }) end, o)
+        vim.keymap.set('n', 'F', function() hop.hint_char1({ direction = d.BEFORE_CURSOR }) end, o)
+        vim.keymap.set('n', 't', function() hop.hint_char1({ direction = d.AFTER_CURSOR, hint_offset = -1 }) end, o)
+        vim.keymap.set('n', 'T', function() hop.hint_char1({ direction = d.BEFORE_CURSOR, hint_offset = 1 }) end, o)
     end
 }
