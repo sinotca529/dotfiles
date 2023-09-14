@@ -5,43 +5,50 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require('lazy').setup({
-    -- appearance
-    require('plugin.color-scheme'),
-    require('plugin.indentmini'),
-    require('plugin.tree-sitter'),
-    require('plugin.lualine'),
-    require('plugin.colorizer'),
+require('lazy').setup(
+    {
+        -- appearance
+        require('plugin.color-scheme'),
+        require('plugin.indentmini'),
+        require('plugin.tree-sitter'),
+        require('plugin.lualine'),
+        require('plugin.colorizer'),
 
-    -- lsp, cmp
-    require('plugin.mason'),
-    require('plugin.mason-lspconfig'),
-    require('plugin.null-ls'),
-    require('plugin.mason-null-ls'),
-    require('plugin.nvim-cmp'),
-    require('plugin.fidget'),
-    require('plugin.guess-indent'),
-    require('plugin.comment'),
-    require('plugin.lsp-saga'),
-    require('plugin.lsp-signiture'),
-    require('plugin.surround'),
-    require('plugin.nvim-autopairs'),
+        -- lsp, cmp
+        require('plugin.mason'),
+        require('plugin.mason-lspconfig'),
+        require('plugin.null-ls'),
+        require('plugin.mason-null-ls'),
+        require('plugin.nvim-cmp'),
+        require('plugin.fidget'),
+        require('plugin.guess-indent'),
+        require('plugin.comment'),
+        require('plugin.lsp-saga'),
+        require('plugin.lsp-signiture'),
+        require('plugin.surround'),
+        require('plugin.nvim-autopairs'),
 
-    -- git
-    require('plugin.git-signs'),
+        -- git
+        require('plugin.git-signs'),
 
-    -- tool
-    require('plugin.nvim-tree'),
-    require('plugin.toggle-term'),
-    require('plugin.telescope'),
-    require('plugin.which-key'),
-    require('plugin.md-preview'),
-    require('plugin.hop'),
+        -- tool
+        require('plugin.nvim-tree'),
+        require('plugin.toggle-term'),
+        require('plugin.telescope'),
+        require('plugin.which-key'),
+        require('plugin.md-preview'),
+        require('plugin.hop'),
 
-    --- tex
-    require('plugin.vimtex'),
+        --- tex
+        require('plugin.vimtex'),
 
-    --- debug
-    require('plugin.dap'),
-    require('plugin.nvim-dap-lsp'),
-})
+        --- debug
+        require('plugin.dap'),
+        require('plugin.nvim-dap-lsp'),
+    },
+    {
+        ui = {
+            border = 'rounded'
+        },
+    }
+)
