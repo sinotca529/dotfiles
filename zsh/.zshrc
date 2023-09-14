@@ -111,12 +111,12 @@ function conf() {
     esac
 }
 
-if [[ -n "$(tmux list-sessions 2>/dev/null)" ]]; then
-    if [ -z "$TMUX$ZELLIJ$VIM" ]; then
-        tmux a
+if [ -z "$TMUX$ZELLIJ$VIM" ]; then
+    if [[ -n "$(tmux list-sessions 2>/dev/null)" ]]; then
+            tmux a
+    else
+        tmux
     fi
-else
-    tmux
 fi
 
 if [[ "$ZPROF" = true ]]; then
