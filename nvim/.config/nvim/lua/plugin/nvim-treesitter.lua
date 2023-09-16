@@ -12,7 +12,6 @@ return {
             auto_install = true,
             highlight = {
                 enable = true,
-                disable = {},
             }
         })
         vim.wo.foldmethod = 'expr'

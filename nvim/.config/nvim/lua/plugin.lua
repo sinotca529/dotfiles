@@ -10,7 +10,7 @@ require('lazy').setup(
         -- appearance
         require('plugin.color-scheme'),
         require('plugin.indentmini'),
-        require('plugin.tree-sitter'),
+        require('plugin.nvim-treesitter'),
         require('plugin.lualine'),
         require('plugin.colorizer'),
 
