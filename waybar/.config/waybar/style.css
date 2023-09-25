@@ -1,6 +1,5 @@
 * {
     border: none;
-    border-radius: 4px;
     font-family: "HackGen Console NF";
     font-size: 18px;
     min-height: 0;
@@ -13,33 +12,58 @@ window#waybar {
     border-radius: 0;
 }
 
+#workspaces * {
+    border-radius: 4px;
+}
+
 #workspaces button {
-    padding: 0 0.4em;
+    padding: 0 10px;
     background-color: transparent;
     color: #ffffff;
-    border-bottom: 3px solid transparent;
 }
 
 #workspaces button.focused {
     background: #4c566a;
-    border-bottom: 3px solid #e5e9f0;
 }
 
 #workspaces button.urgent {
     background-color: #bf616a;
 }
 
-#mode {
-    background: #64727D;
-    border-bottom: 3px solid #ffffff;
-}
-
-#clock, #battery, #cpu, #memory, #temperature, #backlight, #network, #pulseaudio, #custom-media, #tray, #mode, #idle_inhibitor {
+#clock, #battery, #cpu, #memory, #temperature, #custom-media, #tray, #mode, #idle_inhibitor {
     padding: 0 10px;
     margin: 6px 3px;
     color: #333333;
     background-color: #bbccdd;
+    border-radius: 10px;
 }
+
+#mode {
+    border-radius: 4px;
+    background: #ccddbb;
+}
+
+
+
+#backlight, #network, #pulseaudio {
+    margin: 6px 0px;
+    color: #333333;
+    background-color: #ddbbcc;
+}
+
+#backlight {
+    padding: 0 10px 0 16px;
+    border-radius: 10px 0 0 10px;
+}
+#network {
+    padding: 0 10px 0 12px;
+    border-radius: 0px;
+}
+#pulseaudio {
+    padding: 0 10px;
+    border-radius: 0 10px 10px 0;
+}
+
 
 @keyframes blink {
     to {
@@ -59,46 +83,13 @@ window#waybar {
 }
 
 #network.disconnected {
-    background-color: #f53c3c;
-    color: #000000;
+    color: #f53c3c;
 }
 
 #pulseaudio.muted {
-    background-color: #f53c3c;
-    color: #000000;
-}
-
-#custom-media {
-    background: #66cc99;
-    color: #2a5c45;
-}
-
-.custom-spotify {
-    background: #66cc99;
-}
-
-.custom-vlc {
-    background: #ffa000;
-}
-
-#temperature {
-    background: #f0932b;
+    color: #f53c3c;
 }
 
 #temperature.critical {
-    background: #eb4d4b;
-}
-
-#tray {
-    /*background-color: #2980b9;*/
-    color: #e5e9f0;
-}
-
-#idle_inhibitor {
-    background-color: #2d3436;
-}
-
-#idle_inhibitor.activated {
-    background-color: #ecf0f1;
-    color: #2d3436;
+    color: #f53c3c;
 }
