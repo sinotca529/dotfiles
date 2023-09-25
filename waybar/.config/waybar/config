@@ -1,21 +1,31 @@
 {
-    "layer": "top",
-    "modules-left": ["sway/workspaces"],
-    "modules-right": ["tray", "cpu", "memory", "network", "pulseaudio", "battery", "clock"],
+    "layer": "bottom",
+    "spacing": 2,
+    "modules-left": ["sway/workspaces", "sway/mode", "sway/scratchpad"],
+    "modules-center": ["sway/window"],
+    "modules-right": ["tray", "network", "pulseaudio", "battery", "clock"],
+    "sway/mode": {
+        "format": "<span style=\"italic\">{}</span>"
+    },
+    "sway/scratchpad": {
+        "format": "{icon} {count}",
+        "show-empty": true,
+        "format-icons": ["", " "],
+        "tooltip": true,
+        "tooltip-format": "{app}: {title}"
+    },
     "tray": {
         // "icon-size": 21,
         "spacing": 10
     },
     "clock": {
-        "tooltip-format": "{:%Y-%m-%d | %H:%M}",
-        "format-alt": "{:%Y-%m-%d}",
-        "format": "{:%a %Y-%m-%d %H:%M %p}"
+        "format": "  {:%m/%d (%a) %H:%M}"
     },
     "cpu": {
-        "format": "  {usage}%"
+        "format": " {usage}%"
     },
     "memory": {
-        "format": "󰍛 {}%"
+        "format": " {}%"
     },
     "backlight": {
         //"device": "intel_backlight",
@@ -23,35 +33,28 @@
         "format-icons": ["", ""]
     },
     "battery": {
-        //"states": {
-        //    // "good": 95,
-        //    "warning": 30,
-        //    "critical": 15
-        //},
-        "format": "　{capacity}%"
-        // "format-good": "", // An empty format will hide the module
-        // "format-full": "",
-        //"format-icons": ["", "", "", "", ""]
+        "format": "{icon} {capacity}%",
+        "format-icons": ["󰁺", "󰁼", "󰁾", "󰂀", "󰂂"]
     },
     "network": {
-        // "interface": "wlp2s0", // (Optional) To force the use of this interface
-        "format-wifi": "　{signalStrength}%",
+        "format-wifi": "{icon}",
         "format-ethernet": "{ifname}: {ipaddr}/{cidr} ethernet",
-        "format-disconnected": "⚠"
+        "format-disconnected": "⚠ ",
+        "format-icons": ["󰤟 ", "󰤟 ", "󰤢 ", "󰤥 ", "󰤨 "]
     },
     "pulseaudio": {
         //"scroll-step": 1,
         "format": "  {volume}%",
         "format-bluetooth": "{volume}% {icon}",
-        "format-muted": " ",
+        "format-muted": "󰖁 ",
         "format-icons": {
             "headphones": "",
             "handsfree": "",
             "headset": "",
             "phone": "",
             "portable": "",
-            "car": "",
-            "default": ["", ""]
+            "car": " ",
+            "default": [" ", " "]
         },
         "on-click": "pavucontrol"
     }
