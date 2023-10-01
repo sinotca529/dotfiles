@@ -56,6 +56,8 @@
     bindsym $mod+Shift+9 move container to workspace number 9
     bindsym $mod+Shift+0 move container to workspace number 10
 
+    default_border none
+    default_floating_border none
     input type:keyboard {
         xkb_layout jp
         xkb_options ctrl:swapcaps
