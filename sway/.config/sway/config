@@ -58,6 +58,10 @@
 
     default_border none
     default_floating_border none
+
+    output * {
+        background $(find ~/img/wallpaper -type f | shuf -n 1) fill
+    }
     input type:keyboard {
         xkb_layout jp
         xkb_options ctrl:swapcaps
