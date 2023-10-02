@@ -112,3 +112,4 @@
 ### Tools
     exec fcitx5
     exec mako
+    include /etc/sway/config.d/50-systemd-user.conf
