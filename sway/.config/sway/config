@@ -72,10 +72,27 @@
 
     default_border none
     default_floating_border none
-
-    output * {
-        background $(find ~/img/wallpaper -type f | shuf -n 1) fill
+### Mode
+#
+# Resize:
+#
+    mode "resize" {
+        bindsym $left resize shrink width 10px
+        bindsym $down resize grow height 10px
+        bindsym $up resize shrink height 10px
+        bindsym $right resize grow width 10px
+        bindsym $mod+r mode "default"
     }
+    bindsym $mod+r mode "resize"
+#
+# Lock:
+#
+    mode "lock" {
+        bindsym $mod+g mode "default"
+    }
+    bindsym $mod+g mode "lock"
+
+### Input
     input type:keyboard {
         xkb_layout jp
         xkb_options ctrl:swapcaps
@@ -85,8 +102,14 @@
         natural_scroll enabled
     }
 
-bar {
-    swaybar_command waybar
-}
+### Output
+    output * {
+        background $(find ~/Pictures/wallpapers -type f | shuf -n 1) fill
+    }
+    bar {
+        swaybar_command waybar
+    }
 
-exec fcitx5
+### Tools
+    exec fcitx5
+    exec mako
