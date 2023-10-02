@@ -5,7 +5,7 @@
     set $up k
     set $right l
     set $term alacritty
-    set $menu wofi --show
+    set $menu wofi
 
 ### Key bindings
 #
