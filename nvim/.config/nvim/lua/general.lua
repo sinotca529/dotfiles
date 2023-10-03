@@ -44,6 +44,10 @@ if vim.fn.executable('win32yank.exe') == 1 then
     }
 end
 
+if vim.fn.executable('sway') == 1 then
+    vim.o.clipboard = 'unnamedplus'
+end
+
 vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
     pattern = { '*' },
     callback = function()
