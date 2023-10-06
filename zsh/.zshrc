@@ -143,11 +143,16 @@ function run-sway() {
     export GTK_IM_MODULE=fcitx
     export QT_IM_MODULE=fcitx
     export MOZ_ENABLE_WAYLAND=1
+    export LIBSEAT_BACKEND=logind
+    export QT_QPA_PLATFORM=wayland
     sway
 }
-if [ -z "$TMUX$ZELLIJ$VIM" ]; then
+
+if [ -z "${WAYLAND_DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
+    run-sway
+elif [ -z "$TMUX$ZELLIJ$VIM" ]; then
     if [[ -n "$(tmux list-sessions 2>/dev/null)" ]]; then
-            tmux a
+        tmux a
     else
         tmux
     fi
