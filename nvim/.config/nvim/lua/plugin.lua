@@ -13,6 +13,7 @@ require('lazy').setup(
         require('plugin.nvim-treesitter'),
         require('plugin.lualine'),
         require('plugin.colorizer'),
+        require('plugin.todo-comments'),
 
         -- lsp, cmp
         require('plugin.mason'),
@@ -38,6 +39,7 @@ require('lazy').setup(
         require('plugin.which-key'),
         require('plugin.md-preview'),
         require('plugin.hop'),
+        require('plugin.ssr'),
 
         --- tex
         require('plugin.vimtex'),
