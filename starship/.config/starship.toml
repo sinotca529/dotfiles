@@ -105,6 +105,8 @@ format = '[󰚭$duration](gray)'
 
 [sudo]
 style = 'red'
+format = '[$symbol]($style)'
+symbol = '󰘶'
 disabled = false
 
 [status]
