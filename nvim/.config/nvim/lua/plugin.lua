@@ -28,6 +28,7 @@ require('lazy').setup(
         require('plugin.lsp-signiture'),
         require('plugin.surround'),
         require('plugin.nvim-autopairs'),
+        require('plugin.trouble'),
 
         -- git
         require('plugin.git-signs'),
