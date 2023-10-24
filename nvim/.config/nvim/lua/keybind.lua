@@ -34,7 +34,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
     group = 'lsp_keybind',
     once = true,
     callback = function()
-        vim.keymap.set('n', '<space>', vim.lsp.buf.hover, { silent = true })
+        -- vim.keymap.set('n', '<space>', vim.lsp.buf.hover, { silent = true })
         vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { silent = true })
         vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, { silent = true })
         vim.keymap.set('n', 'ge', vim.diagnostic.open_float, { silent = true })
