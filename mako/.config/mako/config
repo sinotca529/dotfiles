@@ -1,0 +1,10 @@
+default-timeout=15000
+icons=1
+font=HackGen Console NF 18
+
+# Color
+background-color=#1E1E2E
+text-color=#CDD6F4
+border-color=#89B4FA
+[urgency=high]
+border-color=#FAB387
