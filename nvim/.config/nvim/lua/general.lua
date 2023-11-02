@@ -1,4 +1,3 @@
-vim.o.number = true
 vim.o.virtualedit = 'onemore,block'
 vim.o.whichwrap = 'h,l'
 vim.o.fenc = 'utf-8'
