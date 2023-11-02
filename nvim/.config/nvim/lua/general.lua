@@ -28,8 +28,8 @@ vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
     callback = function() vim.o.ut = 4000 end
 })
 
+vim.o.clipboard = 'unnamedplus'
 if vim.fn.executable('win32yank.exe') == 1 then
-    vim.o.clipboard = 'unnamedplus'
     vim.g.clipboard = {
         name = 'wslClipboard',
         copy = {
