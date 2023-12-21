@@ -17,7 +17,6 @@ vim.o.nf = 'alpha,octal,hex,bin,unsigned'
 vim.g.mapleader = ','
 vim.o.signcolumn = 'yes'
 vim.o.background = 'dark'
-vim.o.cmdheight = 0
 vim.o.cinoptions = 'l1'
 
 -- effects on CursorHold, CursorHoldI (do not set to above 500)
