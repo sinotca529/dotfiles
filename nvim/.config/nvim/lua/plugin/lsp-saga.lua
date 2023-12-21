@@ -36,8 +36,9 @@ return {
             }
         })
 
-        vim.keymap.set('n', '<space>', '<cmd>Lspsaga hover_doc<CR>')
+        vim.keymap.set('n', 'K', '<cmd>Lspsaga hover_doc<CR>')
         vim.keymap.set('n', '<C-.>', '<cmd>Lspsaga code_action<CR>')
+        vim.keymap.set('n', '<leader>lf', '<cmd>Lspsaga finder<CR>')
         -- vim.keymap.set('n', 'gr', '<cmd>Lspsaga rename<CR>')
     end,
 }
