@@ -6,14 +6,16 @@
 }
 
 window#waybar {
-    background-color: rgba(50, 50, 50, 0.6);
-    border-bottom: 3px solid rgba(100, 114, 125, 0.5);
+    /* background-color: rgba(50, 50, 50, 0.3); */
+    background-color: rgba(50, 50, 50, 0.3);
+    border-bottom: 0px;
     color: #e5e9f0;
     border-radius: 0;
 }
 
 #workspaces * {
-    border-radius: 4px;
+    /* border-radius: 4px; */
+    background-color: rgba(50, 50, 50, 0.6);
 }
 
 #workspaces button {
@@ -27,28 +29,25 @@ window#waybar {
 }
 
 #workspaces button.urgent {
-    background-color: #bf616a;
+    background-color: #4c566a;
 }
 
 #clock, #battery, #cpu, #memory, #temperature, #custom-media, #tray, #mode, #idle_inhibitor {
     padding: 0 10px;
     margin: 6px 3px;
-    color: #333333;
-    background-color: #bbccdd;
+    color: #e5e9f0;
     border-radius: 10px;
+    background-color: rgba(50, 50, 50, 0.6);
 }
 
 #mode {
     border-radius: 4px;
-    background: #ccddbb;
 }
-
-
 
 #backlight, #network, #pulseaudio {
     margin: 6px 0px;
-    color: #333333;
-    background-color: #ddbbcc;
+    color: #e5e9f0;
+    background-color: rgba(50, 50, 50, 0.6);
 }
 
 #backlight {
@@ -63,7 +62,6 @@ window#waybar {
     padding: 0 10px;
     border-radius: 0 10px 10px 0;
 }
-
 
 @keyframes blink {
     to {

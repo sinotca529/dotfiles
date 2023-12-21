@@ -30,6 +30,7 @@ alias lg='lazygit'
 alias nv=nvim
 alias manjp='LC_ALL=ja_JP.UTF-8 man'
 alias mv='mv -i'
+alias xo=xdg-open
 
 # Env val
 export LS_COLORS=$LS_COLORS:'di=0;36:ow=0;36'
@@ -97,7 +98,7 @@ function tmp() {
 }
 
 eval "$(starship init zsh)"
-eval "$(zoxide init zsh)"
+# eval "$(zoxide init zsh)"
 # PATH=$(awk '!a[$0]++{print}' RS=: ORS=: <<< "$PATH" | sed 's/:$/\n/')
 
 PATH=~/.local/bin:$PATH
@@ -148,10 +149,8 @@ function run-sway() {
     sway
 }
 
-if [ -z "${WAYLAND_DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
-    run-sway
-elif [ -z "$TMUX$ZELLIJ$VIM" ]; then
-    if [[ -n "$(tmux list-sessions 2>/dev/null)" ]]; then
+if [ -z "$TMUX$ZELLIJ$VIM" ]; then
+    if [[ -n "$(tmux list-sessions 2>/dev/null | grep -v attached)" ]]; then
         tmux a
     else
         tmux

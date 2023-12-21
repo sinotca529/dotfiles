@@ -1,11 +1,21 @@
 {
-    "layer": "bottom",
+    "layer": "top",
     "spacing": 2,
-    "modules-left": ["hyprland/workspaces", "hyprland/mode", "hyprland/scratchpad"],
-    "modules-center": ["hyprland/window"],
-    "modules-right": ["tray", "backlight", "network", "pulseaudio", "battery", "clock"],
+    "modules-left": ["hyprland/workspaces", "hyprland/submap", "hyprland/scratchpad", "hyprland/window"],
+    "modules-center": [],
+    "modules-right": ["tray", "backlight", "network", "pulseaudio", "memory", "cpu", "custom/keyboard", "battery", "clock"],
+    "custom/keyboard": {
+        "exec": "hyprctl devices -j | jq -r 'first(.keyboards[] | select(.main)) | .active_keymap | if . == \"Japanese\" then \"JP\" elif . == \"English (US)\" then \"EN\" else \"??\" end' ",
+        "format": "󰥻 {}",
+        "interval": 1
+    },
+    "hyprland/window": {
+        "rewrite": {
+            "(.*) — Mozilla Firefox": "Firefox",
+        },
+    },
     "hyprland/mode": {
-        "format": "{}"
+        "format": "{} "
     },
     "hyprland/scratchpad": {
         "format": "{icon} {count}",
@@ -17,13 +27,14 @@
         "spacing": 10,
     },
     "clock": {
-        "format": "  {:%m/%d (%a) %H:%M}"
+        "format": "{:%H:%M}",
+        "tooltip-format": "  {:%m/%d (%a) %H:%M}"
     },
     "cpu": {
-        "format": " {usage}%"
+        "format": " {usage:02}%"
     },
     "memory": {
-        "format": " {}%"
+        "format": " {percentage:02}%"
     },
     "backlight": {
         "format": "{icon}",
