@@ -4,8 +4,8 @@ vim.o.fenc = 'utf-8'
 vim.o.mouse = ''
 vim.o.laststatus = 3
 vim.o.expandtab = true
-vim.o.shiftwidth = 4
-vim.o.tabstop = 4
+vim.o.shiftwidth = 2
+vim.o.tabstop = 8
 vim.o.termguicolors = true
 vim.o.breakindent = true
 vim.o.winblend = 10
@@ -18,6 +18,7 @@ vim.g.mapleader = ','
 vim.o.signcolumn = 'yes'
 vim.o.background = 'dark'
 vim.o.cmdheight = 0
+vim.o.cinoptions = 'l1'
 
 -- effects on CursorHold, CursorHoldI (do not set to above 500)
 vim.o.ut = 200
