@@ -1,5 +1,5 @@
 return {
-    "jose-elias-alvarez/null-ls.nvim",
+    "nvimtools/none-ls.nvim",
     lazy = true,
     config = function()
         require('null-ls').setup()
