@@ -30,6 +30,10 @@ return {
                     toggle_or_open = '<CR>',
                 },
             },
+            floaterm = {
+                height = 0.8,
+                width = 0.9,
+            }
         })
 
         vim.keymap.set('n', '<space>', '<cmd>Lspsaga hover_doc<CR>')
