@@ -76,22 +76,6 @@ return {
         }
         ins_left { 'location' }
         ins_left {
-            'wordcount',
-            fmt = function()
-                if vim.bo.filetype ~= 'markdown' and vim.bo.filetype ~= 'text' and vim.bo.filetype ~= '' then
-                    return ''
-                end
-
-                local selected = ''
-                if vim.fn.mode():find('[vV]') then
-                    selected = tostring(vim.fn.wordcount().visual_chars) .. '/'
-                end
-                return selected .. tostring(vim.fn.wordcount().chars) .. ' chars'
-            end,
-            icons_enabled = false,
-            color = { fg = colors.green, gui = 'bold' },
-        }
-        ins_left {
             'diagnostics',
             sources = { 'nvim_diagnostic' },
             symbols = { error = ' ', warn = ' ', info = ' ' },
@@ -107,6 +91,19 @@ return {
             function()
                 return '%='
             end,
+        }
+
+        ins_right {
+            'wordcount',
+            fmt = function()
+                local selected = ''
+                if vim.fn.mode():find('[vV]') then
+                    selected = tostring(vim.fn.wordcount().visual_chars) .. '/'
+                end
+                return selected .. tostring(vim.fn.wordcount().chars) .. ' chars'
+            end,
+            icons_enabled = false,
+            color = { fg = colors.green, gui = 'bold' },
         }
 
         ins_right {
@@ -145,7 +142,7 @@ return {
         }
         ins_right {
             'branch',
-            icon = '',
+            icon = '',
             color = { fg = colors.violet, gui = 'bold' },
         }
         ins_right {

@@ -62,6 +62,10 @@ vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufRead' }, {
     callback = function() vim.cmd.setfiletype('llvm') end,
 })
 vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufRead' }, {
+    pattern = '*.tex',
+    callback = function() vim.cmd.setfiletype('tex') end,
+})
+vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufRead' }, {
     pattern = '*.h.inc',
     callback = function() vim.cmd.setfiletype('cpp') end,
 })

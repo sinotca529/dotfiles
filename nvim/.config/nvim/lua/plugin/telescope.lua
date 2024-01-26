@@ -26,6 +26,9 @@ return {
                 '*.so',
                 '*.out',
             },
+            pickers = {
+                find_files = { follow = true },
+            }
         })
     end
 }
