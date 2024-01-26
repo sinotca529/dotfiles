@@ -70,6 +70,7 @@
             "default": [" ", " ", "󰕾 ", " "],
         },
         "on-click-right": "pavucontrol",
+        "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
         "reverse-scrolling": true,
         "tooltip": true,
         "tooltip-format": "{volume}%"
