@@ -3,7 +3,7 @@ if [[ "$ZPROF" = true ]]; then
 fi
 
 bindkey -e
-export WORDCHARS='*?_.[]~-=&;!#$%^(){}<>'
+export WORDCHARS='*?_.[]~-=&:;!#$%^(){}<>'
 setopt globdots
 
 autoload -Uz colors && colors        # 色
