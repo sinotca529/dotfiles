@@ -77,7 +77,6 @@ $status\
 $cmd_duration\
 $line_break\
 $jobs\
-$battery\
 $time\
 $os\
 $container\
@@ -106,7 +105,7 @@ format = '[$ssh_symbol]($style) '
 
 [cmd_duration]
 min_time = 0
-format = '[󰚭$duration](gray)'
+format = '[󰚭$duration](gray) '
 
 [sudo]
 style = 'red'
@@ -132,3 +131,7 @@ symbol = '󱘗 '
 
 [lua]
 symbol = ' '
+
+[env_var]
+variable = 'SHELL'
+default = '?'
