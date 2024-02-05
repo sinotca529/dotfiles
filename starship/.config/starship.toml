@@ -135,3 +135,4 @@ symbol = ' '
 [env_var]
 variable = 'SHELL'
 default = '?'
+style = 'green'
