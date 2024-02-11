@@ -132,7 +132,6 @@ symbol = '󱘗 '
 [lua]
 symbol = ' '
 
-[env_var]
-variable = 'SHELL'
-default = '?'
-style = 'green'
+[custom.shell]
+command = "sh -c 'ps -p $PPID -o comm='"
+when = true
