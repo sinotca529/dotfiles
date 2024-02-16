@@ -103,59 +103,15 @@ eval "$(starship init zsh)"
 
 PATH=~/.local/bin:$PATH
 
-function conf() {
-    if [ -z "$1" ]; then
-        nvim -c 'cd ~/dotfiles' ~/dotfiles
-        return
-    fi
+alias conf="~/dotfiles/zsh/.zsh/conf.sh"
 
-    local conf_dir=~/dotfiles/$1
-
-    if [ ! -d $conf_dir ]; then
-        echo "Configuration for '$1' does not exist."
-        return 1
-    fi
-
-    setopt local_options
-    setopt nullglob
-    setopt glob_dots
-    while true; do
-        local files=($conf_dir/*)
-
-        if [ ${#files[@]} -eq 1 ];then
-            if [ -d $files[1] ]; then
-                conf_dir=$files[1]
-            else
-                nvim -c "cd $conf_dir" "${files[1]}"
-                break
-            fi
-        else
-            nvim -c "cd $conf_dir" "$conf_dir"
-            break
-        fi
-    done
-}
-
-function run-sway() {
-    export XDG_CURRENT_DESKTOP=sway
-    export XDG_SESSION_DESKTOP=sway
-    export XDG_SESSION_TYPE=wayland
-    export XMODIFIERS=@im=fcitx
-    export GTK_IM_MODULE=fcitx
-    export QT_IM_MODULE=fcitx
-    export MOZ_ENABLE_WAYLAND=1
-    export LIBSEAT_BACKEND=logind
-    export QT_QPA_PLATFORM=wayland
-    sway
-}
-
-if [ -z "$TMUX$ZELLIJ$VIM" ]; then
-    if [[ -n "$(tmux list-sessions 2>/dev/null | grep -v attached)" ]]; then
-        tmux a
-    else
-        tmux
-    fi
-fi
+# if [ -z "$TMUX$ZELLIJ$VIM" ]; then
+#     if [[ -n "$(tmux list-sessions 2>/dev/null | grep -v attached)" ]]; then
+#         tmux a
+#     else
+#         tmux
+#     fi
+# fi
 
 if [[ "$ZPROF" = true ]]; then
     zprof
