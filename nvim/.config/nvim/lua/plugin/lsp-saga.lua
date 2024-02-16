@@ -30,6 +30,9 @@ return {
                     toggle_or_open = '<CR>',
                 },
             },
+            diagnostic = {
+                max_show_width = 0.6
+            },
             floaterm = {
                 height = 0.8,
                 width = 0.9,
@@ -37,6 +40,7 @@ return {
         })
 
         vim.keymap.set('n', 'K', '<cmd>Lspsaga hover_doc<CR>')
+        vim.keymap.set('n', 'ge', '<cmd>Lspsaga show_line_diagnostics<CR>')
         vim.keymap.set('n', '<C-.>', '<cmd>Lspsaga code_action<CR>')
         vim.keymap.set('n', '<leader>lf', '<cmd>Lspsaga finder<CR>')
         -- vim.keymap.set('n', 'gr', '<cmd>Lspsaga rename<CR>')

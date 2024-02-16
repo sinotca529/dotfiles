@@ -37,7 +37,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
         -- vim.keymap.set('n', '<space>', vim.lsp.buf.hover, { silent = true })
         vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { silent = true })
         vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, { silent = true })
-        vim.keymap.set('n', 'ge', vim.diagnostic.open_float, { silent = true })
+        -- vim.keymap.set('n', 'ge', vim.diagnostic.open_float, { silent = true })
         -- vim.keymap.set('n', '<C-.>', '<cmd>lua vim.lsp.buf.code_action()<CR>', { silent = true })
         vim.keymap.set('n', '<C-n>', vim.lsp.buf.code_action, { silent = true })
         vim.keymap.set('n', '<C-f>', vim.lsp.buf.format, { silent = true })

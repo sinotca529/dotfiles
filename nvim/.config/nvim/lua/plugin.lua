@@ -10,6 +10,7 @@ require('lazy').setup(
         -- appearance
         require('plugin.color-scheme'),
         require('plugin.indentmini'),
+        require('plugin.guess-indent'),
         require('plugin.nvim-treesitter'),
         require('plugin.lualine'),
         require('plugin.colorizer'),
@@ -22,11 +23,8 @@ require('lazy').setup(
         require('plugin.mason-null-ls'),
         require('plugin.nvim-cmp'),
         require('plugin.fidget'),
-        require('plugin.guess-indent'),
-        require('plugin.comment'),
         require('plugin.lsp-saga'),
         require('plugin.lsp-signiture'),
-        require('plugin.surround'),
         require('plugin.nvim-autopairs'),
         require('plugin.trouble'),
 
@@ -41,6 +39,8 @@ require('lazy').setup(
         require('plugin.md-preview'),
         require('plugin.hop'),
         require('plugin.ssr'),
+        require('plugin.surround'),
+        require('plugin.comment'),
 
         --- tex
         require('plugin.vimtex'),

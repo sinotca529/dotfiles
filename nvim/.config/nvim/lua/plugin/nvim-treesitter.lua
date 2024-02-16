@@ -12,6 +12,7 @@ return {
             auto_install = true,
             highlight = {
                 enable = true,
+                disable = { 'latex' },
             }
         })
         vim.wo.foldmethod = 'expr'

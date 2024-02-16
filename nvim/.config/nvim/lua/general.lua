@@ -105,6 +105,11 @@ vim.g.skip_loading_mswin        = 1
 -- vim.g.loaded_matchit            = 1
 -- vim.g.loaded_matchparen         = 1
 
+vim.fn.sign_define('DiagnosticSignError', { text = '', texthl = 'DiagnosticSignError' })
+vim.fn.sign_define('DiagnosticSignWarn',  { text = '', texthl = 'DiagnosticSignWarn' })
+vim.fn.sign_define('DiagnosticSignInfo',  { text = '', texthl = 'DiagnosticSignInfo' })
+vim.fn.sign_define('DiagnosticSignHint',  { text = '', texthl = 'DiagnosticSignHint' })
+
 -- https://github.com/jose-elias-alvarez/null-ls.nvim/issues/428
 local notify = vim.notify
 vim.notify = function(msg, ...)
