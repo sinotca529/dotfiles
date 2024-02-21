@@ -74,6 +74,5 @@
         "reverse-scrolling": true,
         "tooltip": true,
         "tooltip-format": "{volume}%"
-
     }
 }

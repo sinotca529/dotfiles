@@ -15,12 +15,18 @@ window#waybar {
 
 #workspaces * {
     /* border-radius: 4px; */
-    background-color: rgba(50, 50, 50, 0.6);
+    background-color: transparent;
 }
 
 #workspaces button {
     padding: 0 10px;
     background-color: transparent;
+    color: #ffffff;
+}
+
+#workspaces button.active {
+    padding: 0 10px;
+    background-color: rgba(255, 255, 255, 0.2);
     color: #ffffff;
 }
 
