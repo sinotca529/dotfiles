@@ -11,6 +11,7 @@ abbr -a mv mv -i
 abbr -a xo xdg-open
 abbr -a tmux tmux -u
 abbr -a lg lazygit
+abbr -a gc git commit
 # abbr -a ls ls --color=auto
 # abbr -a grep grep --color=auto
 # abbr -a fgrep fgrep --color=auto
@@ -20,6 +21,8 @@ alias conf='~/dotfiles/zsh/.zsh/conf.sh'
 
 set fish_greeting
 set -xa LS_COLORS 'di=0;36:ow=0;36'
+set -xg LC_ALL ja_JP.UTF-8
+set -xg LANG ja_JP.UTF-8
 
 fish_add_path ~/tools
 fish_add_path ~/go/bin
