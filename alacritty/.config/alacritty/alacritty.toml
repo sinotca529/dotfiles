@@ -8,6 +8,10 @@ red = "0xff0000"
 white = "0xffffff"
 yellow = "0xffff00"
 
+[window]
+# opacity = 0.6
+padding = { x = 8, y = 8 }
+
 [colors.primary]
 background = "0x000000"
 foreground = "0xffffff"
