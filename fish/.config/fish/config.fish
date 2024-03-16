@@ -21,8 +21,8 @@ alias conf='~/dotfiles/zsh/.zsh/conf.sh'
 
 set fish_greeting
 set -xa LS_COLORS 'di=0;36:ow=0;36'
-set -xg LC_ALL ja_JP.UTF-8
-set -xg LANG ja_JP.UTF-8
+set -xg LC_ALL en_US.UTF-8
+set -xg LANG en_US.UTF-8
 
 fish_add_path ~/tools
 fish_add_path ~/go/bin
