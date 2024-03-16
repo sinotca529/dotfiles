@@ -15,7 +15,7 @@ vim.o.fileformats = 'unix,dos,mac'
 vim.o.wrap = false
 vim.o.nf = 'alpha,octal,hex,bin,unsigned'
 vim.g.mapleader = ','
-vim.o.signcolumn = 'yes'
+vim.o.signcolumn = 'yes:2'
 vim.o.background = 'dark'
 vim.o.cinoptions = 'l1'
 
