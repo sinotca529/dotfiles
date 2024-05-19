@@ -1,5 +1,5 @@
 return {
-    'phaazon/hop.nvim',
+    'smoka7/hop.nvim',
     keys = { 'f', 'F', 't', 'T' },
     config = function()
         local hop = require('hop')

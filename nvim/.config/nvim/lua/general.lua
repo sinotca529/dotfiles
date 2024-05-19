@@ -118,3 +118,5 @@ vim.notify = function(msg, ...)
     end
     notify(msg, ...)
 end
+
+vim.cmd.colorscheme('habamax')
