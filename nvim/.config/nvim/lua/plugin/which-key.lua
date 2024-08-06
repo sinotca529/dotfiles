@@ -1,28 +1,27 @@
 return {
     'folke/which-key.nvim',
     event = { 'CursorHold', 'CursorHoldI' },
+    dependencies = {
+        'nvim-tree/nvim-web-devicons' ,
+        { 'echasnovski/mini.nvim', version = false },
+    },
     config = function()
         vim.o.timeout = true
         vim.o.timeoutlen = 300
         local wk = require('which-key')
         wk.setup({
-            popup_mappings = {
+            keys = {
                 scroll_down = '<c-j>',
                 scroll_up = '<c-k>',
-            },
-            window = {
-                border = 'single',
-                margin = { 0, 0, 0, 0 },
-                padding = { 0, 0, 0, 0 },
             },
             layout = {
                 spacing = 1,
             }
         })
-        wk.register({
-            ['<leader>g'] = { name = 'git' },
-            ['<leader>f'] = { name = 'telescope' },
-            ['<leader>c'] = { name = 'comment' }
-        })
+        wk.add({
+            { "<leader>c", group = "comment" },
+            { "<leader>f", group = "telescope" },
+            { "<leader>g", group = "git" },
+        });
     end,
 }

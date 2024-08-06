@@ -27,6 +27,7 @@ require('lazy').setup(
         require('plugin.lsp-signiture'),
         require('plugin.nvim-autopairs'),
         require('plugin.trouble'),
+        require('plugin.nvim-ts-autotag'),
         -- require('plugin.nvim-jdtls'),
 
         -- git
