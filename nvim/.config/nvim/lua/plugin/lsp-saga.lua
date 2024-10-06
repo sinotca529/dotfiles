@@ -17,10 +17,6 @@ return {
             beacon = {
                 enable = false,
             },
-            scrolling = {
-                scroll_down = '<C-j>',
-                scroll_up = '<C-k>',
-            },
             implement = {
                 enable = false,
             },

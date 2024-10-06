@@ -1,0 +1,72 @@
+"----------------------------------------
+" Vim as a Terminal Multiplexer
+" usage:
+"   vim -Nu <path to this file>
+"----------------------------------------
+
+set showtabline=2
+set laststatus=0
+set clipboard=unamedplus
+set visualbell t_vb=
+
+" Set prefix
+let g:mapleader="\<C-q>"
+
+" デフォルトだと <C-w> が vim に吸われる問題を回避。
+set termwinkey=<C-@>
+
+" Vim 起動時にターミナルを開く
+autocmd VimEnter * term ++curwin
+
+" タブ切り替え時にinsertモードに入る
+" INFO: :startinsert は無効 (:help terminal-normal)
+autocmd BufEnter * if &buftype ==# 'terminal' && mode() ==# 'n' | normal i | endif
+
+" Yank したら insert mode に移行
+autocmd TextYankPost * if &buftype ==# 'terminal' && mode() ==# 'n' | normal i | endif
+
+" INFO: alt を認識してくれない問題への対処
+"   https://vi.stackexchange.com/questions/2350/how-to-map-alt-key
+"   :help :set-termcap
+execute "set <M-n>=\en"
+execute "set <M-m>=\em"
+execute "set <M-h>=\eh"
+execute "set <M-j>=\ej"
+execute "set <M-k>=\ek"
+execute "set <M-l>=\el"
+
+" タブの作成
+tnoremap <silent> <Leader>c <C-\><C-n>:tab terminal<CR>
+tnoremap <silent> <M-m> <C-\><C-n>:tab terminal<CR>
+
+" タブの移動
+tnoremap <silent> <Leader>n <C-\><C-n>:tabnext<CR>
+tnoremap <silent> <Leader>p <C-\><C-n>:tabprevious<CR>
+
+" 画面分割
+tnoremap <silent> <Leader>" <C-\><C-n>:bel term<CR>
+tnoremap <silent> <Leader>% <C-\><C-n>:bel vert term<CR>
+tnoremap <silent> <M-n> <C-\><C-n>:call SplitWindow()<CR>
+
+" 貼り付け
+tnoremap <silent> <Leader>] <C-@>"0
+
+" ウィンドウ間を移動
+tnoremap <silent> <M-h> <C-@>h
+tnoremap <silent> <M-j> <C-@>j
+tnoremap <silent> <M-k> <C-@>k
+tnoremap <silent> <M-l> <C-@>l
+
+" ウィンドウが横長なら垂直分割、縦長なら水平分割
+function! SplitWindow()
+  let l:width = winwidth(0)
+  let l:height = winheight(0)
+  echo l:width
+  echo l:height
+  if l:width < l:height * 2
+    bel term
+  else
+    bel vert term
+  endif
+  execute 'lcd ' . getcwd()
+endfunction

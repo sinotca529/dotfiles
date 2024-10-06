@@ -33,14 +33,14 @@ fish_add_path ~/.cargo/bin
 
 starship init fish | source
 
-# function activate_tmux
-#   if test -z "$TMUX$ZELLIJ$VIM"
-#     if test -n "$(tmux list-sessions 2>/dev/null | grep -v attached)"
-#       tmux -u a
-#     else
-#       tmux -u
-#     end
-#   end
-# end
-#
-# activate_tmux
+function activate_tmux
+  if test -z "$TMUX$ZELLIJ$VIM"
+    if test -n "$(tmux list-sessions 2>/dev/null | grep -v attached)"
+      tmux -u a
+    else
+      tmux -u
+    end
+  end
+end
+
+activate_tmux

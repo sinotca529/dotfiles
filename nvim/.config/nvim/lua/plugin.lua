@@ -28,10 +28,10 @@ require('lazy').setup(
         require('plugin.nvim-autopairs'),
         require('plugin.trouble'),
         require('plugin.nvim-ts-autotag'),
-        -- require('plugin.nvim-jdtls'),
 
         -- git
         require('plugin.git-signs'),
+        require('plugin.git-conflict'),
 
         -- tool
         require('plugin.nvim-tree'),
