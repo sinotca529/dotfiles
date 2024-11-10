@@ -5,6 +5,7 @@ return {
         'dcampos/nvim-snippy',
         'dcampos/cmp-snippy',
         'hrsh7th/cmp-nvim-lsp',
+        'hrsh7th/cmp-emoji',
     },
     config = function()
         local snippy = require('snippy')
@@ -46,6 +47,7 @@ return {
                 ['<C-q>'] = cmp.mapping.close(),
             },
             sources = cmp.config.sources({
+                { name = 'emoji' },
                 { name = 'snippy' },
                 { name = 'nvim_lsp' },
                 { name = 'buffer' },

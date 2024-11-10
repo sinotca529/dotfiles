@@ -59,14 +59,8 @@ tnoremap <silent> <M-l> <C-@>l
 
 " ウィンドウが横長なら垂直分割、縦長なら水平分割
 function! SplitWindow()
-  let l:width = winwidth(0)
-  let l:height = winheight(0)
-  echo l:width
-  echo l:height
-  if l:width < l:height * 2
-    bel term
+  if winwidth(0) < winheight(0) * 2
+    call term_start(&shell, {'cwd': getcwd()})
   else
-    bel vert term
-  endif
-  execute 'lcd ' . getcwd()
+    call term_start(&shell, {'cwd': getcwd(), 'vertical': 1})
 endfunction

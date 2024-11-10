@@ -17,7 +17,7 @@ set smartindent
 set hlsearch
 set completeopt=menuone,noinsert
 set bs=indent,eol,start
-set clipboard=unamedplus
+set clipboard=unnamedplus
 
 syntax enable
 colorscheme elflord

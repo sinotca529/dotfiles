@@ -4,3 +4,5 @@ gui:
 git:
   log:
     showGraph: 'always'
+  merging:
+    args: '--no-ff'
