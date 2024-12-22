@@ -44,6 +44,7 @@ require('lazy').setup(
         require('plugin.surround'),
         require('plugin.comment'),
 
+        require('plugin.gh-copilot'),
         --- tex
         require('plugin.vimtex'),
 
