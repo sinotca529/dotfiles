@@ -13,7 +13,7 @@ require('lazy').setup(
         require('plugin.guess-indent'),
         require('plugin.nvim-treesitter'),
         require('plugin.lualine'),
-        require('plugin.colorizer'),
+        -- require('plugin.colorizer'),
         require('plugin.todo-comments'),
 
         -- lsp, cmp
@@ -44,7 +44,10 @@ require('lazy').setup(
         require('plugin.surround'),
         require('plugin.comment'),
 
+        -- llm
+        require('plugin.ollama'),
         require('plugin.gh-copilot'),
+
         --- tex
         require('plugin.vimtex'),
 

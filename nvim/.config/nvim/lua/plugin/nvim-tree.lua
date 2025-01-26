@@ -7,6 +7,7 @@ return {
         local api = require('nvim-tree.api')
         vim.keymap.set('n', '<Leader>tt', api.tree.toggle, { desc = 'toggle sidebar' })
         vim.keymap.set('n', '<Leader>tf', api.tree.focus, { desc = 'focus sidebar' })
+        vim.keymap.set('n', '<Leader>tf', api.tree.reload, { desc = 'reload tree' })
 
         require('nvim-tree').setup({
             sort = {
