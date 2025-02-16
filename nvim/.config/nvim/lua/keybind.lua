@@ -39,17 +39,21 @@ vim.api.nvim_create_autocmd('LspAttach', {
     callback = function()
         -- vim.keymap.set('n', '<space>', vim.lsp.buf.hover, { silent = true })
         vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { silent = true })
+        vim.keymap.set('n', 'K', vim.lsp.buf.hover, { silent = true })
         vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, { silent = true })
+        vim.keymap.set('n', 'ge', '<cmd>lua vim.diagnostic.open_float(0, {scope="line"})<CR>', { silent = true })
+        vim.keymap.set('n', '<leader>lf', vim.lsp.buf.format, { silent = true })
+
         -- vim.keymap.set('n', 'ge', vim.diagnostic.open_float, { silent = true })
         -- vim.keymap.set('n', '<C-.>', '<cmd>lua vim.lsp.buf.code_action()<CR>', { silent = true })
         -- vim.keymap.set('n', '<C-n>', vim.lsp.buf.code_action, { silent = true })
-        vim.keymap.set('n', '<leader>lf', vim.lsp.buf.format, { silent = true })
+        -- vim.keymap.set('n', 'gr', vim.lsp.buf.rename, { silent = true })
+        --
         if vim.bo.filetype == "markdown" then
             vim.keymap.set('v', '<leader>lf', ':!prettier --parser markdown<CR>', { silent = true })
         else
             vim.keymap.set('v', '<leader>lf', vim.lsp.buf.format, { silent = true })
         end
 
-        vim.keymap.set('n', 'gr', vim.lsp.buf.rename, { silent = true })
     end
 })

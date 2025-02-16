@@ -39,10 +39,11 @@ require('lazy').setup(
         require('plugin.telescope'),
         require('plugin.which-key'),
         require('plugin.md-preview'),
+        require('plugin.maketable'),
         require('plugin.hop'),
         require('plugin.ssr'),
         require('plugin.surround'),
-        require('plugin.comment'),
+        -- require('plugin.comment'),
 
         -- llm
         require('plugin.ollama'),

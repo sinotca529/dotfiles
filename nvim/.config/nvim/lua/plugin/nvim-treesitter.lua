@@ -1,6 +1,6 @@
 return {
     'nvim-treesitter/nvim-treesitter',
-    event = { 'CursorHold', 'CursorHoldI' },
+    -- event = { 'CursorHold', 'CursorHoldI' },
     config = function()
         require('nvim-treesitter.configs').setup({
             ensure_installed = {

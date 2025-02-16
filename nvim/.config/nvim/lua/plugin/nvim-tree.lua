@@ -5,13 +5,27 @@ return {
     },
     config = function()
         local api = require('nvim-tree.api')
-        vim.keymap.set('n', '<Leader>tt', api.tree.toggle, { desc = 'toggle sidebar' })
-        vim.keymap.set('n', '<Leader>tf', api.tree.focus, { desc = 'focus sidebar' })
-        vim.keymap.set('n', '<Leader>tf', api.tree.reload, { desc = 'reload tree' })
-
+        vim.keymap.set('n', '<C-h>', api.tree.toggle, { desc = 'toggle sidebar' })
         require('nvim-tree').setup({
             sort = {
                 sorter = 'extension',
+            },
+            view = {
+              float = {
+                enable = true,
+                open_win_config = function()
+                  local screen_h = vim.opt.lines:get() - vim.opt.cmdheight:get()
+                  return {
+                    border = 'single',
+                    relative = 'editor',
+                    row = 0,
+                    col = 0,
+                    width = 40,
+                    height = screen_h - 3,  -- prevent hiding status line
+                  }
+                  end,
+              },
+              width = 40,
             },
             filters = {
                 git_ignored = false,
