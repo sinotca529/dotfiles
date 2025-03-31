@@ -13,6 +13,7 @@ swap_key('v', 'k', 'gk')
 
 vim.keymap.set('n', 'ZZ', '<Nop>', {})
 vim.keymap.set('n', 'ZQ', '<Nop>', {})
+vim.keymap.set('n', '<C-q>', '<Nop>', {})
 vim.keymap.set('n', 'Y', 'y$', {})
 
 -- Toggle word wrap

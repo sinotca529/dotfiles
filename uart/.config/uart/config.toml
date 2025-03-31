@@ -1,0 +1,33 @@
+[keybind.common]
+move_cursor_left = "h"
+move_cursor_down = "j"
+move_cursor_up = "k"
+move_cursor_right = "l"
+
+[keybind.normal]
+make_rect = "r"
+make_path = "p"
+make_text = "t"
+select_shape = "<Space>"
+
+[keybind.select]
+move_shape_left = "H"
+move_shape_down = "J"
+move_shape_up = "K"
+move_shape_right = "L"
+delete_shape = "d"
+to_normal_mode = "<Esc>"
+toggle_shape_select = "<Space>"
+
+[keybind.make_rect]
+next_line_style = "s"
+confirm = "<CR>"
+
+[keybind.make_path]
+next_line_style = "s"
+next_arrow_state = "a"
+confirm = "<CR>"
+back = "<BS>"
+
+[keybind.make_text]
+confirm = "<S-CR>"
