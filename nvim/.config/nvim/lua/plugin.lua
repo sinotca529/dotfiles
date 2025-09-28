@@ -7,6 +7,9 @@ vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup(
     {
+        -- deno
+        require('plugin.denops'),
+
         -- appearance
         require('plugin.color-scheme'),
         require('plugin.indentmini'),
@@ -44,6 +47,8 @@ require('lazy').setup(
         require('plugin.ssr'),
         require('plugin.surround'),
         -- require('plugin.comment'),
+        --
+        require('plugin.skkeleton'),
 
         -- llm
         require('plugin.ollama'),

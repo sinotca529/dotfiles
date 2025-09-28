@@ -23,7 +23,7 @@ return {
                 end
             },
             mapping = {
-                ['<C-k>'] = cmp.mapping(function(fallback)
+                ['<C-p>'] = cmp.mapping(function(fallback)
                     if cmp.visible() then
                         cmp.select_prev_item()
                     elseif snippy.can_jump(-1) then
@@ -32,7 +32,7 @@ return {
                         fallback()
                     end
                 end, { 'i', 's' }),
-                ['<C-j>'] = cmp.mapping(function(fallback)
+                ['<C-n>'] = cmp.mapping(function(fallback)
                     if cmp.visible() then
                         cmp.select_next_item()
                     elseif snippy.can_expand_or_advance() then
