@@ -4,11 +4,10 @@ return {
     dependencies = {
         "neovim/nvim-lspconfig",
         "mason-org/mason.nvim",
-        "hrsh7th/cmp-nvim-lsp",
+        "saghen/blink.cmp",
     },
     config = function()
-        -- 1) サーバ定義は nvim コアの API で
-        local capabilities = require("cmp_nvim_lsp").default_capabilities()
+        local capabilities = require('blink.cmp').get_lsp_capabilities()
         vim.lsp.config("lua_ls", {
           capabilities = capabilities,
           settings = {

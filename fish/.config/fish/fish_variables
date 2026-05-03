@@ -40,4 +40,4 @@ SETUVAR fish_pager_color_selected_background:\x2d\x2dbackground\x3dbrblack
 SETUVAR fish_pager_color_selected_completion:\x1d
 SETUVAR fish_pager_color_selected_description:\x1d
 SETUVAR fish_pager_color_selected_prefix:\x1d
-SETUVAR fish_user_paths:/home/takumi/\x2ecargo/bin\x1e/home/takumi/\x2elocal/bin
+SETUVAR fish_user_paths:/home/takumi/go/bin\x1e/home/takumi/tools\x1e/home/takumi/\x2ecargo/bin\x1e/home/takumi/\x2elocal/bin

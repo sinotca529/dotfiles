@@ -19,12 +19,13 @@ return {
                         ['<C-j>'] = ac.move_selection_next,
                     },
                 },
-            },
-            file_ignore_patterns = {
-                '*.a',
-                '*.o',
-                '*.so',
-                '*.out',
+                file_ignore_patterns = {
+                    '%.a$',
+                    '%.o$',
+                    '%.so$',
+                    '%.out$',
+                    '%.class$',
+                },
             },
             pickers = {
                 find_files = { follow = true },

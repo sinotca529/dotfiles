@@ -5,9 +5,6 @@ return {
         { '<leader>sr', mode = 'x' },
     },
     config = function()
-        require('ssr').setup({
-            border = 'rounded'
-        })
         vim.keymap.set(
             {'n', 'x'},
             '<leader>sr',

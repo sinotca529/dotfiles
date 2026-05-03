@@ -4,8 +4,6 @@ return {
         'nvim-tree/nvim-web-devicons',
     },
     config = function()
-        local api = require('nvim-tree.api')
-        vim.keymap.set('n', '<C-h>', api.tree.toggle, { desc = 'toggle sidebar' })
         require('nvim-tree').setup({
             sort = {
                 sorter = 'extension',
@@ -42,6 +40,8 @@ return {
                     return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
                 end
 
+                local api = require('nvim-tree.api')
+                vim.keymap.set('n', '<C-h>', api.tree.toggle, { desc = 'toggle sidebar' })
                 vim.keymap.set('n', '<CR>', api.node.open.edit, opts('edit'))
                 vim.keymap.set('n', 'p', api.fs.paste, opts('paste'))
                 vim.keymap.set('n', 'x', api.fs.cut, opts('cut'))

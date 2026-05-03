@@ -18,6 +18,7 @@ vim.g.mapleader = ' '
 vim.o.signcolumn = 'yes:2'
 vim.o.background = 'dark'
 vim.o.cinoptions = 'l1'
+vim.o.winborder = 'rounded'
 
 -- effects on CursorHold, CursorHoldI (do not set to above 500)
 vim.o.ut = 200
@@ -50,7 +51,7 @@ end
 vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
     pattern = { '*' },
     callback = function()
-        vim.api.nvim_exec([[:%s/\s\+$//ge]], false)
+        vim.api.nvim_exec2([[:%s/\s\+$//ge]], {})
     end,
 })
 vim.api.nvim_create_autocmd({ 'VimEnter' }, {
@@ -105,10 +106,16 @@ vim.g.skip_loading_mswin        = 1
 -- vim.g.loaded_matchit            = 1
 -- vim.g.loaded_matchparen         = 1
 
-vim.fn.sign_define('DiagnosticSignError', { text = '', texthl = 'DiagnosticSignError' })
-vim.fn.sign_define('DiagnosticSignWarn',  { text = '', texthl = 'DiagnosticSignWarn' })
-vim.fn.sign_define('DiagnosticSignInfo',  { text = '', texthl = 'DiagnosticSignInfo' })
-vim.fn.sign_define('DiagnosticSignHint',  { text = '', texthl = 'DiagnosticSignHint' })
+vim.diagnostic.config({
+    signs = {
+        text = {
+            [vim.diagnostic.severity.ERROR] = '',
+            [vim.diagnostic.severity.WARN] = '',
+            [vim.diagnostic.severity.INFO] = '',
+            [vim.diagnostic.severity.HINT] = '',
+        },
+    },
+})
 
 -- https://github.com/jose-elias-alvarez/null-ls.nvim/issues/428
 local notify = vim.notify
@@ -119,14 +126,9 @@ vim.notify = function(msg, ...)
     notify(msg, ...)
 end
 
--- Handler for an error of rust-analyzer
--- https://github.com/neovim/neovim/issues/30985
-for _, method in ipairs({ 'textDocument/diagnostic', 'workspace/diagnostic' }) do
-    local default_diagnostic_handler = vim.lsp.handlers[method]
-    vim.lsp.handlers[method] = function(err, result, context, config)
-        if err ~= nil and err.code == -32802 then
-            return
-        end
-        return default_diagnostic_handler(err, result, context, config)
-    end
-end
+vim.fn.setcellwidths {
+    {0xE5FF, 0xE5FF, 2}, -- 
+    {0xF460, 0xF460, 2}, -- 
+    {0xF47C, 0xF47C, 2}, -- 
+    {0xE5FE, 0xE5FE, 2}, -- 
+}

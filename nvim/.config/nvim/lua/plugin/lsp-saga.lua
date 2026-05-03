@@ -11,7 +11,6 @@ return {
             symbol_in_winbar = { enable = false, },
             ui = {
                 title = false,
-                border = 'rounded',
                 code_action = '',
             },
             beacon = {
@@ -37,6 +36,5 @@ return {
 
         vim.keymap.set('n', '<C-.>', '<cmd>Lspsaga code_action<CR>')
         vim.keymap.set('n', '<leader>lsf', '<cmd>Lspsaga finder<CR>')
-        vim.keymap.set('n', 'gr', '<cmd>Lspsaga rename<CR>')
     end,
 }

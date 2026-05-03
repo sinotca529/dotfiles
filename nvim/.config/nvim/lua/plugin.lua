@@ -24,10 +24,9 @@ require('lazy').setup(
         require('plugin.mason-lspconfig'),
         require('plugin.null-ls'),
         require('plugin.mason-null-ls'),
-        require('plugin.nvim-cmp'),
+        require('plugin.blink-cmp'),
         require('plugin.fidget'),
         require('plugin.lsp-saga'),
-        require('plugin.lsp-signiture'),
         require('plugin.nvim-autopairs'),
         require('plugin.trouble'),
         require('plugin.nvim-ts-autotag'),
@@ -46,8 +45,6 @@ require('lazy').setup(
         require('plugin.hop'),
         require('plugin.ssr'),
         require('plugin.surround'),
-        -- require('plugin.comment'),
-        --
         require('plugin.skkeleton'),
 
         -- llm

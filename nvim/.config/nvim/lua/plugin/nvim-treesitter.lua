@@ -1,21 +1,17 @@
 return {
     'nvim-treesitter/nvim-treesitter',
-    -- event = { 'CursorHold', 'CursorHoldI' },
+    branch = 'main',
+    lazy = false,
+    build = ':TSUpdate',
     config = function()
-        require('nvim-treesitter.configs').setup({
-            ensure_installed = {
-                'c', 'cpp', 'llvm', 'rust',
-                'lua', 'python',
-                'markdown', 'markdown_inline',
-                'latex',
-            },
-            auto_install = true,
-            highlight = {
-                enable = true,
-                disable = { 'latex' },
-            }
+        require('nvim-treesitter').setup()
+        require('nvim-treesitter').install({
+            'c', 'cpp', 'llvm', 'rust',
+            'lua', 'python',
+            'markdown', 'markdown_inline',
+            'latex',
         })
         vim.wo.foldmethod = 'expr'
-        vim.wo.foldexpr = 'nvim_treesitter#foldexpr()'
+        vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
     end
 }

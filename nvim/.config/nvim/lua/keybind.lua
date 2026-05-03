@@ -48,7 +48,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
         -- vim.keymap.set('n', 'ge', vim.diagnostic.open_float, { silent = true })
         -- vim.keymap.set('n', '<C-.>', '<cmd>lua vim.lsp.buf.code_action()<CR>', { silent = true })
         -- vim.keymap.set('n', '<C-n>', vim.lsp.buf.code_action, { silent = true })
-        -- vim.keymap.set('n', 'gr', vim.lsp.buf.rename, { silent = true })
         --
         if vim.bo.filetype == "markdown" then
             vim.keymap.set('v', '<leader>lf', ':!prettier --parser markdown<CR>', { silent = true })
