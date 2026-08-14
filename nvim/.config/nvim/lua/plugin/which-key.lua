@@ -20,7 +20,7 @@ return {
         })
         wk.add({
             { "<leader>c", group = "comment" },
-            { "<leader>f", group = "telescope" },
+            { "<leader>f", group = "fzf-lua" },
             { "<leader>g", group = "git" },
         });
     end,

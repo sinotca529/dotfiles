@@ -25,7 +25,6 @@ require('lazy').setup(
         require('plugin.nvim-lint'),
         require('plugin.blink-cmp'),
         require('plugin.fidget'),
-        require('plugin.lsp-saga'),
         require('plugin.nvim-autopairs'),
         require('plugin.trouble'),
         require('plugin.nvim-ts-autotag'),
@@ -37,7 +36,7 @@ require('lazy').setup(
         -- tool
         require('plugin.nvim-tree'),
         require('plugin.toggle-term'),
-        require('plugin.telescope'),
+        require('plugin.fzf-lua'),
         require('plugin.which-key'),
         require('plugin.md-preview'),
         require('plugin.maketable'),

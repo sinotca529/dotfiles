@@ -12,6 +12,7 @@ abbr -a xo xdg-open
 abbr -a tmux tmux -u
 abbr -a lg lazygit
 abbr -a gc git commit
+abbr -a v vim
 # abbr -a ls ls --color=auto
 # abbr -a grep grep --color=auto
 # abbr -a fgrep fgrep --color=auto
@@ -23,6 +24,15 @@ set fish_greeting
 set -xa LS_COLORS 'di=0;36:ow=0;36'
 set -xg LC_ALL en_US.UTF-8
 set -xg LANG en_US.UTF-8
+
+# WSL2 + systemd で /run/user/$UID が用意されず XDG_RUNTIME_DIR が壊れることがあるための代替
+# (serverstart() に依存する fzf-lua 等が失敗する: https://github.com/ibhagwan/fzf-lua/issues/1243)
+if not test -w "/run/user/"(id -u)
+    if not test -d "$HOME/.xdg_runtime"
+        mkdir -m 0700 "$HOME/.xdg_runtime"
+    end
+    set -gx XDG_RUNTIME_DIR "$HOME/.xdg_runtime"
+end
 
 fish_add_path ~/tools
 fish_add_path ~/go/bin
