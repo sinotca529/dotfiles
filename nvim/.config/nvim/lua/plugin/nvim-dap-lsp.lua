@@ -1,5 +1,6 @@
 return {
     'jay-babu/mason-nvim-dap.nvim',
+    keys = '<leader>dt',
     dependencies = {
         'mfussenegger/nvim-dap',
         'williamboman/mason.nvim',

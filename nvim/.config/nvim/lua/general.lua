@@ -126,6 +126,38 @@ vim.notify = function(msg, ...)
     notify(msg, ...)
 end
 
+local orig_floating_preview = vim.lsp.util.open_floating_preview
+vim.lsp.util.open_floating_preview = function(contents, syntax, opts, ...)
+    local buf, win = orig_floating_preview(contents, syntax, opts, ...)
+    vim.wo[win].concealcursor = 'n'
+
+    local function is_fence(row)
+        local ok, node = pcall(vim.treesitter.get_node, { bufnr = buf, pos = { row - 1, 0 } })
+        if ok and node then
+            return node:type() == 'fenced_code_block_delimiter'
+        end
+        return vim.fn.synconcealed(row, 1)[1] == 1
+    end
+
+    local function move(step)
+        return function()
+            local last = vim.api.nvim_buf_line_count(buf)
+            local row = vim.api.nvim_win_get_cursor(win)[1]
+            for _ = 1, vim.v.count1 do
+                repeat
+                    row = math.max(1, math.min(last, row + step))
+                until row == 1 or row == last or not is_fence(row)
+            end
+            vim.api.nvim_win_set_cursor(win, { row, 0 })
+        end
+    end
+
+    vim.keymap.set('n', 'j', move(1),  { buffer = buf, silent = true })
+    vim.keymap.set('n', 'k', move(-1), { buffer = buf, silent = true })
+
+    return buf, win
+end
+
 vim.fn.setcellwidths {
     {0xE5FF, 0xE5FF, 2}, -- 
     {0xF460, 0xF460, 2}, -- 

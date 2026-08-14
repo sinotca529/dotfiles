@@ -22,8 +22,7 @@ require('lazy').setup(
         -- lsp, cmp
         require('plugin.mason'),
         require('plugin.mason-lspconfig'),
-        require('plugin.null-ls'),
-        require('plugin.mason-null-ls'),
+        require('plugin.nvim-lint'),
         require('plugin.blink-cmp'),
         require('plugin.fidget'),
         require('plugin.lsp-saga'),
