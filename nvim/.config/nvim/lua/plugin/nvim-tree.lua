@@ -1,5 +1,20 @@
+-- `nvim <dir>` relies on nvim-tree's own VimEnter hook to auto-open the tree,
+-- which requires setup() to have already run by VimEnter. Load eagerly only
+-- in that case; otherwise defer to whatever actually opens it.
+local function opening_dir()
+    return vim.fn.argc(-1) == 1 and vim.fn.isdirectory(vim.fn.argv(0, -1)) == 1
+end
+
 return {
     'nvim-tree/nvim-tree.lua',
+    cmd = { 'NvimTreeToggle', 'NvimTreeOpen', 'NvimTreeFocus', 'NvimTreeFindFile' },
+    -- bind to an explicit command rather than a bare key: setup() alone never
+    -- calls on_attach (that only fires once the tree is actually opened), so
+    -- a bare `keys = '<C-h>'` trigger would load the plugin but open nothing.
+    keys = {
+        { '<C-h>', '<cmd>NvimTreeToggle<CR>', desc = 'toggle sidebar' },
+    },
+    lazy = not opening_dir(),
     dependencies = {
         'nvim-tree/nvim-web-devicons',
     },

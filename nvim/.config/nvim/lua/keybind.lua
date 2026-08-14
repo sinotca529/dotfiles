@@ -31,29 +31,3 @@ vim.keymap.set('x', 'i<space>', 'iW', { silent = true })
 
 -- window
 vim.keymap.set('n', 's', '<C-W>', { silent = true })
-
--- lsp
-vim.api.nvim_create_augroup('lsp_keybind', {})
-vim.api.nvim_create_autocmd('LspAttach', {
-    group = 'lsp_keybind',
-    once = true,
-    callback = function()
-        -- vim.keymap.set('n', '<space>', vim.lsp.buf.hover, { silent = true })
-        vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { silent = true })
-        vim.keymap.set('n', 'K', vim.lsp.buf.hover, { silent = true })
-        vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, { silent = true })
-        vim.keymap.set('n', 'ge', '<cmd>lua vim.diagnostic.open_float(0, {scope="line"})<CR>', { silent = true })
-        vim.keymap.set('n', '<leader>lf', vim.lsp.buf.format, { silent = true })
-
-        -- vim.keymap.set('n', 'ge', vim.diagnostic.open_float, { silent = true })
-        -- vim.keymap.set('n', '<C-.>', '<cmd>lua vim.lsp.buf.code_action()<CR>', { silent = true })
-        -- vim.keymap.set('n', '<C-n>', vim.lsp.buf.code_action, { silent = true })
-        --
-        if vim.bo.filetype == "markdown" then
-            vim.keymap.set('v', '<leader>lf', ':!prettier --parser markdown<CR>', { silent = true })
-        else
-            vim.keymap.set('v', '<leader>lf', vim.lsp.buf.format, { silent = true })
-        end
-
-    end
-})

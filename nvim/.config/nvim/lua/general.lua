@@ -30,23 +30,24 @@ vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
 })
 
 vim.o.clipboard = 'unnamedplus'
-if vim.fn.executable('win32yank.exe') == 1 then
-    vim.g.clipboard = {
-        name = 'wslClipboard',
-        copy = {
-            ['+'] = 'win32yank.exe -i',
-            ['*'] = 'win32yank.exe -i',
-        },
-        paste = {
-            ['+'] = 'win32yank.exe -o --lf',
-            ['*'] = 'win32yank.exe -o --lf',
-        },
-    }
-end
-
-if vim.fn.executable('sway') == 1 then
-    vim.o.clipboard = 'unnamedplus'
-end
+-- executable() searches all of $PATH, including the Windows side under WSL2,
+-- which is slow over the 9P interop layer (tens of ms). Defer it off the
+-- synchronous startup path; it still resolves before any user input happens.
+vim.schedule(function()
+    if vim.fn.executable('win32yank.exe') == 1 then
+        vim.g.clipboard = {
+            name = 'wslClipboard',
+            copy = {
+                ['+'] = 'win32yank.exe -i',
+                ['*'] = 'win32yank.exe -i',
+            },
+            paste = {
+                ['+'] = 'win32yank.exe -o --lf',
+                ['*'] = 'win32yank.exe -o --lf',
+            },
+        }
+    end
+end)
 
 vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
     pattern = { '*' },
@@ -124,38 +125,6 @@ vim.notify = function(msg, ...)
         return
     end
     notify(msg, ...)
-end
-
-local orig_floating_preview = vim.lsp.util.open_floating_preview
-vim.lsp.util.open_floating_preview = function(contents, syntax, opts, ...)
-    local buf, win = orig_floating_preview(contents, syntax, opts, ...)
-    vim.wo[win].concealcursor = 'n'
-
-    local function is_fence(row)
-        local ok, node = pcall(vim.treesitter.get_node, { bufnr = buf, pos = { row - 1, 0 } })
-        if ok and node then
-            return node:type() == 'fenced_code_block_delimiter'
-        end
-        return vim.fn.synconcealed(row, 1)[1] == 1
-    end
-
-    local function move(step)
-        return function()
-            local last = vim.api.nvim_buf_line_count(buf)
-            local row = vim.api.nvim_win_get_cursor(win)[1]
-            for _ = 1, vim.v.count1 do
-                repeat
-                    row = math.max(1, math.min(last, row + step))
-                until row == 1 or row == last or not is_fence(row)
-            end
-            vim.api.nvim_win_set_cursor(win, { row, 0 })
-        end
-    end
-
-    vim.keymap.set('n', 'j', move(1),  { buffer = buf, silent = true })
-    vim.keymap.set('n', 'k', move(-1), { buffer = buf, silent = true })
-
-    return buf, win
 end
 
 vim.fn.setcellwidths {
