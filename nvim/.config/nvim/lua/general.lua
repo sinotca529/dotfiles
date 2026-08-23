@@ -19,6 +19,8 @@ vim.o.signcolumn = 'yes:2'
 vim.o.background = 'dark'
 vim.o.cinoptions = 'l1'
 vim.o.winborder = 'rounded'
+vim.o.number = true
+vim.o.relativenumber = true
 
 -- effects on CursorHold, CursorHoldI (do not set to above 500)
 vim.o.ut = 200
@@ -67,6 +69,17 @@ vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufRead' }, {
     pattern = '*.tex',
     callback = function() vim.cmd.setfiletype('tex') end,
 })
+
+-- Re-detect filetype if a displayed buffer somehow has none
+-- (e.g. fzf-lua previewer suppresses FileType: https://github.com/ibhagwan/fzf-lua/issues/587)
+vim.api.nvim_create_autocmd('BufWinEnter', {
+    callback = function(args)
+        if vim.bo[args.buf].filetype == '' and vim.bo[args.buf].buftype == '' then
+            vim.cmd.filetype('detect')
+        end
+    end,
+})
+
 vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufRead' }, {
     pattern = '*.h.inc',
     callback = function() vim.cmd.setfiletype('cpp') end,

@@ -15,7 +15,6 @@ require('lazy').setup(
         require('plugin.indentmini'),
         require('plugin.guess-indent'),
         require('plugin.nvim-treesitter'),
-        require('plugin.lualine'),
         -- require('plugin.colorizer'),
         require('plugin.todo-comments'),
 
@@ -40,7 +39,7 @@ require('lazy').setup(
         require('plugin.which-key'),
         require('plugin.md-preview'),
         require('plugin.maketable'),
-        require('plugin.flash'),
+        -- require('plugin.flash'),
         require('plugin.ssr'),
         require('plugin.surround'),
         require('plugin.skkeleton'),
