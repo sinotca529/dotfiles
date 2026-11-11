@@ -23,7 +23,6 @@ require('lazy').setup(
         require('plugin.mason-lspconfig'),
         require('plugin.nvim-lint'),
         require('plugin.blink-cmp'),
-        require('plugin.fidget'),
         require('plugin.nvim-autopairs'),
         require('plugin.trouble'),
         require('plugin.nvim-ts-autotag'),

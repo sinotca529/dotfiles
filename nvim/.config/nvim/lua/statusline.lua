@@ -135,6 +135,15 @@ local function shift_width()
     return 'TAB'
 end
 
+-- names of LSP clients attached to the current buffer; empty = no LSP running
+local function lsp()
+    local names = {}
+    for _, client in ipairs(vim.lsp.get_clients({ bufnr = 0 })) do
+        names[#names + 1] = client.name
+    end
+    return table.concat(names, ',')
+end
+
 local function branch()
     local head = vim.b.gitsigns_head
     if not head or head == '' then
@@ -161,7 +170,7 @@ end
 local M = {}
 function M.render()
     local left = join({ filename(), location(), diagnostics() }, '  ')
-    local right = join({ word_count(), encoding(), file_format(), shift_width(), branch() }, '  ')
+    local right = join({ lsp(), word_count(),encoding(), file_format(), shift_width(), branch() }, '  ')
     return table.concat({ mode(), '  ', left, '%=', right, '  ' })
 end
 
@@ -175,5 +184,10 @@ local function redraw() vim.cmd.redrawstatus() end
 
 vim.api.nvim_create_autocmd('DiagnosticChanged', { group = group, callback = redraw })
 vim.api.nvim_create_autocmd('User', { group = group, pattern = 'GitSignsUpdate', callback = redraw })
+-- scheduled so a detaching client is already gone from get_clients() when redrawn
+vim.api.nvim_create_autocmd({ 'LspAttach', 'LspDetach' }, {
+    group = group,
+    callback = function() vim.schedule(redraw) end,
+})
 
 return M
