@@ -1,3 +1,13 @@
+-- markdown has no LSP server attached (no LspAttach fires), so its
+-- `<leader>lf` override must be set independently of the LspAttach group below.
+vim.api.nvim_create_autocmd('FileType', {
+    pattern = 'markdown',
+    callback = function(args)
+        vim.keymap.set('n', '<leader>lf', ':%!prettier --parser markdown<CR>', { buffer = args.buf, silent = true })
+        vim.keymap.set('v', '<leader>lf', ':!prettier --parser markdown<CR>', { buffer = args.buf, silent = true })
+    end,
+})
+
 vim.api.nvim_create_augroup('lsp_attach', {})
 vim.api.nvim_create_autocmd('LspAttach', {
     group = 'lsp_attach',
@@ -9,16 +19,11 @@ vim.api.nvim_create_autocmd('LspAttach', {
         vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, { silent = true })
         vim.keymap.set('n', 'ge', '<cmd>lua vim.diagnostic.open_float(0, {scope="line"})<CR>', { silent = true })
         vim.keymap.set('n', '<leader>lf', vim.lsp.buf.format, { silent = true })
+        vim.keymap.set('v', '<leader>lf', vim.lsp.buf.format, { silent = true })
 
         -- vim.keymap.set('n', 'ge', vim.diagnostic.open_float, { silent = true })
         -- vim.keymap.set('n', '<C-.>', '<cmd>lua vim.lsp.buf.code_action()<CR>', { silent = true })
         -- vim.keymap.set('n', '<C-n>', vim.lsp.buf.code_action, { silent = true })
-        --
-        if vim.bo.filetype == "markdown" then
-            vim.keymap.set('v', '<leader>lf', ':!prettier --parser markdown<CR>', { silent = true })
-        else
-            vim.keymap.set('v', '<leader>lf', vim.lsp.buf.format, { silent = true })
-        end
 
         -- LSP hover/signature popups render as markdown; without this the ``` fence
         -- lines stay visible and j/k can land the cursor on them. Force conceal on
