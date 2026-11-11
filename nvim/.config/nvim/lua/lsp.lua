@@ -14,7 +14,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
     once = true,
     callback = function()
         -- vim.keymap.set('n', '<space>', vim.lsp.buf.hover, { silent = true })
-        vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { silent = true })
+        vim.keymap.set('n', 'grd', vim.lsp.buf.definition, { silent = true, desc = 'vim.lsp.buf.definition()' })
         vim.keymap.set('n', 'ge', '<cmd>lua vim.diagnostic.open_float(0, {scope="line"})<CR>', { silent = true })
         vim.keymap.set('n', '<leader>lf', vim.lsp.buf.format, { silent = true })
         vim.keymap.set('v', '<leader>lf', vim.lsp.buf.format, { silent = true })
