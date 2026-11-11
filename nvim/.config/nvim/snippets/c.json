@@ -1,0 +1,10 @@
+{
+  "main": {
+    "prefix": "main",
+    "body": [
+      "int main(void) {",
+      "    return 0;",
+      "}"
+    ]
+  }
+}

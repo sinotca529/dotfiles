@@ -7,8 +7,9 @@ return {
     opts = {
         keymap = {
             preset = 'none',
-            ['<C-p>'] = { 'select_prev', 'fallback' },
-            ['<C-n>'] = { 'select_next', 'fallback' },
+            -- メニューが出ていなければ blink のメニューを出す（auto_show を切っている filetype 用）
+            ['<C-p>'] = { 'select_prev', 'show', 'fallback' },
+            ['<C-n>'] = { 'select_next', 'show', 'fallback' },
             ['<CR>']  = { 'accept', 'fallback' },
             ['<C-q>'] = { 'cancel', 'fallback' },
         },
