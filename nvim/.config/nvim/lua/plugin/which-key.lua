@@ -1,10 +1,7 @@
 return {
     'folke/which-key.nvim',
     event = { 'CursorHold', 'CursorHoldI' },
-    dependencies = {
-        'nvim-tree/nvim-web-devicons' ,
-        { 'echasnovski/mini.nvim', version = false },
-    },
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
     config = function()
         vim.o.timeout = true
         vim.o.timeoutlen = 300
