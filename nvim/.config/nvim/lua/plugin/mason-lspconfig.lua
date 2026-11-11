@@ -16,5 +16,12 @@ return {
           },
         })
         require("mason-lspconfig").setup()
+
+        -- Servers that ship with a language toolchain are used from the system
+        -- (rustup / pacman), not mason, so they always match the compiler.
+        -- mason-lspconfig only auto-enables mason-installed servers, so enable
+        -- these explicitly. Do not install them via mason as well: mason puts
+        -- its bin/ first in PATH, so its copy would win.
+        vim.lsp.enable({ "rust_analyzer", "clangd" })
     end,
 }
