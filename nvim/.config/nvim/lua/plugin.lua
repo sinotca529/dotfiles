@@ -24,7 +24,6 @@ require('lazy').setup(
         require('plugin.nvim-lint'),
         require('plugin.blink-cmp'),
         require('plugin.nvim-autopairs'),
-        require('plugin.trouble'),
         require('plugin.nvim-ts-autotag'),
 
         -- git
