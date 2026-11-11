@@ -31,11 +31,12 @@ vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
     callback = function() vim.o.ut = 4000 end
 })
 
-vim.o.clipboard = 'unnamedplus'
 -- executable() searches all of $PATH, including the Windows side under WSL2,
 -- which is slow over the 9P interop layer (tens of ms). Defer it off the
 -- synchronous startup path; it still resolves before any user input happens.
 vim.schedule(function()
+    -- set after startup: 'clipboard' loads the clipboard provider (~3ms)
+    vim.o.clipboard = 'unnamedplus'
     if vim.fn.executable('win32yank.exe') == 1 then
         vim.g.clipboard = {
             name = 'wslClipboard',

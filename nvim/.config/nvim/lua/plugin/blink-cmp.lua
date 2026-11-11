@@ -1,6 +1,7 @@
 return {
     'saghen/blink.cmp',
     version = '*',
+    event = 'VeryLazy',
     dependencies = {
         'moyiz/blink-emoji.nvim',
     },

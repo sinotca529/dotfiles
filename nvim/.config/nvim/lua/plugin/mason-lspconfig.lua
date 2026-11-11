@@ -1,9 +1,10 @@
 return {
     "mason-org/mason-lspconfig.nvim",
-    event = { "BufReadPost", "BufAdd", "BufNewFile" },
+    event = "VeryLazy",
     dependencies = {
         "neovim/nvim-lspconfig",
         "mason-org/mason.nvim",
+        "saghen/blink.cmp", -- load first: it sets LSP capabilities via vim.lsp.config('*')
     },
     config = function()
         -- capabilities は blink.cmp が vim.lsp.config('*') で自動設定する
