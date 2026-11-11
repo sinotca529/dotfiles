@@ -127,15 +127,6 @@ vim.diagnostic.config({
     },
 })
 
--- https://github.com/jose-elias-alvarez/null-ls.nvim/issues/428
-local notify = vim.notify
-vim.notify = function(msg, ...)
-    if msg:match("warning: multiple different client offset_encodings") then
-        return
-    end
-    notify(msg, ...)
-end
-
 -- Fix icon width for Nerd Fonts v3.2.1 (verified against todo-comments.nvim).
 -- Source: https://github.com/folke/todo-comments.nvim/issues/282#issuecomment-2246289126
 vim.fn.setcellwidths {
