@@ -1,6 +1,6 @@
 return {
     'kylechui/nvim-surround',
-    event = 'InsertEnter',
+    event = 'VeryLazy', -- ys/cs/ds are normal-mode maps
     config = function()
         require('nvim-surround').setup({})
     end

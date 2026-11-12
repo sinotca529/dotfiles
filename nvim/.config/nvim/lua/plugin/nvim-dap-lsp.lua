@@ -1,10 +1,9 @@
 return {
     'jay-babu/mason-nvim-dap.nvim',
-    keys = '<leader>dt',
+    lazy = true, -- loaded as a dependency of nvim-dap-ui (plugin/dap.lua)
     dependencies = {
         'mfussenegger/nvim-dap',
-        'williamboman/mason.nvim',
-        'mfussenegger/nvim-dap'
+        'mason-org/mason.nvim',
     },
     config = function()
         require('mason-nvim-dap').setup({

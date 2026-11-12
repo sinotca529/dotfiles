@@ -1,7 +1,24 @@
 return {
     'rcarriga/nvim-dap-ui',
-    keys = '<leader>dt',
-    dependencies = { 'mfussenegger/nvim-dap' },
+    -- any of these keys loads nvim-dap, nvim-dap-ui and mason-nvim-dap (adapters)
+    keys = {
+        { '<F5>',  function() require('dap').continue() end,  desc = 'dap: continue' },
+        { '<F10>', function() require('dap').step_over() end, desc = 'dap: step over' },
+        { '<F11>', function() require('dap').step_into() end, desc = 'dap: step into' },
+        { '<F12>', function() require('dap').step_out() end,  desc = 'dap: step out' },
+        { '<leader>db', function() require('dap').toggle_breakpoint() end, desc = 'dap: toggle breakpoint' },
+        { '<leader>dB', function() require('dap').set_breakpoint(vim.fn.input('Breakpoint cond: ')) end,
+            desc = 'dap: conditional breakpoint' },
+        { '<leader>dlp', function() require('dap').set_breakpoint(nil, nil, vim.fn.input('Log point message: ')) end,
+            desc = 'dap: log point' },
+        { '<leader>dr', function() require('dap').repl.open() end, desc = 'dap: open repl' },
+        { '<leader>dl', function() require('dap').run_last() end,  desc = 'dap: run last' },
+        { '<leader>dt', function() require('dapui').toggle() end,  desc = 'dap: toggle ui' },
+    },
+    dependencies = {
+        'mfussenegger/nvim-dap',
+        'jay-babu/mason-nvim-dap.nvim',
+    },
     config = function()
         require('dapui').setup({
             icons = { expanded = '', collapsed = '', current_frame = '' },
@@ -83,17 +100,5 @@ return {
                 max_value_lines = 100, -- Can be integer or nil.
             }
         })
-        vim.keymap.set('n', '<F5>', ':DapContinue<CR>', { silent = true })
-        vim.keymap.set('n', '<F10>', ':DapStepOver<CR>', { silent = true })
-        vim.keymap.set('n', '<F11>', ':DapStepInto<CR>', { silent = true })
-        vim.keymap.set('n', '<F12>', ':DapStepOut<CR>', { silent = true })
-        vim.keymap.set('n', '<leader>db', ':DapToggleBreakpoint<CR>', { silent = true })
-        vim.keymap.set('n', '<leader>dB',
-            ':lua require("dap").set_breakpoint(nil, nil, vim.fn.input("Breakpoint cond: "))<CR>', { silent = true })
-        vim.keymap.set('n', '<leader>dlp',
-            ':lua require("dap").set_breakpoint(nil, nil, vim.fn.input("Log point message: "))<CR>', { silent = true })
-        vim.keymap.set('n', '<leader>dr', ':lua require("dap").repl.open()<CR>', { silent = true })
-        vim.keymap.set('n', '<leader>dl', ':lua require("dap").run_last()<CR>', { silent = true })
-        vim.keymap.set('n', '<leader>dt', ':lua require("dapui").toggle()<CR>', {})
     end
 }
