@@ -1,12 +1,4 @@
--- markdown has no LSP server attached (no LspAttach fires), so its
--- `<leader>lf` override must be set independently of the LspAttach group below.
-vim.api.nvim_create_autocmd('FileType', {
-    pattern = 'markdown',
-    callback = function(args)
-        vim.keymap.set('n', '<leader>lf', ':%!prettier --parser markdown<CR>', { buffer = args.buf, silent = true })
-        vim.keymap.set('v', '<leader>lf', ':!prettier --parser markdown<CR>', { buffer = args.buf, silent = true })
-    end,
-})
+-- <leader>lf (format) lives in plugin/conform.lua
 
 vim.api.nvim_create_augroup('lsp_attach', {})
 vim.api.nvim_create_autocmd('LspAttach', {
@@ -16,8 +8,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
         -- vim.keymap.set('n', '<space>', vim.lsp.buf.hover, { silent = true })
         vim.keymap.set('n', 'grd', vim.lsp.buf.definition, { silent = true, desc = 'vim.lsp.buf.definition()' })
         vim.keymap.set('n', 'ge', '<cmd>lua vim.diagnostic.open_float(0, {scope="line"})<CR>', { silent = true })
-        vim.keymap.set('n', '<leader>lf', vim.lsp.buf.format, { silent = true })
-        vim.keymap.set('v', '<leader>lf', vim.lsp.buf.format, { silent = true })
 
         -- vim.keymap.set('n', 'ge', vim.diagnostic.open_float, { silent = true })
         -- vim.keymap.set('n', '<C-.>', '<cmd>lua vim.lsp.buf.code_action()<CR>', { silent = true })

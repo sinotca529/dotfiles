@@ -15,6 +15,7 @@ require('lazy').setup(
         require('plugin.indentmini'),
         require('plugin.guess-indent'),
         require('plugin.nvim-treesitter'),
+        require('plugin.treesitter-context'),
         require('plugin.todo-comments'),
 
         -- lsp, cmp
@@ -22,6 +23,7 @@ require('lazy').setup(
         require('plugin.mason-lspconfig'),
         require('plugin.nvim-lint'),
         require('plugin.blink-cmp'),
+        require('plugin.conform'),
         require('plugin.nvim-autopairs'),
         require('plugin.nvim-ts-autotag'),
 

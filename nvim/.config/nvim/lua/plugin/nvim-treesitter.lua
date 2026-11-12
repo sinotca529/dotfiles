@@ -73,8 +73,8 @@ end
 -- an attribute (e.g. `{=html}` after a space becomes `\{=html\}`) with no
 -- flag to disable it either. Tried it, it corrupts real documents; removed.
 --
--- Tables only, reusing the same trick as the markdown `<leader>lf` override
--- in lsp.lua (shell out to `prettier --parser markdown`): djot's pipe-table
+-- Tables only, using the same formatter as markdown's `<leader>lf`
+-- (`prettier --parser markdown`, see conform.lua): djot's pipe-table
 -- syntax is the same as GFM's, and prettier's markdown table formatter
 -- aligns columns well. Slice out each contiguous run of `|...|` lines,
 -- format only that fragment, and splice it back -- everything outside a
@@ -145,7 +145,7 @@ return {
             callback = function(args)
                 pcall(vim.treesitter.start)
                 if args.match == 'djot' then
-                    -- same mnemonic as the LSP-driven <leader>lf in lsp.lua, for a filetype LSP never attaches to
+                    -- buffer-local, so it overrides the global conform <leader>lf for djot
                     vim.keymap.set('n', '<leader>lf', format_djot_tables, { buffer = args.buf, silent = true })
                 end
             end,
