@@ -37,7 +37,7 @@ require('lazy').setup(
         require('plugin.which-key'),
         require('plugin.md-preview'),
         require('plugin.maketable'),
-        -- require('plugin.flash'),
+        require('plugin.hop'),
         require('plugin.ssr'),
         require('plugin.surround'),
         require('plugin.skkeleton'),
