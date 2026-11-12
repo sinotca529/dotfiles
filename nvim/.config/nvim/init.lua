@@ -1,5 +1,6 @@
 vim.loader.enable()
 require('general')
+require('bigfile')
 require('plugin')
 require('statusline')
 require('keybind')

@@ -107,6 +107,10 @@ local function diagnostics()
 end
 
 local function word_count()
+    -- wordcount() scans the whole buffer on every redraw
+    if vim.bo.filetype == 'bigfile' then
+        return ''
+    end
     local wc = vim.fn.wordcount()
     if vim.fn.mode():find('[vV\22]') then
         return string.format('%d/%d chars', wc.visual_chars or 0, wc.chars)
