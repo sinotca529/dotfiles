@@ -106,16 +106,29 @@ local function diagnostics()
     return table.concat(parts, ' ')
 end
 
+-- wordcount() scans the whole buffer, so cache it per buffer and only
+-- recount when the buffer changed (b:changedtick) and we are not in insert
+-- mode; while typing the count is refreshed on leaving insert mode.
+local wc_cache = {} ---@type table<integer, { tick: integer, chars: integer }>
+
 local function word_count()
-    -- wordcount() scans the whole buffer on every redraw
     if vim.bo.filetype == 'bigfile' then
         return ''
     end
-    local wc = vim.fn.wordcount()
-    if vim.fn.mode():find('[vV\22]') then
+    local buf = vim.api.nvim_get_current_buf()
+    local mode = vim.fn.mode()
+    if mode:find('[vV\22]') then
+        -- the selection changes on every cursor move: no caching possible
+        local wc = vim.fn.wordcount()
+        wc_cache[buf] = { tick = vim.b.changedtick, chars = wc.chars }
         return string.format('%d/%d chars', wc.visual_chars or 0, wc.chars)
     end
-    return string.format('%d chars', wc.chars)
+    local cache = wc_cache[buf]
+    if not cache or (cache.tick ~= vim.b.changedtick and mode ~= 'i') then
+        cache = { tick = vim.b.changedtick, chars = vim.fn.wordcount().chars }
+        wc_cache[buf] = cache
+    end
+    return string.format('%d chars', cache.chars)
 end
 
 local function encoding()
@@ -187,6 +200,7 @@ vim.api.nvim_create_autocmd('ColorScheme', { group = group, callback = set_highl
 local function redraw() vim.cmd.redrawstatus() end
 
 vim.api.nvim_create_autocmd('DiagnosticChanged', { group = group, callback = redraw })
+vim.api.nvim_create_autocmd('BufWipeout', { group = group, callback = function(ev) wc_cache[ev.buf] = nil end })
 vim.api.nvim_create_autocmd('User', { group = group, pattern = 'GitSignsUpdate', callback = redraw })
 -- scheduled so a detaching client is already gone from get_clients() when redrawn
 vim.api.nvim_create_autocmd({ 'LspAttach', 'LspDetach' }, {
