@@ -15,7 +15,6 @@ require('lazy').setup(
         require('plugin.indentmini'),
         require('plugin.guess-indent'),
         require('plugin.nvim-treesitter'),
-        -- require('plugin.colorizer'),
         require('plugin.todo-comments'),
 
         -- lsp, cmp
