@@ -1,4 +1,0 @@
-# This file contains fish universal variable definitions.
-# VERSION: 3.0
-SETUVAR __fish_initialized:4300
-SETUVAR fish_user_paths:/mnt/c/Program\x20Files/VOICEPEAK\x1e/home/takumi/tools/bin\x1e/home/takumi/go/bin\x1e/home/takumi/tools\x1e/home/takumi/\x2ecargo/bin\x1e/home/takumi/\x2elocal/bin

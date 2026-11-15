@@ -18,9 +18,12 @@
   programs.home-manager.enable = true;
 
   imports = [
+    ./bash.nix
+    ./fish
     ./gh.nix
     ./git.nix
     ./lazygit.nix
+    ./shell.nix
     ./starship
     ./tmux
     ./yazi.nix
