@@ -19,6 +19,7 @@
 
   imports = [
     ./bash.nix
+    ./conf
     ./fish
     ./gh.nix
     ./git.nix

@@ -105,8 +105,6 @@ eval "$(starship init zsh)"
 
 PATH=~/.local/bin:$PATH
 
-alias conf="~/dotfiles/zsh/.zsh/conf.sh"
-
 # if [ -z "$TMUX$ZELLIJ$VIM" ]; then
 #     if [[ -n "$(tmux list-sessions 2>/dev/null | grep -v attached)" ]]; then
 #         tmux a

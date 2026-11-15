@@ -17,9 +17,4 @@
     "$HOME/.cargo/bin"
     "/mnt/c/Program Files/VOICEPEAK"
   ];
-
-  # どのシェルでも共通のエイリアス
-  home.shellAliases = {
-    conf = "~/dotfiles/zsh/.zsh/conf.sh";
-  };
 }
