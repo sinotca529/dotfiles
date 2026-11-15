@@ -11,8 +11,23 @@
   # NixOS 以外の Linux で使うための調整。
   targets.genericLinux.enable = true;
 
+  # GPU 有効化
+  targets.genericLinux.gpu.enable = true;
+
   home.packages = with pkgs; [
     bat
+    binsider
+    bottom
+    cloc
+    eza
+    fd
+    fzf
+    mdbook
+    ripgrep
+    ripgrep-all
+    tokei
+    tree-sitter
+    typst
   ];
 
   # home-manager コマンド自体も Home Manager で管理する。
