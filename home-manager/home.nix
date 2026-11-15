@@ -17,6 +17,12 @@
   # home-manager コマンド自体も Home Manager で管理する。
   programs.home-manager.enable = true;
 
+  # 週に 1 回、30 日より古い世代を消して /nix/store のゴミを回収する。
+  nix.gc = {
+    automatic = true;
+    options = "--delete-older-than 30d";
+  };
+
   imports = [
     ./bash.nix
     ./conf
