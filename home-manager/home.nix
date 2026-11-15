@@ -18,7 +18,9 @@
   programs.home-manager.enable = true;
 
   imports = [
+    ./gh.nix
     ./lazygit.nix
+    ./yazi.nix
   ];
 
   home.packages = with pkgs; [
