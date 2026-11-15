@@ -4,8 +4,9 @@
   programs.fish = {
     enable = true;
 
-    # 対話シェルのときだけ tmux を実行。
+    # 対話シェルのときだけ実行。
     interactiveShellInit = ''
+      fish_config theme choose tomorrow-night-bright
       activate_tmux
     '';
 
@@ -33,7 +34,4 @@
       '';
     };
   };
-
-  # fish 4.3 の移行で作られた配色の設定
-  xdg.configFile."fish/conf.d/fish_frozen_theme.fish".source = ./fish_frozen_theme.fish;
 }
