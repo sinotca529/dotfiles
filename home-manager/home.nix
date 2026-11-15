@@ -14,6 +14,13 @@
   # GPU 有効化
   targets.genericLinux.gpu.enable = true;
 
+  # home-manager コマンド自体も Home Manager で管理する。
+  programs.home-manager.enable = true;
+
+  imports = [
+    ./lazygit.nix
+  ];
+
   home.packages = with pkgs; [
     bat
     binsider
@@ -29,7 +36,4 @@
     tree-sitter
     typst
   ];
-
-  # home-manager コマンド自体も Home Manager で管理する。
-  programs.home-manager.enable = true;
 }
