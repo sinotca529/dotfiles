@@ -20,6 +20,8 @@
   imports = [
     ./gh.nix
     ./lazygit.nix
+    ./starship
+    ./tmux
     ./yazi.nix
   ];
 
