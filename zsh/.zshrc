@@ -11,6 +11,8 @@ autoload -U compinit && compinit     # 補完
 autoload -Uz bracketed-paste-magic   # bracketed paste
 zle -N bracketed-paste bracketed-paste-magic
 
+export LANG=ja_JP.utf8
+
 # General
 HISTFILE=~/.zsh_history     # コマンド履歴の保存先
 HISTSIZE=100000             # メモリ上に記憶する履歴数

@@ -76,6 +76,11 @@ colorscheme elflord
 "----------------------------------------------------------------------
 autocmd BufWritePre * let s:save = winsaveview() | %s/\s\+$//e | call winrestview(s:save)
 
+augroup SjisFiletypes
+  autocmd!
+  autocmd BufNewFile,BufReadPre,FileReadPre *.bas,*.cls set fileencoding=cp932
+augroup END
+
 "----------------------------------------------------------------------
 " 5. キーマップ(基本操作)
 "----------------------------------------------------------------------
@@ -109,67 +114,41 @@ vnoremap <C-k> :m '<-2<CR>gv-gv
 nnoremap s <C-W>
 
 "----------------------------------------------------------------------
-" 6. プラグイン管理(NeoBundle)
-"   mkdir ~/.vim/bundle
-"   git clone https://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim
+" 6. プラグイン管理(vim-plug)
+"   curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+"     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 "----------------------------------------------------------------------
 
-" Note: Skip initialization for vim-tiny or vim-small.
-if 0 | endif
+call plug#begin()
 
-if &compatible
-  set nocompatible               " Be iMproved
-endif
+Plug 'tpope/vim-surround'
+Plug 'Lokaltog/vim-easymotion'
+Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
+Plug 'Yggdroot/indentLine'
+Plug 'tpope/vim-sleuth'
+Plug 'itchyny/lightline.vim'
+Plug 'airblade/vim-gitgutter'
+Plug 'rhysd/conflict-marker.vim'
+Plug 'tpope/vim-fugitive'
+Plug 'lambdalisue/fern.vim'
+Plug 'lambdalisue/fern-git-status.vim'
+Plug 'lambdalisue/nerdfont.vim'
+Plug 'lambdalisue/fern-renderer-nerdfont.vim'
+Plug 'lambdalisue/fern-hijack.vim'
+Plug 'iamcco/markdown-preview.nvim'
+Plug 'mattn/vim-maketable'
+Plug 'jiangmiao/auto-pairs'
+Plug 'alvan/vim-closetag'
+Plug 'liuchengxu/vim-which-key'
+Plug 'prabirshrestha/vim-lsp'
+Plug 'mattn/vim-lsp-settings'
+Plug 'prabirshrestha/asyncomplete.vim'
+Plug 'prabirshrestha/asyncomplete-lsp.vim'
+Plug 'voldikss/vim-floaterm'
+Plug 'sinotca529/aichat.vim'
 
-" Required:
-set runtimepath+=~/.vim/bundle/neobundle.vim/
-
-" Required:
-call neobundle#begin(expand('~/.vim/bundle/'))
-
-" Let NeoBundle manage NeoBundle
-" Required:
-NeoBundleFetch 'Shougo/neobundle.vim'
-
-" My Bundles here:
-" Refer to |:NeoBundle-examples|.
-" Note: You don't set neobundle setting in .gvimrc!
-
-NeoBundle 'tpope/vim-surround'
-NeoBundle 'Lokaltog/vim-easymotion'
-NeoBundle 'junegunn/fzf'
-NeoBundle 'junegunn/fzf.vim'
-NeoBundle 'Yggdroot/indentLine'
-NeoBundle 'tpope/vim-sleuth'
-NeoBundle 'itchyny/lightline.vim'
-NeoBundle 'airblade/vim-gitgutter'
-NeoBundle 'rhysd/conflict-marker.vim'
-NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'lambdalisue/fern.vim'
-NeoBundle 'lambdalisue/fern-git-status.vim'
-NeoBundle 'lambdalisue/nerdfont.vim'
-NeoBundle 'lambdalisue/fern-renderer-nerdfont.vim'
-NeoBundle 'lambdalisue/fern-hijack.vim'
-NeoBundle 'iamcco/markdown-preview.nvim'
-NeoBundle 'mattn/vim-maketable'
-NeoBundle 'jiangmiao/auto-pairs'
-NeoBundle 'alvan/vim-closetag'
-NeoBundle 'liuchengxu/vim-which-key'
-NeoBundle 'prabirshrestha/vim-lsp'
-NeoBundle 'mattn/vim-lsp-settings'
-NeoBundle 'prabirshrestha/asyncomplete.vim'
-NeoBundle 'prabirshrestha/asyncomplete-lsp.vim'
-NeoBundle 'voldikss/vim-floaterm'
-NeoBundle 'sinotca529/aichat.vim'
-
-call neobundle#end()
-
-" Required:
-filetype plugin indent on
-
-" If there are uninstalled bundles found on startup,
-" this will conveniently prompt you to install them.
-NeoBundleCheck
+call plug#end()
 
 "----------------------------------------------------------------------
 " 7. プラグイン別設定

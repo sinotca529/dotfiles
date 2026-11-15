@@ -28,7 +28,7 @@ set --global fish_color_option
 set --global fish_color_param 7aa6da
 set --global fish_color_quote b9ca4a
 set --global fish_color_redirection 70c0b1
-set --global fish_color_search_match bryellow --background=brblack
+set --global fish_color_search_match white --background=brblack
 set --global fish_color_selection white --bold --background=brblack
 set --global fish_color_status red
 set --global fish_color_user brgreen
