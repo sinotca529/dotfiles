@@ -1,7 +1,6 @@
 -- Formatting entry point: <leader>lf in normal (whole buffer) and visual
 -- (selection) mode. Filetypes without a formatter listed here fall back to
 -- the attached LSP server's formatting.
--- djot keeps its own buffer-local <leader>lf (plugin/nvim-treesitter.lua).
 return {
     'stevearc/conform.nvim',
     cmd = 'ConformInfo',
