@@ -153,12 +153,27 @@ local function shift_width()
 end
 
 -- names of LSP clients attached to the current buffer; empty = no LSP running
+-- Running LSP work-done progress, per client: { [token] = percentage|false }.
+-- Filled by the LspProgress autocmd below; empty table = server is idle.
+local lsp_progress = {} ---@type table<integer, table<any, integer|false>>
+
+-- "name" when idle, "name 47%" (or "name …" without a percentage) while the
+-- server reports work in progress (indexing, loading the workspace, ...).
 local function lsp()
-    local names = {}
+    local parts = {}
     for _, client in ipairs(vim.lsp.get_clients({ bufnr = 0 })) do
-        names[#names + 1] = client.name
+        local label = client.name
+        local tasks = lsp_progress[client.id]
+        if tasks and next(tasks) then
+            local sum, n = 0, 0
+            for _, pct in pairs(tasks) do
+                if pct then sum, n = sum + pct, n + 1 end
+            end
+            label = label .. (n > 0 and (' %d%%%%'):format(math.floor(sum / n)) or ' …')
+        end
+        parts[#parts + 1] = label
     end
-    return table.concat(names, ',')
+    return table.concat(parts, ',')
 end
 
 local function branch()
@@ -205,7 +220,30 @@ vim.api.nvim_create_autocmd('User', { group = group, pattern = 'GitSignsUpdate',
 -- scheduled so a detaching client is already gone from get_clients() when redrawn
 vim.api.nvim_create_autocmd({ 'LspAttach', 'LspDetach' }, {
     group = group,
-    callback = function() vim.schedule(redraw) end,
+    callback = function(ev)
+        if ev.event == 'LspDetach' then
+            lsp_progress[ev.data.client_id] = nil
+        end
+        vim.schedule(redraw)
+    end,
+})
+vim.api.nvim_create_autocmd('LspProgress', {
+    group = group,
+    callback = function(ev)
+        local params = ev.data.params
+        local value = params.value
+        if type(value) ~= 'table' then
+            return
+        end
+        local tasks = lsp_progress[ev.data.client_id] or {}
+        lsp_progress[ev.data.client_id] = tasks
+        if value.kind == 'end' then
+            tasks[params.token] = nil
+        else -- 'begin' / 'report'
+            tasks[params.token] = value.percentage or tasks[params.token] or false
+        end
+        redraw()
+    end,
 })
 
 return M
