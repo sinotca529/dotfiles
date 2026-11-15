@@ -34,6 +34,11 @@ if not test -w "/run/user/"(id -u)
     set -gx XDG_RUNTIME_DIR "$HOME/.xdg_runtime"
 end
 
+# Nix の PATH などを設定する
+if test -e /etc/profile.d/nix-daemon.fish
+    source /etc/profile.d/nix-daemon.fish
+end
+
 fish_add_path ~/tools
 fish_add_path ~/go/bin
 fish_add_path /usr/local/go/bin
