@@ -24,6 +24,7 @@
     ./gh.nix
     ./git.nix
     ./lazygit.nix
+    ./nvim
     ./shell.nix
     ./starship
     ./tmux
