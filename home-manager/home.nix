@@ -40,6 +40,7 @@
     ./shell.nix
     ./starship
     ./tmux
+    ./uart
     ./yazi.nix
     ./zathura.nix
   ];
