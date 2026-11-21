@@ -42,18 +42,23 @@
 
   home.packages = with pkgs; [
     bat
+    bc
     binsider
     bottom
     cloc
     eza
     fd
     fzf
+    libtree
     mdbook
     nixfmt
+    prettier
     ripgrep
     ripgrep-all
+    stow
     tokei
     tree-sitter
     typst
+    wget
   ];
 }
