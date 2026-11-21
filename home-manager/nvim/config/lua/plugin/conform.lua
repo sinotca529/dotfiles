@@ -10,6 +10,7 @@ return {
     opts = {
         formatters_by_ft = {
             markdown = { 'prettier_markdown' },
+            nix = { 'nixfmt' },
         },
         formatters = {
             -- prettier's own --range-start/--range-end does nothing for

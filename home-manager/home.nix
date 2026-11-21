@@ -49,6 +49,7 @@
     fd
     fzf
     mdbook
+    nixfmt
     ripgrep
     ripgrep-all
     tokei
