@@ -15,6 +15,5 @@
     "$HOME/go/bin"
     "$HOME/.local/bin"
     "$HOME/.cargo/bin"
-    "/mnt/c/Program Files/VOICEPEAK"
   ];
 }

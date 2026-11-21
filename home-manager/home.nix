@@ -8,11 +8,12 @@
   # 基本的に変更しない。
   home.stateVersion = "26.05";
 
-  # NixOS 以外の Linux で使うための調整。
-  targets.genericLinux.enable = true;
-
-  # GPU 有効化
-  targets.genericLinux.gpu.enable = true;
+  # NixOS 以外の Linux で使うための調整は使わない。
+  # Nix の環境設定は Arch の nix パッケージの /etc/profile.d/nix-daemon.sh に任せる。
+  # genericLinux はシングルユーザー版の nix.sh も読み込むため、PATH が重複する。
+  # https://github.com/nix-community/home-manager/issues/2012
+  # https://github.com/nix-community/home-manager/issues/8076
+  targets.genericLinux.enable = false;
 
   # home-manager コマンド自体も Home Manager で管理する。
   programs.home-manager.enable = true;
