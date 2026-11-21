@@ -18,6 +18,10 @@
   # home-manager コマンド自体も Home Manager で管理する。
   programs.home-manager.enable = true;
 
+  # switch のたびに未読ニュースの件数を表示しない。
+  # 重要な変更(オプションの改名・廃止)はビルド時の警告で分かる。
+  news.display = "silent";
+
   # 週に 1 回、30 日より古い世代を消して /nix/store のゴミを回収する。
   nix.gc = {
     automatic = true;
