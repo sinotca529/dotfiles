@@ -50,19 +50,28 @@
     bottom
     cloc
     eza
+    fastfetch
     fd
     fzf
+    graphviz
+    jq
+    libsixel
     libtree
+    lzip
     mdbook
     nixfmt
     prettier
+    rclone
     ripgrep
     ripgrep-all
     stow
+    strace
     tokei
     tree-sitter
     typst
     unzip
+    vhs
+    w3m
     wget
     xdg-utils
     zip
