@@ -34,6 +34,7 @@
     ./gh.nix
     ./git.nix
     ./lazygit.nix
+    ./makepkg.nix
     ./nvim
     ./pict
     ./shell.nix
