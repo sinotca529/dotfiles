@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
 readonly SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-# Freedesktop default paths
-XDG_DATA_HOME="$HOME/.local/share"
-XDG_DATA_DIRS="/usr/local/share:/usr/share"
+# 環境変数を優先し、未設定なら Freedesktop の既定値を使う
+# (Hyprland の XDG_DATA_DIRS には Nix のプロファイルも含まれる)
+XDG_DATA_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"
+XDG_DATA_DIRS="${XDG_DATA_DIRS:-/usr/local/share:/usr/share}"
 
 # .desktop ディレクトリ一覧を返す
 get_desktop_dirs() {

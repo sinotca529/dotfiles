@@ -110,7 +110,7 @@ hl.window_rule({
     name   = "kiten",
     match  = { title = "^(Kiten)$" },
     float  = true,
-    size   = "40% 20%",
+    size   = "monitor_w*0.4 monitor_h*0.2",
     center = true,
 })
 
