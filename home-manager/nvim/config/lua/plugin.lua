@@ -58,5 +58,9 @@ require('lazy').setup(
         ui = {
             border = 'rounded'
         },
+        -- luarocks を必要とするプラグインはないので無効にする
+        rocks = {
+            enabled = false,
+        },
     }
 )
