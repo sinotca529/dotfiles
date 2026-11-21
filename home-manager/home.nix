@@ -61,6 +61,7 @@
     typst
     unzip
     wget
+    xdg-utils
     zip
   ];
 }
