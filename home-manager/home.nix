@@ -59,6 +59,8 @@
     tokei
     tree-sitter
     typst
+    unzip
     wget
+    zip
   ];
 }
