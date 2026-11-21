@@ -32,6 +32,7 @@
     ./foot
     ./gh.nix
     ./git.nix
+    ./gtk.nix
     ./lazygit.nix
     ./mako
     ./nvim
