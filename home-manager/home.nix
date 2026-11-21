@@ -33,6 +33,7 @@
     ./git.nix
     ./lazygit.nix
     ./nvim
+    ./pict
     ./shell.nix
     ./starship
     ./tmux

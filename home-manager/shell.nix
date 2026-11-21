@@ -10,8 +10,6 @@
 
   # PATH に追加するディレクトリ
   home.sessionPath = [
-    "$HOME/tools"
-    "$HOME/tools/bin"
     "$HOME/go/bin"
     "$HOME/.local/bin"
     "$HOME/.cargo/bin"
