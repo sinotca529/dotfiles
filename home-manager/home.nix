@@ -33,6 +33,7 @@
     ./gh.nix
     ./git.nix
     ./lazygit.nix
+    ./mako
     ./nvim
     ./pict
     ./shell.nix
