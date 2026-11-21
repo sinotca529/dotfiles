@@ -9,7 +9,7 @@
 
     settings = {
       user = {
-        name = "Takumi Watanabe";
+        name = "sinotca529";
         email = "52117877+sinotca529@users.noreply.github.com";
       };
       init.defaultBranch = "main";
