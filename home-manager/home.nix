@@ -29,6 +29,7 @@
     ./clangd
     ./conf
     ./fish
+    ./foot
     ./gh.nix
     ./git.nix
     ./lazygit.nix
