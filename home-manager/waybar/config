@@ -3,19 +3,22 @@
     "spacing": 2,
     "modules-left": ["hyprland/workspaces", "hyprland/submap", "hyprland/scratchpad", "hyprland/window"],
     "modules-center": [],
-    "modules-right": ["tray", "backlight", "network", "pulseaudio", "memory", "cpu", "custom/keyboard", "battery", "clock"],
-    "custom/keyboard": {
-        "exec": "hyprctl devices -j | jq -r 'first(.keyboards[] | select(.main)) | .active_keymap | if . == \"Japanese\" then \"JP\" elif . == \"English (US)\" then \"EN\" else \"??\" end' ",
-        "format": "󰥻 {}",
-        "interval": 1
+    "modules-right": ["tray", "backlight", "network", "pulseaudio", "memory", "cpu", "hyprland/language", "battery", "clock", "custom/keyhelp"],
+    // hyprctl を毎秒叩くポーリングをやめ、Hyprland のイベントで更新する
+    "hyprland/language": {
+        "format": "󰥻 {shortDescription}",
+        "tooltip-format": "{long}"
+    },
+    // ショートカット早見表 (SUPER + / と同じもの)。キーを忘れてもここから開ける
+    "custom/keyhelp": {
+        "format": "󰌌",
+        "tooltip-format": "ショートカット一覧 (SUPER + /)",
+        "on-click": "pkill -f ~/.config/hypr/tools/keyhelp/keyhelp.sh || foot --title Keys ~/.config/hypr/tools/keyhelp/keyhelp.sh"
     },
     "hyprland/window": {
         "rewrite": {
             "(.*) — Mozilla Firefox": "Firefox",
         },
-    },
-    "hyprland/mode": {
-        "format": "{} "
     },
     "hyprland/scratchpad": {
         "format": "{icon} {count}",

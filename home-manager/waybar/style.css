@@ -1,3 +1,14 @@
+/* Nord (https://www.nordtheme.com/docs/colors-and-palettes)
+ * hyprland.lua / mako / foot も同じパレットで揃えている */
+@define-color nord0  #2e3440;
+@define-color nord1  #3b4252;
+@define-color nord3  #4c566a;
+@define-color nord4  #d8dee9;
+@define-color nord6  #eceff4;
+@define-color nord8  #88c0d0;
+@define-color nord11 #bf616a;
+@define-color nord13 #ebcb8b;
+
 * {
     border: none;
     font-family: "HackGen Console NF";
@@ -5,80 +16,113 @@
     min-height: 0;
 }
 
+/* 背面は hyprland.lua の layer_rule でぼかしている */
 window#waybar {
-    /* background-color: rgba(50, 50, 50, 0.3); */
-    background-color: rgba(50, 50, 50, 0.3);
-    border-bottom: 0px;
-    color: #e5e9f0;
-    border-radius: 0;
+    background-color: alpha(@nord0, 0.55);
+    color: @nord4;
 }
 
-#workspaces * {
-    /* border-radius: 4px; */
-    background-color: transparent;
+tooltip {
+    background-color: @nord0;
+    border: 1px solid @nord3;
+    border-radius: 8px;
+}
+tooltip label {
+    color: @nord4;
+}
+
+/* ---- 左側 ---- */
+
+#workspaces {
+    margin: 6px 3px;
+    border-radius: 10px;
+    background-color: alpha(@nord1, 0.8);
 }
 
 #workspaces button {
     padding: 0 10px;
+    border-radius: 10px;
     background-color: transparent;
-    color: #ffffff;
+    color: @nord4;
+}
+
+#workspaces button:hover {
+    background-color: alpha(@nord3, 0.8);
+    box-shadow: none;
 }
 
 #workspaces button.active {
-    padding: 0 10px;
-    background-color: rgba(255, 255, 255, 0.2);
-    color: #ffffff;
-}
-
-#workspaces button.focused {
-    background: #4c566a;
+    background-color: @nord8;
+    color: @nord0;
 }
 
 #workspaces button.urgent {
-    background-color: #4c566a;
+    background-color: @nord11;
+    color: @nord6;
 }
 
-#clock, #battery, #cpu, #memory, #temperature, #custom-media, #tray, #mode, #idle_inhibitor {
+/* SUPER + G のロック中などは目立たせる */
+#submap {
     padding: 0 10px;
     margin: 6px 3px;
-    color: #e5e9f0;
     border-radius: 10px;
-    background-color: rgba(50, 50, 50, 0.6);
+    background-color: @nord13;
+    color: @nord0;
 }
 
-#mode {
-    border-radius: 4px;
+#window {
+    padding: 0 10px;
 }
 
+/* ---- 右側: 角丸のピル ---- */
+
+#clock, #battery, #cpu, #memory, #language, #tray, #custom-keyhelp {
+    padding: 0 10px;
+    margin: 6px 3px;
+    border-radius: 10px;
+    background-color: alpha(@nord1, 0.8);
+    color: @nord4;
+}
+
+/* 明るさ・ネットワーク・音量は 1 つのピルにつなげる */
 #backlight, #network, #pulseaudio {
-    margin: 6px 0px;
-    color: #e5e9f0;
-    background-color: rgba(50, 50, 50, 0.6);
+    margin: 6px 0;
+    background-color: alpha(@nord1, 0.8);
+    color: @nord4;
 }
-
 #backlight {
     padding: 0 10px 0 16px;
     border-radius: 10px 0 0 10px;
 }
 #network {
     padding: 0 10px 0 12px;
-    border-radius: 0px;
+    border-radius: 0;
 }
 #pulseaudio {
     padding: 0 10px;
     border-radius: 0 10px 10px 0;
 }
 
+#custom-keyhelp {
+    margin-right: 6px;
+    color: @nord8;
+}
+#custom-keyhelp:hover {
+    background-color: @nord8;
+    color: @nord0;
+}
+
+/* ---- 警告 ---- */
+
 @keyframes blink {
     to {
-        /*background-color: #ffffff;*/
-        color: #000000;
+        color: @nord0;
     }
 }
 
 #battery.critical:not(.charging) {
-    background-color: #f53c3c;
-    color: #ffffff;
+    background-color: @nord11;
+    color: @nord6;
     animation-name: blink;
     animation-duration: 0.5s;
     animation-timing-function: linear;
@@ -86,14 +130,7 @@ window#waybar {
     animation-direction: alternate;
 }
 
-#network.disconnected {
-    color: #f53c3c;
-}
-
+#network.disconnected,
 #pulseaudio.muted {
-    color: #f53c3c;
-}
-
-#temperature.critical {
-    color: #f53c3c;
+    color: @nord11;
 }
