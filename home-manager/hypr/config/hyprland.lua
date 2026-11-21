@@ -166,7 +166,7 @@ hl.bind("XF86MonBrightnessUp",   hl.dsp.exec_cmd("brightnessctl set 1%+"), { rep
 hl.bind(key("SHIFT + S"), hl.dsp.exec_cmd('grim -g "$(slurp)" - | wl-copy'))
 
 -- Waybar 再起動
-hl.bind(key("R"), hl.dsp.exec_cmd("killall waybar; waybar -c ~/.config/waybar/config-hypr & disown"))
+hl.bind(key("R"), hl.dsp.exec_cmd("killall waybar; waybar & disown"))
 
 -- 起動
 hl.bind(key("Q"), hl.dsp.exec_cmd("foot"))
@@ -187,7 +187,7 @@ hl.bind(key("N"), hl.dsp.group.next())
 -------------------
 
 hl.on("hyprland.start", function()
-    hl.exec_cmd("waybar -c ~/.config/waybar/config-hypr")
+    hl.exec_cmd("waybar")
     hl.exec_cmd("mako")
     hl.exec_cmd("fcitx5")
     hl.exec_cmd("copyq --start-server")

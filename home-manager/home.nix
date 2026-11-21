@@ -33,6 +33,7 @@
     ./gh.nix
     ./git.nix
     ./gtk.nix
+    ./hypr
     ./lazygit.nix
     ./mako
     ./nvim
@@ -41,6 +42,7 @@
     ./starship
     ./tmux
     ./uart
+    ./waybar
     ./yazi.nix
     ./zathura.nix
   ];
