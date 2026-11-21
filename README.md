@@ -24,11 +24,20 @@ cd ~/dotfiles
 
 # First time: home-manager is not installed yet.
 # -b backup renames existing files (e.g. ~/.bashrc -> ~/.bashrc.backup).
-nix run home-manager -- switch -b backup --flake .#takumi
+nix run home-manager -- switch -b backup --flake .
 
 # After that
-home-manager switch --flake ~/dotfiles#takumi
+home-manager switch --flake ~/dotfiles
 ```
+
+Without `#name`, Home Manager picks `takumi@<hostname>` from `flake.nix`, or `takumi` if there is none.
+
+| Configuration        | Modules                   | Machine                    |
+| -------------------- | ------------------------- | -------------------------- |
+| `takumi@panthalassa` | `home.nix`, `desktop.nix` | Desktop (Arch + Hyprland)  |
+| `takumi`             | `home.nix`                | WSL and other CLI machines |
+
+To add a desktop machine, add `"takumi@<hostname>"` to `homeConfigurations` in `flake.nix`.
 
 Set bash as the login shell; it switches to fish for interactive use (see `home-manager/bash.nix`).
 
@@ -38,13 +47,14 @@ chsh -s /usr/bin/bash
 
 # Layout
 
-| Path                      | Contents                                                         |
-| ------------------------- | ---------------------------------------------------------------- |
-| `flake.nix`               | Entry point (`homeConfigurations.takumi`)                        |
-| `home-manager/home.nix`   | Common settings, CLI packages, list of modules                   |
-| `home-manager/<name>/`    | Module with its own config files (e.g. `hypr`, `waybar`, `nvim`) |
-| `home-manager/<name>.nix` | Module written only in Nix (e.g. `git.nix`, `gtk.nix`)           |
-| `vim/`                    | Still managed with GNU stow (`stow -v vim`)                      |
+| Path                       | Contents                                                         |
+| -------------------------- | ---------------------------------------------------------------- |
+| `flake.nix`                | Entry point (`homeConfigurations`)                               |
+| `home-manager/home.nix`    | Common settings, CLI packages, list of modules                   |
+| `home-manager/desktop.nix` | Modules only for the GUI desktop (Hyprland, waybar, foot, ...)   |
+| `home-manager/<name>/`     | Module with its own config files (e.g. `hypr`, `waybar`, `nvim`) |
+| `home-manager/<name>.nix`  | Module written only in Nix (e.g. `git.nix`, `gtk.nix`)           |
+| `vim/`                     | Still managed with GNU stow (`stow -v vim`)                      |
 
 `conf <name>` opens the configuration of a tool in nvim.
 

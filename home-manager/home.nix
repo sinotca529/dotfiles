@@ -24,27 +24,23 @@
     options = "--delete-older-than 30d";
   };
 
+  # どの環境 (WSL / デスクトップ) でも使う設定。
+  # GUI 環境だけの設定は desktop.nix に置く。
   imports = [
     ./bash.nix
     ./clangd
     ./conf
     ./fish
-    ./foot
     ./gh.nix
     ./git.nix
-    ./gtk.nix
-    ./hypr
     ./lazygit.nix
-    ./mako
     ./nvim
     ./pict
     ./shell.nix
     ./starship
     ./tmux
     ./uart
-    ./waybar
     ./yazi.nix
-    ./zathura.nix
   ];
 
   home.packages = with pkgs; [
