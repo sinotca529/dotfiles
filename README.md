@@ -52,7 +52,6 @@ chsh -s /usr/bin/bash
 | `home-manager/desktop.nix` | Modules only for the GUI desktop (Hyprland, waybar, foot, ...)   |
 | `home-manager/<name>/`     | Module with its own config files (e.g. `hypr`, `waybar`, `nvim`) |
 | `home-manager/<name>.nix`  | Module written only in Nix (e.g. `git.nix`, `gtk.nix`)           |
-| `vim/`                     | Still managed with GNU stow (`stow -v vim`)                      |
 
 `conf <name>` opens the configuration of a tool in nvim.
 
@@ -62,5 +61,5 @@ chsh -s /usr/bin/bash
   Home Manager manages only their config files, because Nix GUI apps can't find
   the GL drivers outside NixOS.
 - Files are copied into `/nix/store`, so edits take effect after `home-manager switch`.
-  Exception: `nvim` is linked directly to this repository.
+  Exception: `nvim` and `vim` are linked directly to this repository.
 - New files must be `git add`ed before switching; flakes ignore untracked files.

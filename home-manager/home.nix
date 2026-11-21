@@ -45,6 +45,7 @@
     ./starship
     ./tmux
     ./uart
+    ./vim
     ./yazi.nix
   ];
 
@@ -69,7 +70,6 @@
     rclone
     ripgrep
     ripgrep-all
-    stow
     strace
     tokei
     tree-sitter

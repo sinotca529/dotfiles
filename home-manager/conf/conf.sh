@@ -4,7 +4,6 @@
 #   conf <名前>   そのツールの設定を開く。次の順に探す
 #                   1. home-manager/<名前>/      (設定ファイルを伴うモジュール)
 #                   2. home-manager/<名前>.nix   (Nix だけで完結するモジュール)
-#                   3. <名前>/                   (まだ stow で管理しているもの)
 
 dotfiles="$HOME/dotfiles"
 
@@ -34,8 +33,6 @@ if [[ -d $dotfiles/home-manager/$name ]]; then
   open_dir "$dotfiles/home-manager/$name"
 elif [[ -f $dotfiles/home-manager/$name.nix ]]; then
   exec nvim -c "cd $dotfiles/home-manager" "$dotfiles/home-manager/$name.nix"
-elif [[ -d $dotfiles/$name ]]; then
-  open_dir "$dotfiles/$name"
 else
   echo "Configuration for '$name' does not exist." >&2
   exit 1
