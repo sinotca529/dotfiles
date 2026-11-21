@@ -2,8 +2,6 @@
 
 A collection of dotfiles, managed with [Nix](https://nixos.org/) flakes and [Home Manager](https://github.com/nix-community/home-manager) (standalone).
 
-![demo](demo.png)
-
 # Setup (Arch Linux / WSL)
 
 ## 1. Install Nix
