@@ -1,7 +1,14 @@
 { config, pkgs, ... }:
 
 {
-  home.packages = [ pkgs.neovim ];
+  home.packages = [
+    pkgs.neovim
+    # denops.vim(skkeleton が使う)の実行環境
+    pkgs.deno
+  ];
+
+  # skkeleton の辞書
+  home.file.".skk/SKK-JISYO.L".source = "${pkgs.skkDictionaries.l}/share/skk/SKK-JISYO.L";
 
   # git commit などで起動するエディタ
   home.sessionVariables.EDITOR = "nvim";
