@@ -25,6 +25,7 @@
 
   imports = [
     ./bash.nix
+    ./clangd
     ./conf
     ./fish
     ./gh.nix

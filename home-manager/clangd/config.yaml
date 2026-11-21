@@ -1,8 +1,7 @@
 CompileFlags:
   Add: [-Wall]
-
+---
 If:
-  PashthMatch : .*\.cpp
-  PashthMatch : .*\.hpp
+  PathMatch: [.*\.cpp, .*\.hpp]
 CompileFlags:
   Add: [-std=c++2b]
