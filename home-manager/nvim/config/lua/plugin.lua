@@ -7,52 +7,57 @@ vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup(
     {
-        -- deno
-        require('plugin.denops'),
+        -- foundation: 他のプラグインが依存する土台
+        require('plugin.denops'),          -- skkeleton
+        require('plugin.nvim-treesitter'), -- treesitter-context, nvim-ts-autotag
 
-        -- appearance
+        -- ui: 画面に情報を表示するだけで、テキストには触れない
         require('plugin.color-scheme'),
         require('plugin.indentmini'),
-        require('plugin.guess-indent'),
-        require('plugin.nvim-treesitter'),
         require('plugin.treesitter-context'),
         require('plugin.todo-comments'),
+        require('plugin.which-key'),
 
-        -- lsp, cmp
-        require('plugin.mason'),
-        require('plugin.mason-lspconfig'),
-        require('plugin.nvim-lint'),
-        require('plugin.blink-cmp'),
-        require('plugin.conform'),
+        -- editing: テキストを入力・変形する
+        require('plugin.guess-indent'),
         require('plugin.nvim-autopairs'),
         require('plugin.nvim-ts-autotag'),
+        require('plugin.surround'),
+        require('plugin.ssr'),
+        require('plugin.skkeleton'),
+
+        -- navigation: カーソル・ファイル間を移動する
+        require('plugin.hop'),
+        require('plugin.fzf-lua'),
+        require('plugin.nvim-tree'),
+
+        -- language intelligence: LSP / 補完 / lint / format
+        require('plugin.mason'),
+        require('plugin.mason-lspconfig'),
+        require('plugin.blink-cmp'),
+        require('plugin.nvim-lint'),
+        require('plugin.conform'),
+
+        -- debug
+        require('plugin.dap'),
+        require('plugin.nvim-dap-lsp'),
 
         -- git
         require('plugin.git-signs'),
         require('plugin.git-conflict'),
 
-        -- tool
-        require('plugin.nvim-tree'),
-        require('plugin.toggle-term'),
-        require('plugin.fzf-lua'),
-        require('plugin.which-key'),
-        require('plugin.md-preview'),
-        require('plugin.maketable'),
-        require('plugin.hop'),
-        require('plugin.ssr'),
-        require('plugin.surround'),
-        require('plugin.skkeleton'),
-
-        -- llm
+        -- ai
         require('plugin.ollama'),
         require('plugin.gh-copilot'),
+        require('plugin.claudecode'),
 
-        --- tex
+        -- filetype: 特定のファイル種別でだけ使う
         require('plugin.vimtex'),
+        require('plugin.md-preview'),
+        require('plugin.maketable'),
 
-        --- debug
-        require('plugin.dap'),
-        require('plugin.nvim-dap-lsp'),
+        -- external: nvim の外のものを呼び出す
+        require('plugin.toggle-term'),
     },
     {
         ui = {

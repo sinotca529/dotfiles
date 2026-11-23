@@ -1,7 +1,6 @@
 vim.o.virtualedit = 'onemore,block'
 vim.o.whichwrap = 'h,l'
 vim.o.fenc = 'utf-8'
-vim.o.mouse = ''
 vim.o.laststatus = 3
 vim.o.expandtab = true
 vim.o.shiftwidth = 2
@@ -56,6 +55,14 @@ vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
     pattern = { '*' },
     callback = function()
         vim.api.nvim_exec2([[:%s/\s\+$//ge]], {})
+    end,
+})
+-- 外部(隣の pane の Claude Code など)で書き換えられたファイルを読み直す。
+-- tmux の focus-events on と組み合わせて、pane を移ったときに反映される。
+vim.api.nvim_create_autocmd({ 'FocusGained', 'BufEnter', 'CursorHold' }, {
+    callback = function()
+        -- コマンドラインウィンドウ(q:)では checktime がエラーになる
+        if vim.fn.getcmdwintype() == '' then vim.cmd.checktime() end
     end,
 })
 vim.api.nvim_create_autocmd({ 'VimEnter' }, {
