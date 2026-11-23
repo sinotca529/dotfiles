@@ -68,6 +68,7 @@
     lzip
     mdbook
     nixfmt
+    poppler-utils
     prettier
     rclone
     ripgrep
