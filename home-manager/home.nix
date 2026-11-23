@@ -46,6 +46,7 @@
     ./tmux
     ./uart
     ./vim
+    ./voicepeak
     ./yazi.nix
   ];
 
@@ -58,6 +59,7 @@
     eza
     fastfetch
     fd
+    ffmpeg
     fzf
     graphviz
     jq
