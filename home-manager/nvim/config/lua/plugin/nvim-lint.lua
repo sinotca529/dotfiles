@@ -12,6 +12,12 @@ local function textlint_root(bufnr)
     return vim.fs.root(bufnr, config_files) or vim.fs.dirname(vim.api.nvim_buf_get_name(bufnr))
 end
 
+-- the project's own textlint (rules are usually installed next to it), else a global one
+local function textlint_cmd(root)
+    local local_bin = vim.fs.joinpath(root, 'node_modules', '.bin', 'textlint')
+    return vim.fn.executable(local_bin) == 1 and local_bin or 'textlint'
+end
+
 -- textlint columns are 1-based UTF-16 offsets; diagnostics want 0-based bytes
 local function byte_col(bufnr, lnum, col)
     local line = vim.api.nvim_buf_get_lines(bufnr, lnum - 1, lnum, false)[1] or ''
@@ -44,8 +50,14 @@ local function parse(output, bufnr)
     return diagnostics
 end
 
+-- Skip silently when there is no .textlintrc (textlint would report nothing)
+-- or no textlint executable (spawning it would fail with ENOENT).
 local function lint()
-    require('lint').try_lint(nil, { cwd = textlint_root(0) })
+    local root = vim.fs.root(0, config_files)
+    if not root or vim.fn.executable(textlint_cmd(root)) ~= 1 then
+        return
+    end
+    require('lint').try_lint(nil, { cwd = root })
 end
 
 return {
@@ -54,12 +66,7 @@ return {
     config = function()
         local lint_mod = require('lint')
         lint_mod.linters.textlint = {
-            -- prefer the project's own textlint (rules are usually installed next to it)
-            cmd = function()
-                local root = textlint_root(0)
-                local local_bin = vim.fs.joinpath(root, 'node_modules', '.bin', 'textlint')
-                return vim.fn.executable(local_bin) == 1 and local_bin or 'textlint'
-            end,
+            cmd = function() return textlint_cmd(textlint_root(0)) end,
             stdin = true,
             args = {
                 '--format', 'json', '--stdin',
